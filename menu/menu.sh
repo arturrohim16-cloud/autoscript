@@ -27,6 +27,8 @@ LIGHT='\033[0;37m'
 # VPS Information
 #Domain
 domain=$(cat /etc/xray/domain)
+#Status Version
+LocalVersion=$(cat /opt/.ver)
 #Status certificate
 modifyTime=$(stat $HOME/.acme.sh/${domain}_ecc/${domain}.key | sed -n '7,6p' | awk '{print $2" "$3" "$4" "$5}')
 modifyTime1=$(date +%s -d "${modifyTime}")
@@ -86,6 +88,7 @@ echo -e "\e[1;32m Country       \e[0m: $LOC"
 #echo -e "\e[1;32m CITY          \e[0m: $CITY"
 echo -e "\e[1;32m DOMAIN        \e[0m: $domain"	
 echo -e "\e[1;32m DATE & TIME   \e[0m: $DATE2"
+echo -e "\e[1;32m VERSION       \e[0m: $LocalVersion"
 echo -e "\e[1;33m -------------------------------------------------\e[0m"
 echo -e "\e[1;34m                      SERVER INFO                    \e[0m"
 echo -e "\e[1;33m -------------------------------------------------\e[0m"
