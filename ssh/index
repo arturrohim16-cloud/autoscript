@@ -14,7 +14,8 @@
     <p class="lead text-center">List of Protocols and Ports:</p>
 
     <ul class="list-group">
-      <li class="list-group-item">Dropbear: 22, 109, 143</li>
+      <li class="list-group-item">OpenSSH: 22</li>
+      <li class="list-group-item">Dropbear: 109, 143, 44</li>
       <li class="list-group-item">SSH Websocket: 80</li>
       <li class="list-group-item">SSH SSL Websocket: 443</li>
       <li class="list-group-item">Stunnel4: 222, 777</li>

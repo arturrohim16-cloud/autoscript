@@ -100,7 +100,8 @@ Make sure your DNS pointing is correct before installing the script.
 ## 🔌 Services & Ports
 
 ```text
-Dropbear                 : 22, 109, 143
+OpenSSH                  : 22
+Dropbear                 : 109, 143, 44
 SSH Websocket            : 80
 SSH SSL Websocket        : 443
 Stunnel4                 : 222, 777
@@ -175,7 +176,19 @@ apt update && apt upgrade -y && reboot
 
 After reboot, proceed to Step 2.
 
-### Step 2 — (Ubuntu & Debian) Run Installer
+### Step 2 — Install via Git Clone (Recommended)
+
+```bash
+apt update && apt install -y git curl wget screen
+git clone https://github.com/caliph91/autoscript.git /root/autoscript
+cd /root/autoscript
+chmod +x install.sh
+screen -S setup ./install.sh
+```
+
+> **Note:** Run as root. This method uses local files without external downloads.
+
+### Alternative — Install via wget (Legacy)
 
 ```bash
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 \
@@ -188,7 +201,7 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1 \
  && screen -S setup ./setup.sh
 ```
 
-> **Note:** Run as root. If any error occurs, screenshot your terminal for troubleshooting.
+> **Note:** If any error occurs, screenshot your terminal for troubleshooting.
 
 ---
 

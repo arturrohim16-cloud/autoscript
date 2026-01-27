@@ -1,5 +1,10 @@
 #!/bin/bash
-# cari apa
+# SSH VPN Installer - Local Version (No wget from autoscript.caliphdev.com)
+# Uses files from cloned repository
+
+# Set base directory
+BASEDIR="${AUTOSCRIPT_DIR:-/root/autoscript}"
+
 apt dist-upgrade -y
 apt install netfilter-persistent -y
 apt-get remove --purge ufw firewalld -y
@@ -22,7 +27,7 @@ commonname=none
 email=none
 
 # simple password minimal
-curl -sS https://autoscript.caliphdev.com/ssh/password | openssl aes-256-cbc -d -a -pass pass:scvps07gg -pbkdf2 > /etc/pam.d/common-password
+cp "$BASEDIR/ssh/password" /etc/pam.d/common-password
 chmod +x /etc/pam.d/common-password
 
 # go to root
@@ -70,48 +75,9 @@ apt dist-upgrade -y
 apt-get remove --purge ufw firewalld -y
 apt-get remove --purge exim4 -y
 
-#install jq
-apt -y install jq
+#install packages
+apt -y install jq shc wget curl figlet ruby python make cmake coreutils rsyslog net-tools zip unzip nano sed gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git lsof libsqlite3-dev libz-dev gcc g++ libreadline-dev zlib1g-dev libssl-dev dos2unix
 
-#install shc
-apt -y install shc
-
-# install wget and curl
-apt -y install wget curl
-
-#figlet
-apt-get install figlet -y
-apt-get install ruby -y
-apt install python -y
-apt install make -y
-apt install cmake -y
-apt install coreutils -y
-apt install rsyslog -y
-apt install net-tools -y
-apt install zip -y
-apt install unzip -y
-apt install nano -y
-apt install sed -y
-apt install gnupg -y
-apt install gnupg1 -y
-apt install bc -y
-apt install jq -y
-apt install apt-transport-https -y
-apt install build-essential -y
-apt install dirmngr -y
-apt install libxml-parser-perl -y
-apt install neofetch -y
-apt install git -y
-apt install lsof -y
-apt install libsqlite3-dev -y
-apt install libz-dev -y
-apt install gcc -y
-apt install g++ -y
-apt install libreadline-dev -y
-apt install zlib1g-dev -y
-apt install libssl-dev -y
-apt install libssl1.0-dev -y
-apt install dos2unix -y
 gem install lolcat
 
 # set time GMT +7
@@ -120,49 +86,14 @@ ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
-
-install_ssl(){
-    if [ -f "/usr/bin/apt-get" ];then
-            isDebian=`cat /etc/issue|grep Debian`
-            if [ "$isDebian" != "" ];then
-                    apt-get install -y nginx certbot
-                    apt install -y nginx certbot
-                    sleep 3s
-            else
-                    apt-get install -y nginx certbot
-                    apt install -y nginx certbot
-                    sleep 3s
-            fi
-    else
-        yum install -y nginx certbot
-        sleep 3s
-    fi
-
-    systemctl stop nginx.service
-
-    if [ -f "/usr/bin/apt-get" ];then
-            isDebian=`cat /etc/issue|grep Debian`
-            if [ "$isDebian" != "" ];then
-                    echo "A" | certbot certonly --renew-by-default --register-unsafely-without-email --standalone -d $domain
-                    sleep 3s
-            else
-                    echo "A" | certbot certonly --renew-by-default --register-unsafely-without-email --standalone -d $domain
-                    sleep 3s
-            fi
-    else
-        echo "Y" | certbot certonly --renew-by-default --register-unsafely-without-email --standalone -d $domain
-        sleep 3s
-    fi
-}
-
 # install webserver
 apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://autoscript.caliphdev.com/ssh/nginx.conf"
+cp "$BASEDIR/ssh/nginx.conf" /etc/nginx/nginx.conf
 rm /etc/nginx/conf.d/vps.conf
-wget -O /etc/nginx/conf.d/vps.conf "https://autoscript.caliphdev.com/ssh/vps.conf"
+cp "$BASEDIR/ssh/vps.conf" /etc/nginx/conf.d/vps.conf
 /etc/init.d/nginx restart
 
 mkdir /etc/systemd/system/nginx.service.d
@@ -171,15 +102,15 @@ rm /etc/nginx/conf.d/default.conf
 systemctl daemon-reload
 service nginx restart
 cd
-mkdir /home/vps
-mkdir /home/vps/public_html
-wget -O /home/vps/public_html/index.html "https://autoscript.caliphdev.com/ssh/index"
-wget -O /home/vps/public_html/.htaccess "https://autoscript.caliphdev.com/ssh/.htaccess"
+mkdir -p /home/vps/public_html
+cp "$BASEDIR/ssh/index" /home/vps/public_html/index.html
+touch /home/vps/public_html/.htaccess
 mkdir /home/vps/public_html/ss-ws
 mkdir /home/vps/public_html/clash-ws
+
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://autoscript.caliphdev.com/ssh/newudpgw"
+cp "$BASEDIR/ssh/newudpgw" /usr/bin/badvpn-udpgw
 chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
@@ -200,7 +131,7 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
-# Install Dropbear SSH
+# Install Dropbear SSH (alongside OpenSSH)
 cd
 # Detect OS for compatibility
 source /etc/os-release
@@ -282,7 +213,7 @@ apt -y install fail2ban
 
 
 # // banner /etc/issue.net
-wget -O /etc/issue.net "https://autoscript.caliphdev.com/banner/banner.conf"
+cp "$BASEDIR/banner/banner.conf" /etc/issue.net
 
 # blokir torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
@@ -301,102 +232,60 @@ iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
 netfilter-persistent reload
 
-# download script
+# Copy scripts from local repository
 cd /usr/bin
-# menu
-wget -O menu "https://autoscript.caliphdev.com/menu/menu.sh"
-wget -O m-vmess "https://autoscript.caliphdev.com/menu/m-vmess.sh"
-wget -O m-vless "https://autoscript.caliphdev.com/menu/m-vless.sh"
-wget -O running "https://autoscript.caliphdev.com/menu/running.sh"
-wget -O clearcache "https://autoscript.caliphdev.com/menu/clearcache.sh"
-wget -O m-ssws "https://autoscript.caliphdev.com/menu/m-ssws.sh"
-wget -O m-trojan "https://autoscript.caliphdev.com/menu/m-trojan.sh"
-wget -O xray-renew "https://autoscript.caliphdev.com/xray/xray-renew.sh"
 
+# menu
+cp "$BASEDIR/menu/menu.sh" menu
+cp "$BASEDIR/menu/m-vmess.sh" m-vmess
+cp "$BASEDIR/menu/m-vless.sh" m-vless
+cp "$BASEDIR/menu/running.sh" running
+cp "$BASEDIR/menu/clearcache.sh" clearcache
+cp "$BASEDIR/menu/m-ssws.sh" m-ssws
+cp "$BASEDIR/menu/m-trojan.sh" m-trojan
+cp "$BASEDIR/xray/xray-renew.sh" xray-renew
 
 # menu ssh ovpn
-wget -O m-sshovpn "https://autoscript.caliphdev.com/menu/m-sshovpn.sh"
-wget -O usernew "https://autoscript.caliphdev.com/ssh/usernew.sh"
-wget -O trial "https://autoscript.caliphdev.com/ssh/trial.sh"
-wget -O renew "https://autoscript.caliphdev.com/ssh/renew.sh"
-wget -O hapus "https://autoscript.caliphdev.com/ssh/hapus.sh"
-wget -O cek "https://autoscript.caliphdev.com/ssh/cek.sh"
-wget -O member "https://autoscript.caliphdev.com/ssh/member.sh"
-wget -O delete "https://autoscript.caliphdev.com/ssh/delete.sh"
-wget -O autokill "https://autoscript.caliphdev.com/ssh/autokill.sh"
-wget -O ceklim "https://autoscript.caliphdev.com/ssh/ceklim.sh"
-wget -O tendang "https://autoscript.caliphdev.com/ssh/tendang.sh"
-wget -O sshws "https://autoscript.caliphdev.com/ssh/sshws.sh"
-wget -O user-lock "https://autoscript.caliphdev.com/ssh/user-lock.sh"
-wget -O user-unlock "https://autoscript.caliphdev.com/ssh/user-unlock.sh"
+cp "$BASEDIR/menu/m-sshovpn.sh" m-sshovpn
+cp "$BASEDIR/ssh/usernew.sh" usernew
+cp "$BASEDIR/ssh/trial.sh" trial
+cp "$BASEDIR/ssh/renew.sh" renew
+cp "$BASEDIR/ssh/hapus.sh" hapus
+cp "$BASEDIR/ssh/cek.sh" cek
+cp "$BASEDIR/ssh/member.sh" member
+cp "$BASEDIR/ssh/delete.sh" delete
+cp "$BASEDIR/ssh/autokill.sh" autokill
+cp "$BASEDIR/ssh/ceklim.sh" ceklim
+cp "$BASEDIR/ssh/tendang.sh" tendang
+cp "$BASEDIR/ssh/user-lock.sh" user-lock
+cp "$BASEDIR/ssh/user-unlock.sh" user-unlock
 
 # menu system
-wget -O m-system "https://autoscript.caliphdev.com/menu/m-system.sh"
-wget -O m-domain "https://autoscript.caliphdev.com/menu/m-domain.sh"
-wget -O add-host "https://autoscript.caliphdev.com/ssh/add-host.sh"
-wget -O certv2ray "https://autoscript.caliphdev.com/xray/certv2ray.sh"
-wget -O speedtest "https://autoscript.caliphdev.com/ssh/speedtest_cli.py"
-wget -O auto-reboot "https://autoscript.caliphdev.com/menu/auto-reboot.sh"
-wget -O restart "https://autoscript.caliphdev.com/menu/restart.sh"
-wget -O bw "https://autoscript.caliphdev.com/menu/bw.sh"
-wget -O m-tcp "https://autoscript.caliphdev.com/menu/tcp.sh"
-wget -O xp "https://autoscript.caliphdev.com/ssh/xp.sh"
-wget -O sshws "https://autoscript.caliphdev.com/ssh/sshws.sh"
-wget -O m-dns "https://autoscript.caliphdev.com/menu/m-dns.sh"
+cp "$BASEDIR/menu/m-system.sh" m-system
+cp "$BASEDIR/menu/m-domain.sh" m-domain
+cp "$BASEDIR/ssh/add-host.sh" add-host
+cp "$BASEDIR/xray/certv2ray.sh" certv2ray
+cp "$BASEDIR/ssh/speedtest_cli.py" speedtest
+cp "$BASEDIR/menu/auto-reboot.sh" auto-reboot
+cp "$BASEDIR/menu/restart.sh" restart
+cp "$BASEDIR/menu/bw.sh" bw
+cp "$BASEDIR/menu/tcp.sh" m-tcp
+cp "$BASEDIR/ssh/xp.sh" xp
+cp "$BASEDIR/menu/m-dns.sh" m-dns
 
 # Menu IPsec
-wget -O m-l2tp "https://autoscript.caliphdev.com/menu/m-l2tp.sh"
-wget -O m-sstp "https://autoscript.caliphdev.com/menu/m-sstp.sh"
-wget -O m-pptp "https://autoscript.caliphdev.com/menu/m-pptp.sh"
+cp "$BASEDIR/menu/m-l2tp.sh" m-l2tp
+cp "$BASEDIR/menu/m-sstp.sh" m-sstp
+cp "$BASEDIR/menu/m-pptp.sh" m-pptp
 
-chmod +x menu
-chmod +x m-vmess
-chmod +x m-vless
-chmod +x running
-chmod +x clearcache
-chmod +x m-ssws
-chmod +x m-trojan
-chmod +x m-pptp
-chmod +x m-sstp
-chmod +x m-l2tp
+# Update script
+cp "$BASEDIR/update/update.sh" m-update
 
+chmod +x menu m-vmess m-vless running clearcache m-ssws m-trojan m-pptp m-sstp m-l2tp
+chmod +x m-sshovpn usernew trial renew hapus cek member delete autokill ceklim tendang user-lock user-unlock xray-renew
+chmod +x m-system m-domain add-host certv2ray speedtest auto-reboot restart bw m-tcp xp m-dns m-update
 
-chmod +x m-sshovpn
-chmod +x usernew
-chmod +x trial
-chmod +x renew
-chmod +x hapus
-chmod +x cek
-chmod +x member
-chmod +x delete
-chmod +x autokill
-chmod +x ceklim
-chmod +x tendang
-chmod +x sshws
-chmod +x user-lock
-chmod +x user-unlock
-chmod +x xray-renew
-
-chmod +x m-system
-chmod +x m-domain
-chmod +x add-host
-chmod +x certv2ray
-chmod +x speedtest
-chmod +x auto-reboot
-chmod +x restart
-chmod +x bw
-chmod +x m-tcp
-chmod +x xp
-chmod +x sshws
-chmod +x m-dns
 cd
-
-
-# cat > /etc/cron.d/re_otm <<-END
-# SHELL=/bin/sh
-# PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-# 0 2 * * * root /sbin/reboot
-# END
 
 cat > /etc/cron.d/xp_otm <<-END
 SHELL=/bin/sh
@@ -413,7 +302,6 @@ service cron reload >/dev/null 2>&1
 
 # remove unnecessary files
 sleep 0.5
-echo -e "[ ${green}INFO$NC ] Clearing trash"
 apt autoclean -y >/dev/null 2>&1
 
 if dpkg -s unscd >/dev/null 2>&1; then
@@ -425,26 +313,22 @@ apt-get -y --purge remove apache2* >/dev/null 2>&1
 apt-get -y --purge remove bind9* >/dev/null 2>&1
 apt-get -y remove sendmail* >/dev/null 2>&1
 apt autoremove -y >/dev/null 2>&1
+
 # finishing
 cd
 chown -R www-data:www-data /home/vps/public_html
 sleep 0.5
-echo -e "$yell[SERVICE]$NC Restart All service SSH & OVPN"
+echo -e "Restart All service SSH"
 /etc/init.d/nginx restart >/dev/null 2>&1
 sleep 0.5
-echo -e "[ ${green}ok${NC} ] Restarting nginx"
 /etc/init.d/openvpn restart >/dev/null 2>&1
 sleep 0.5
-echo -e "[ ${green}ok${NC} ] Restarting cron "
 /etc/init.d/dropbear restart >/dev/null 2>&1
 sleep 0.5
-echo -e "[ ${green}ok${NC} ] Restarting fail2ban "
 /etc/init.d/stunnel4 restart >/dev/null 2>&1
 sleep 0.5
-echo -e "[ ${green}ok${NC} ] Restarting stunnel4 "
 /etc/init.d/vnstat restart >/dev/null 2>&1
 sleep 0.5
-echo -e "[ ${green}ok${NC} ] Restarting vnstat "
 /etc/init.d/squid restart >/dev/null 2>&1
 
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
@@ -460,8 +344,7 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 rm -f /root/key.pem
 rm -f /root/cert.pem
-rm -f /root/ssh-vpn.sh
-rm -f /root/bbr.sh
 
 # finihsing
 clear
+echo "SSH/Dropbear installation complete!"
