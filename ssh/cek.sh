@@ -13,19 +13,19 @@ fi
 done
 echo " "
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\E[0;41;36m          OpenSSH User Login       \E[0m"
+echo -e "\E[0;41;36m          Dropbear User Login       \E[0m"
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo "ID  |  Username  |  IP Address";
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-cat $LOG | grep -i sshd | grep -i "Accepted password for" > /tmp/login-db.txt
+cat $LOG | grep -i dropbear | grep -i "Password auth succeeded" > /tmp/login-db.txt
 data=( `ps aux | grep "\[priv\]" | sort -k 72 | awk '{print $2}'`);
 
 for PID in "${data[@]}"
 do
-        cat /tmp/login-db.txt | grep "sshd\[$PID\]" > /tmp/login-db-pid.txt;
+        cat /tmp/login-db.txt | grep "dropbear\[$PID\]" > /tmp/login-db-pid.txt;
         NUM=`cat /tmp/login-db-pid.txt | wc -l`;
         USER=`cat /tmp/login-db-pid.txt | awk '{print $9}'`;
-        IP=`cat /tmp/login-db-pid.txt | awk '{print $11}'`;
+        IP=`cat /tmp/login-db-pid.txt | awk -F'from ' '{print $2}' | awk '{print $1}'`;
         if [ $NUM -eq 1 ]; then
                 echo "$PID - $USER - $IP";
         fi

@@ -5,7 +5,7 @@ echo -e "\E[0;100;33m         • RESTART MENU •          \E[0m"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 echo -e " [\e[36m•1\e[0m] Restart All Services"
-echo -e " [\e[36m•2\e[0m] Restart OpenSSH"
+echo -e " [\e[36m•2\e[0m] Restart Dropbear"
 echo -e " [\e[36m•4\e[0m] Restart Stunnel4"
 echo -e " [\e[36m•5\e[0m] Restart OpenVPN"
 echo -e " [\e[36m•6\e[0m] Restart Squid"
@@ -34,7 +34,7 @@ case $Restart in
                 echo -e ""
                 echo -e "[ \033[32mInfo\033[0m ] Restart Begin"
                 sleep 1
-                /etc/init.d/ssh restart
+                /etc/init.d/dropbear restart
                 /etc/init.d/stunnel4 restart
                 /etc/init.d/openvpn restart
                 /etc/init.d/fail2ban restart
@@ -75,9 +75,9 @@ case $Restart in
                 echo -e ""
                 echo -e "[ \033[32mInfo\033[0m ] Restart Begin"
                 sleep 1
-                /etc/init.d/ssh restart
+                /etc/init.d/dropbear restart
                 sleep 0.5
-                echo -e "[ \033[32mInfo\033[0m ] SSH Service Restarted"
+                echo -e "[ \033[32mInfo\033[0m ] Dropbear Service Restarted"
                 echo ""
                 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
                 echo ""

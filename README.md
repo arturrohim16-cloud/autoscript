@@ -100,7 +100,7 @@ Make sure your DNS pointing is correct before installing the script.
 ## 🔌 Services & Ports
 
 ```text
-OpenSSH                  : 22
+Dropbear                 : 22, 109, 143
 SSH Websocket            : 80
 SSH SSL Websocket        : 443
 Stunnel4                 : 222, 777

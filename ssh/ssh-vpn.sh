@@ -200,17 +200,44 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
-# setting port ssh
+# Install Dropbear SSH
 cd
-sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 500' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 40000' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 51443' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 58080' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 666' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 200' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 22' /etc/ssh/sshd_config
-/etc/init.d/ssh restart
+# Detect OS for compatibility
+source /etc/os-release
+echo "Detected OS: $ID $VERSION_ID"
+
+# Install dropbear based on OS
+case $ID in
+    debian|ubuntu)
+        apt update
+        apt install -y dropbear
+        ;;
+    *)
+        echo "Unsupported OS: $ID"
+        exit 1
+        ;;
+esac
+
+# Stop OpenSSH if running and disable it
+systemctl stop ssh >/dev/null 2>&1
+systemctl disable ssh >/dev/null 2>&1
+systemctl stop sshd >/dev/null 2>&1
+systemctl disable sshd >/dev/null 2>&1
+
+# Configure Dropbear
+cat > /etc/default/dropbear <<-END
+# Dropbear configuration
+NO_START=0
+DROPBEAR_PORT="22 109 143"
+DROPBEAR_EXTRA_ARGS="-w -g"
+DROPBEAR_BANNER="/etc/issue.net"
+DROPBEAR_RECEIVE_WINDOW=65536
+END
+
+# Enable and start Dropbear
+systemctl enable dropbear
+systemctl start dropbear
+/etc/init.d/dropbear restart
 
 cd
 # install stunnel
@@ -259,7 +286,6 @@ apt -y install fail2ban
 
 # // banner /etc/issue.net
 wget -O /etc/issue.net "https://autoscript.caliphdev.com/banner/banner.conf"
-echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
 
 # blokir torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
@@ -413,7 +439,7 @@ echo -e "[ ${green}ok${NC} ] Restarting nginx"
 /etc/init.d/openvpn restart >/dev/null 2>&1
 sleep 0.5
 echo -e "[ ${green}ok${NC} ] Restarting cron "
-/etc/init.d/ssh restart >/dev/null 2>&1
+/etc/init.d/dropbear restart >/dev/null 2>&1
 sleep 0.5
 echo -e "[ ${green}ok${NC} ] Restarting fail2ban "
 /etc/init.d/stunnel4 restart >/dev/null 2>&1

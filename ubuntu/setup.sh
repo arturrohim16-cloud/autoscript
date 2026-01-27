@@ -220,7 +220,7 @@ echo "     \__\/                       ~~~~       \__\/       \__\/ 1.0 "  | tee
 echo "=================================================================="  | tee -a log-install.txt
 echo ""
 echo "   >>> Service & Port"  | tee -a log-install.txt
-echo "   - OpenSSH                  : 22"  | tee -a log-install.txt
+echo "   - Dropbear                 : 22, 109, 143"  | tee -a log-install.txt
 echo "   - SSH Websocket            : 80" | tee -a log-install.txt
 echo "   - SSH SSL Websocket        : 443" | tee -a log-install.txt
 echo "   - Stunnel4                 : 222, 777" | tee -a log-install.txt

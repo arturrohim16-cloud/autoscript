@@ -18,7 +18,7 @@ read -p "Expired (hari): " masaaktif
 
 IP=$(curl -sS ifconfig.me);
 ossl=`cat /root/log-install.txt | grep -w "OpenVPN" | cut -f2 -d: | awk '{print $6}'`
-opensh=`cat /root/log-install.txt | grep -w "OpenSSH" | cut -f2 -d: | awk '{print $1}'`
+dropbearsh=`cat /root/log-install.txt | grep -w "Dropbear" | cut -f2 -d: | awk '{print $1}'`
 ssl="$(cat ~/log-install.txt | grep -w "Stunnel4" | cut -d: -f2)"
 sqd="$(cat ~/log-install.txt | grep -w "Squid" | cut -d: -f2)"
 
@@ -43,7 +43,7 @@ echo -e "Expired On  : $exp" | tee -a /etc/log-create-ssh.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-ssh.log
 echo -e "IP          : $IP" | tee -a /etc/log-create-ssh.log
 echo -e "Host        : $domen" | tee -a /etc/log-create-ssh.log
-echo -e "OpenSSH     : $opensh" | tee -a /etc/log-create-ssh.log
+echo -e "Dropbear    : $dropbearsh" | tee -a /etc/log-create-ssh.log
 echo -e "SSH WS      : $portsshws" | tee -a /etc/log-create-ssh.log
 echo -e "SSH SSL WS  : $wsssl" | tee -a /etc/log-create-ssh.log
 echo -e "SSL/TLS     :$ssl" | tee -a /etc/log-create-ssh.log
@@ -70,7 +70,7 @@ echo -e "Expired On  : $exp" | tee -a /etc/log-create-ssh.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-ssh.log
 echo -e "IP          : $IP" | tee -a /etc/log-create-ssh.log
 echo -e "Host        : $domen" | tee -a /etc/log-create-ssh.log
-echo -e "OpenSSH     : $opensh" | tee -a /etc/log-create-ssh.log
+echo -e "Dropbear    : $dropbearsh" | tee -a /etc/log-create-ssh.log
 echo -e "SSH WS      : $portsshws" | tee -a /etc/log-create-ssh.log
 echo -e "SSH SSL WS  : $wsssl" | tee -a /etc/log-create-ssh.log
 echo -e "SSL/TLS     :$ssl" | tee -a /etc/log-create-ssh.log
