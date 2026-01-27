@@ -36,24 +36,7 @@ apt update -y
 apt install -y git curl wget
 
 # Set variables
-REPO_URL="https://github.com/caliph91/autoscript.git"
 INSTALL_DIR="/root/autoscript"
-
-# Clone repository
-echo -e "[ ${BGreen}INFO${NC} ] Cloning repository..."
-if [ -d "$INSTALL_DIR" ]; then
-    echo -e "[ ${BYellow}WARNING${NC} ] Directory exists, removing..."
-    rm -rf "$INSTALL_DIR"
-fi
-
-git clone "$REPO_URL" "$INSTALL_DIR"
-if [ $? -ne 0 ]; then
-    echo -e "[ ${BRed}ERROR${NC} ] Failed to clone repository"
-    exit 1
-fi
-
-cd "$INSTALL_DIR"
-echo -e "[ ${BGreen}INFO${NC} ] Repository cloned to $INSTALL_DIR"
 
 # Make scripts executable
 find . -name "*.sh" -exec chmod +x {} \;
