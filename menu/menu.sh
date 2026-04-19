@@ -89,7 +89,7 @@ bawah="${CYAN}└─────────────────────
 pembatas="${CYAN}├─────────────────────────────────────────────────┤${NC}"
 
 echo -e "${RED}┌─────────────────────────────────────────────────┐${NC}"
-echo -e "${RED}│                AJI SYSTEM PREMIUM               │${NC}"
+echo -e "${RED}│${NC}${BG_RED}                AJI SYSTEM PREMIUM               ${NC}${RED}│${NC}"
 echo -e "${RED}└─────────────────────────────────────────────────┘${NC}"
 echo -e "$garis"
 echo -e "$tengah ${YELLOW}OS      ${NC}: $(hostnamectl | grep "Operating System" | cut -d ' ' -f5-) "
