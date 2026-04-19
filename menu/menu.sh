@@ -60,8 +60,8 @@ Name=$"caliphvpn"
 cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
 cpu_usage="$((${cpu_usage1/\.*} / ${corediilik:-1}))"
 cpu_usage+=" %"
-#ISP=$(curl -s ipinfo.io/org?token=ce3da57536810d | cut -d " " -f 2-10 )
-#CITY=$(curl -s ipinfo.io/city?token=ce3da57536810d )
+ISP=$(curl -s ipinfo.io/org?token=ce3da57536810d | cut -d " " -f 2-10 )
+CITY=$(curl -s ipinfo.io/city?token=ce3da57536810d )
 #WKT=$(curl -s ipinfo.io/timezone?token=ce3da57536810d )
 DAY=$(date +%A)
 DATE=$(date +%m/%d/%Y)
@@ -119,7 +119,7 @@ echo -e "$tengah ${YELLOW} 4.)${NC} Menu Trojan       ${YELLOW}11.)${NC} Clear R
 echo -e "$tengah ${YELLOW} 5.)${NC} Menu Shadowsocks  ${YELLOW}12.)${NC} Reboot VPS     "
 echo -e "$tengah ${YELLOW} 6.)${NC} Menu L2TP         ${YELLOW}13.)${NC} Update Script  "
 echo -e "$tengah ${YELLOW} 7.)${NC} Menu PPTP         ${YELLOW}14.)${NC} INSTAL UDP     "
-echo -e "$tengah ${YELLOW} x.)${NC} Exit Script  "
+echo -e "$tengah ${YELLOW} x.)${NC} Exit Script       ${YELLOW}15.)${NC} BOT TELEGRAM   "
 echo -e "$tengah ${YELLOW} r.)${NC} Xray renew  "
 echo -e "$pembatas"
 echo -e "$tengah ${GREEN} Client Name ${NC}: $Name "
@@ -144,6 +144,7 @@ case $opt in
 12) clear ; reboot ; /sbin/reboot ;;
 13) clear ; m-update ;;
 14) clear ; wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
+15) clear ; apt update && apt install wget -y && wget https://autoscript.caliphdev.com/bot%20telegram%20panel/xolpanel.sh && chmod +x xolpanel.sh && ./xolpanel.sh
 r) clear ; xray-renew ;;
 x) exit ;;
 *) echo "Silahkan masukkan pilihan dengan benar! " ; sleep 1 ; menu ;;
