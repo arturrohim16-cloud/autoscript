@@ -74,8 +74,6 @@ tram=$( free -m | awk 'NR==2 {print $2}' )
 uram=$( free -m | awk 'NR==2 {print $3}' )
 fram=$( free -m | awk 'NR==2 {print $4}' )
 clear 
-#!/bin/bash
-
 # Warna
 CYAN='\e[1;36m'
 GREEN='\e[1;32m'
@@ -90,7 +88,6 @@ tengah="${CYAN}│${NC}"
 bawah="${CYAN}└─────────────────────────────────────────────────┘${NC}"
 pembatas="${CYAN}├─────────────────────────────────────────────────┤${NC}"
 
-clear
 echo -e "${RED}┌─────────────────────────────────────────────────┐${NC}"
 echo -e "${RED}│                AJI SYSTEM PREMIUM               │${NC}"
 echo -e "${RED}└─────────────────────────────────────────────────┘${NC}"
