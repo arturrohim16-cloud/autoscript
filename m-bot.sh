@@ -1,5 +1,4 @@
 #!/bin/bash
-cat > /usr/bin/menu-bot << 'END'
 # --- WARNA TERANG ---
 CYAN='\033[1;36m'
 GREEN='\033[1;32m'
@@ -94,6 +93,5 @@ while true; do
             ;;
     esac
 done
-END
 chmod +x /usr/bin/menu-bot
 
