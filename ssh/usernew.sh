@@ -33,6 +33,36 @@ exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 PID=`ps -ef |grep -v grep | grep sshws |awk '{print $2}'`
 
+source /usr/bin/bot.sh
+msg="🚀 <b>SSH ACCOUNT CREATED</b> 🚀
+━━━━━━━━━━━━━━━━━━━━━
+👤 <b>User:</b> <code>$Login</code>
+🔑 <b>Pass:</b> <code>$Pass</code>
+📅 <b>Exp:</b> <code>$exp</code>
+━━━━━━━━━━━━━━━━━━━━━
+🌐 <b>IP Address :</b> <code>$IP</code>
+✨ <b>Host : </b> <code>$domen</code>
+🔓 <b>OpenSSH :</b> <code>22</code>
+🐻 <b>Dropbear :</b> <code>109, 143</code>
+🔐 <b>SSH-WS :</b> <code>80</code>
+🔌 <b>SSH-SSL-WS :</b> <code>443</code>
+🚀 <b>UDPGW :</b> <code>7100-7300</code>
+━━━━━━━━━━━━━━━━━━━━━━
+📝 <b>Payload Websocket :</b>
+<code>GET / [protocol][crlf]Host: [host][crlf]Connection: Keep-Alive[crlf]Connection: Upgrade[crlf]Upgrade: websocket[crlf][crlf]</code>
+━━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Format Login (Klik untuk Salin) :</b>
+🔹 <b>SSH-SSL :</b> 
+<code>$domen:443@$Login:$Pass</code>
+🔹 <b>SSH-NONSL-WS :</b> 
+<code>$domen:80@$Login:$Pass</code>
+🔹 <b>UDP Custom :</b> 
+<code>$domen:1-65535@$Login:$Pass</code>
+━━━━━━━━━━━━━━━━━━━━━━
+✅ <b>Script By AJI VPN</b>"
+
+send_log "$msg"
+
 if [[ ! -z "${PID}" ]]; then
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-ssh.log
 echo -e "\E[0;41;36m            SSH Account            \E[0m" | tee -a /etc/log-create-ssh.log
@@ -54,10 +84,9 @@ echo -e "
 GET wss://isi_bug_disini HTTP/1.1[crlf]Host: ${domen}[crlf]Upgrade: websocket[crlf][crlf]
 " | tee -a /etc/log-create-ssh.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-ssh.log
-echo -e "Payload WS" | tee -a /etc/log-create-ssh.log
-echo -e "
-GET / HTTP/1.1[crlf]Host: $domen[crlf]Upgrade: websocket[crlf][crlf]
-" | tee -a /etc/log-create-ssh.log
+echo -e "<code>$domen:443@$Login:$Pass</code>🔹 <b>SSH-NONSL-WS :</b>" 
+echo -e "<code>$domen:80@$Login:$Pass</code>🔹 <b>UDP Custom :</b>"
+echo -e "<code>$domen:1-65535@$Login:$Pass</code>"
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-ssh.log
 else
 
