@@ -39,6 +39,27 @@ if [[ ${remainingDays} -le 0 ]]; then
 fi
 # OS Uptime
 uptime="$(uptime -p | cut -d " " -f 2-10)"
+# Cek Status XRAY
+if systemctl is-active --quiet xray; then
+    status_xray="${GREEN}ON${NC}"
+else
+    status_xray="${RED}OFF${NC}"
+fi
+
+# Cek Status NGINX
+if systemctl is-active --quiet nginx; then
+    status_nginx="${GREEN}ON${NC}"
+else
+    status_nginx="${RED}OFF${NC}"
+fi
+
+# Cek Status SSH-WS (Sesuaikan nama servicenya, misal: ws-stunnel atau ssh-ws)
+if systemctl is-active --quiet ws-stunnel; then
+    status_ssh="${GREEN}ON${NC}"
+else
+    status_ssh="${RED}OFF${NC}"
+fi
+
 # Download
 #Download/Upload today
 dtoday="$(vnstat -i eth0 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
@@ -106,7 +127,7 @@ echo -e "$tengah ${GREEN}DOWNLOAD   ${NC}: $dtoday "
 echo -e "$tengah ${GREEN}UPLOAD     ${NC}: $utoday "
 echo -e "$tengah ${GREEN}TOTAL      ${NC}: $ttoday "
 echo -e "$pembatas"
-echo -e "$tengah ${CYAN} XRAY : ON ${NC}|${CYAN} NGINX : ON ${NC}|${CYAN} SSH-WS : ON ${NC}|${CYAN} STATUS : GOOD ${NC} $tengah"
+echo -e "$tengah ${CYAN} XRAY : $status_xray ${NC}|${CYAN} NGINX : $status_nginx ${NC}|${CYAN} SSH-WS : $status_ssh ${NC}|${CYAN} STATUS : GOOD ${NC} $tengah"
 echo -e "$pembatas"
 echo -e "$tengah ${YELLOW} 1.)${NC} Menu SSH          ${YELLOW} 8.)${NC} Menu SSTP      "
 echo -e "$tengah ${YELLOW} 2.)${NC} Menu Vmess        ${YELLOW} 9.)${NC} Menu Setting   "
