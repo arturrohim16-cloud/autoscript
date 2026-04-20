@@ -140,7 +140,7 @@ case $opt in
 12) clear ; reboot ; /sbin/reboot ;;
 13) clear ; m-update ;;
 14) clear ; wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
-15) clear ; apt update && apt install wget -y && wget https://autoscript.caliphdev.com/bot%20telegram%20panel/xolpanel.sh && chmod +x xolpanel.sh && ./xolpanel.sh ;;
+15) clear ; menu-bot
 r) clear ; xray-renew ;;
 x) exit ;;
 *) echo "Silahkan masukkan pilihan dengan benar! " ; sleep 1 ; menu ;;
