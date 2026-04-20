@@ -33,7 +33,7 @@ exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 PID=`ps -ef |grep -v grep | grep sshws |awk '{print $2}'`
 
-source /usr/bin/xolpanel.sh
+source /usr/bin/bot.sh
 msg="🚀 <b>SSH ACCOUNT CREATED</b> 🚀
 ━━━━━━━━━━━━━━━━━━━━━
 👤 <b>User:</b> <code>$Login</code>
