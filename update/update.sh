@@ -45,8 +45,8 @@ update_file "/usr/bin/m-dns" "$BASE_URL/menu/m-dns.sh"
 update_file "/usr/bin/m-l2tp" "$BASE_URL/menu/m-l2tp.sh"
 update_file "/usr/bin/m-pptp" "$BASE_URL/menu/m-pptp.sh"
 update_file "/usr/bin/m-sstp" "$BASE_URL/menu/m-sstp.sh"
+update_file "/usr/bin/menu-bot" "$BASE_URL/update/menu-bot.sh"
 update_file "/usr/bin/m-update" "$BASE_URL/update/update.sh"
-
 # Update version file
 echo "Updating Version..."
 serverV=$(curl -sS "$BASE_URL/menu/versi")
