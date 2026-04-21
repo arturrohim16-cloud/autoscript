@@ -108,17 +108,18 @@ BG_RED='\e[41;1;37m'
 RED='\e[1;31m'
 NC='\e[0m'
 
-# Garis Pembatas Box
-garis="${CYAN}┌─────────────────────────────────────────────────┐${NC}"
+# --- KONFIGURASI GARIS (Gunakan lebar yang sama: 53 karakter) ---
+garis="${CYAN}┌─────────────────────────────────────────────────────┐${NC}"
+pembatas="${CYAN}├─────────────────────────────────────────────────────┤${NC}"
+bawah="${CYAN}└─────────────────────────────────────────────────────┘${NC}"
 tengah="${CYAN}│${NC}"
-bawah="${CYAN}└─────────────────────────────────────────────────┘${NC}"
-pembatas="${CYAN}├─────────────────────────────────────────────────┤${NC}"
 
-# Bagian Dashboard Header
+# Bagian Dashboard Header (Background Merah)
 echo -e "${RED}┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "${RED}│${NC}${BG_RED}                  AJI SYSTEM PREMIUM                 ${NC}${RED}│${NC}"
 echo -e "${RED}└─────────────────────────────────────────────────────┘${NC}"
-echo -e "$garis"
+
+# Bagian Informasi System
 echo -e "$tengah ${YELLOW}OS      ${NC}: $(hostnamectl | grep "Operating System" | cut -d ' ' -f5-) "
 echo -e "$tengah ${YELLOW}UPTIME  ${NC}: $uptime "
 echo -e "$tengah ${YELLOW}IP      ${NC}: $IPVPS "
@@ -126,28 +127,37 @@ echo -e "$tengah ${YELLOW}CITY    ${NC}: $LOC "
 echo -e "$tengah ${YELLOW}DOMAIN  ${NC}: $domain "
 echo -e "$tengah ${YELLOW}DATE    ${NC}: $DATE2 "
 echo -e "$pembatas"
+
+# Bagian RAM & CPU
 echo -e "$tengah ${BLUE}RAM USED   ${NC}: $uram MB / $tram MB "
 echo -e "$tengah ${BLUE}CPU USAGE  ${NC}: $cpu_usage "
 echo -e "$pembatas"
+
+# Bagian Traffic
 echo -e "$tengah ${GREEN}DOWNLOAD   ${NC}: $dtoday "
 echo -e "$tengah ${GREEN}UPLOAD     ${NC}: $utoday "
 echo -e "$tengah ${GREEN}TOTAL      ${NC}: $ttoday "
 echo -e "$pembatas"
-echo -e "$tengah ${CYAN} XRAY : $status_xray ${NC}|${CYAN} NGINX : $status_nginx ${NC}|${CYAN} SSH-WS : $status_ssh ${NC}|${CYAN} STATUS : GOOD ${NC} $tengah"
+
+# Bagian Status Service (Disesuaikan agar pas di tengah)
+echo -e "$tengah ${CYAN} XRAY: $status_xray ${NC}|${CYAN} NGINX: $status_nginx ${NC}|${CYAN} SSH-WS: $status_ssh ${NC}|${CYAN} GOOD ${NC} $tengah"
 echo -e "$pembatas"
-echo -e "$tengah ${YELLOW} 1.)${NC} Menu SSH          ${YELLOW} 8.)${NC} Menu SSTP      "
-echo -e "$tengah ${YELLOW} 2.)${NC} Menu Vmess        ${YELLOW} 9.)${NC} Menu Setting   "
-echo -e "$tengah ${YELLOW} 3.)${NC} Menu Vless        ${YELLOW}10.)${NC} Status Service "
-echo -e "$tengah ${YELLOW} 4.)${NC} Menu Trojan       ${YELLOW}11.)${NC} Clear RAM      "
-echo -e "$tengah ${YELLOW} 5.)${NC} Menu Shadowsocks  ${YELLOW}12.)${NC} Reboot VPS     "
-echo -e "$tengah ${YELLOW} 6.)${NC} Menu L2TP         ${YELLOW}13.)${NC} Update Script  "
-echo -e "$tengah ${YELLOW} 7.)${NC} Menu PPTP         ${YELLOW}14.)${NC} INSTAL UDP     "
-echo -e "$tengah ${YELLOW} x.)${NC} Exit Script       ${YELLOW}15.)${NC} BOT TELEGRAM   "
-echo -e "$tengah ${YELLOW} r.)${NC} Xray renew  "
+
+# Bagian Menu (Dua Kolom - Spasi sudah diatur agar lurus)
+echo -e "$tengah ${YELLOW} 1.)${NC} SSH/OPENVPN     ${YELLOW} 7.)${NC} BOT TELEGRAM      $tengah"
+echo -e "$tengah ${YELLOW} 2.)${NC} XRAY VMESS      ${YELLOW} 8.)${NC} UPDATE SCRIPT     $tengah"
+echo -e "$tengah ${YELLOW} 3.)${NC} XRAY TROJAN     ${YELLOW} 9.)${NC} BACKUP RESTORE    $tengah"
+echo -e "$tengah ${YELLOW} 4.)${NC} XRAY VLESS      ${YELLOW}10.)${NC} FEATURES          $tengah"
+echo -e "$tengah ${YELLOW} 5.)${NC} CHANGE DOMAIN   ${YELLOW}11.)${NC} REBOOT            $tengah"
+echo -e "$tengah ${YELLOW} 6.)${NC} DOR PAKET XL    ${YELLOW} x.)${NC} EXIT              $tengah"
 echo -e "$pembatas"
+
+# Bagian Client
 echo -e "$tengah ${GREEN} Client Name ${NC}: $Name "
 echo -e "$tengah ${GREEN} Expired     ${NC}: $Exp2 "
 echo -e "$bawah"
+
+# Footer
 echo -e " ${CYAN}---------- t.me/caliphdev / @AjiStore ----------${NC}"
 echo -e ""
 read -p " Select menu :  "  opt
