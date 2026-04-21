@@ -115,7 +115,7 @@ status_ssh=$(systemctl is-active ws-stunnel &>/dev/null && echo -e "${GREEN}ON${
 # --- DASHBOARD START ---
 clear
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
-echo -e "${CYAN}│${NC}      ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC} ${BG_RED} AJI SYSTEM PREMIUM ${NC} ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC}  ${CYAN}│${NC}"
+echo -e "${CYAN}│${NC}      ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC} ${BG_RED} AJI SYSTEM PREMIUM ${NC} ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC}          ${CYAN}│${NC}"
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
 # Bagian Informasi System
