@@ -60,6 +60,7 @@ else
     status_ssh="${RED}OFF${NC}"
 fi
 
+
 # Download
 #Download/Upload today
 dtoday="$(vnstat -i eth0 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
@@ -102,6 +103,10 @@ RED='\e[1;31m'
 YELLOW='\e[1;33m'
 BLUE='\e[1;34m'
 NC='\e[0m'
+# Pastikan variabel ini ada di bagian atas script bersama warna lainnya
+BG_RED='\e[41;1;37m'
+RED='\e[1;31m'
+NC='\e[0m'
 
 # Garis Pembatas Box
 garis="${CYAN}┌─────────────────────────────────────────────────┐${NC}"
@@ -109,9 +114,10 @@ tengah="${CYAN}│${NC}"
 bawah="${CYAN}└─────────────────────────────────────────────────┘${NC}"
 pembatas="${CYAN}├─────────────────────────────────────────────────┤${NC}"
 
-echo -e "${RED}┌─────────────────────────────────────────────────┐${NC}"
-echo -e "${RED}│${NC}${BG_RED}                AJI SYSTEM PREMIUM               ${NC}${RED}│${NC}"
-echo -e "${RED}└─────────────────────────────────────────────────┘${NC}"
+# Bagian Dashboard Header
+echo -e "${RED}┌─────────────────────────────────────────────────────┐${NC}"
+echo -e "${RED}│${NC}${BG_RED}                  AJI SYSTEM PREMIUM                 ${NC}${RED}│${NC}"
+echo -e "${RED}└─────────────────────────────────────────────────────┘${NC}"
 echo -e "$garis"
 echo -e "$tengah ${YELLOW}OS      ${NC}: $(hostnamectl | grep "Operating System" | cut -d ' ' -f5-) "
 echo -e "$tengah ${YELLOW}UPTIME  ${NC}: $uptime "
