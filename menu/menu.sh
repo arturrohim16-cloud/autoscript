@@ -96,60 +96,57 @@ tram=$( free -m | awk 'NR==2 {print $2}' )
 uram=$( free -m | awk 'NR==2 {print $3}' )
 fram=$( free -m | awk 'NR==2 {print $4}' )
 clear 
-# Warna
+# --- WARNA (Lengkap) ---
 CYAN='\e[1;36m'
+YELLOW='\e[1;33m'
+WHITE='\e[1;37m'
 GREEN='\e[1;32m'
 RED='\e[1;31m'
-YELLOW='\e[1;33m'
 BLUE='\e[1;34m'
-NC='\e[0m'
-# Pastikan variabel ini ada di bagian atas script bersama warna lainnya
+PURPLE='\e[1;35m'
 BG_RED='\e[41;1;37m'
-RED='\e[1;31m'
 NC='\e[0m'
 
-# --- KONFIGURASI GARIS (Gunakan lebar yang sama: 53 karakter) ---
-garis="${CYAN}┌─────────────────────────────────────────────────────┐${NC}"
-pembatas="${CYAN}├─────────────────────────────────────────────────────┤${NC}"
-bawah="${CYAN}└─────────────────────────────────────────────────────┘${NC}"
-tengah="${CYAN}│${NC}"
+# --- LOGIKA STATUS & TRAFFIC ---
+status_xray=$(systemctl is-active xray &>/dev/null && echo -e "${GREEN}ON${NC}" || echo -e "${RED}OFF${NC}")
+status_nginx=$(systemctl is-active nginx &>/dev/null && echo -e "${GREEN}ON${NC}" || echo -e "${RED}OFF${NC}")
+status_ssh=$(systemctl is-active ws-stunnel &>/dev/null && echo -e "${GREEN}ON${NC}" || echo -e "${RED}OFF${NC}")
 
-# Bagian Dashboard Header (Background Merah)
-echo -e "${RED}┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${RED}│${NC}${BG_RED}                  AJI SYSTEM PREMIUM                 ${NC}${RED}│${NC}"
-echo -e "${RED}└─────────────────────────────────────────────────────┘${NC}"
+# --- DASHBOARD START ---
+clear
+echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${CYAN}│${NC}           ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC} ${BG_RED} AJI SYSTEM PREMIUM ${NC} ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC}  ${CYAN}│${NC}"
+echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
 # Bagian Informasi System
-echo -e "$tengah ${YELLOW}OS      ${NC}: $(hostnamectl | grep "Operating System" | cut -d ' ' -f5-) "
-echo -e "$tengah ${YELLOW}UPTIME  ${NC}: $uptime "
-echo -e "$tengah ${YELLOW}IP      ${NC}: $IPVPS "
-echo -e "$tengah ${YELLOW}CITY    ${NC}: $LOC "
-echo -e "$tengah ${YELLOW}DOMAIN  ${NC}: $domain "
-echo -e "$tengah ${YELLOW}DATE    ${NC}: $DATE2 "
-echo -e "$pembatas"
+echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}SYSTEM OS      ${NC}: ${WHITE}$(hostnamectl | grep "Operating System" | cut -d ' ' -f5-) ${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}CPU            ${NC}: ${WHITE}AuthenticAMD 1 CORE${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}SERVER RAM     ${NC}: ${WHITE}$uram/$tram MB${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}UPTIME SERVER  ${NC}: ${WHITE}$uptime${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}IP VPS         ${NC}: ${WHITE}$IPVPS${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}DOMAIN         ${NC}: ${WHITE}$domain${NC}"
+echo -e "${CYAN}├─────────────────────────────────────────────────┤${NC}"
+# Bagian Penggunaan Kuota (Traffic)
+echo -e "${CYAN}│${NC} ${GREEN}DOWNLOAD       ${NC}: ${WHITE}$dtoday${NC}"
+echo -e "${CYAN}│${NC} ${GREEN}UPLOAD         ${NC}: ${WHITE}$utoday${NC}"
+echo -e "${CYAN}│${NC} ${GREEN}TOTAL TRAFFIC  ${NC}: ${WHITE}$ttoday${NC}"
+echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
-# Bagian RAM & CPU
-echo -e "$tengah ${BLUE}RAM USED   ${NC}: $uram MB / $tram MB "
-echo -e "$tengah ${BLUE}CPU USAGE  ${NC}: $cpu_usage "
-echo -e "$pembatas"
+# Bagian Status Service
+echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}PROXY :${NC} $status_ssh ${CYAN}|${NC} ${YELLOW}NGINX :${NC} $status_nginx ${CYAN}|${NC} ${YELLOW}XRAY :${NC} $status_xray ${CYAN}|${NC} ${GREEN} GOOD ${NC} ${CYAN}│${NC}"
+echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
-# Bagian Traffic
-echo -e "$tengah ${GREEN}DOWNLOAD   ${NC}: $dtoday "
-echo -e "$tengah ${GREEN}UPLOAD     ${NC}: $utoday "
-echo -e "$tengah ${GREEN}TOTAL      ${NC}: $ttoday "
-echo -e "$pembatas"
-
-# Bagian Status Service (Disesuaikan agar pas di tengah)
-echo -e "$tengah ${CYAN} XRAY: $status_xray ${NC}|${CYAN} NGINX: $status_nginx ${NC}|${CYAN} SSH-WS: $status_ssh ${NC}|${CYAN} GOOD ${NC} $tengah"
-echo -e "$pembatas"
-# --- Tampilan License Box (Agak menjorok ke dalam) ---
+# Bagian License Box
 echo -e "   ${CYAN}┌───────────────────────────────────────────┐${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}VERSION    ${NC}: ${WHITE}v15.2.7 D£VSX-NETWORK${NC}    ${CYAN}│${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}STATUS     ${NC}: ${GREEN}(active)${NC}                   ${CYAN}│${NC}"
-echo -e "   ${CYAN}│${NC} ${YELLOW}CLIENTS    ${NC}: ${PURPLE}$CLIENT${NC}                  ${CYAN}│${NC}"
-echo -e "   ${CYAN}│${NC} ${YELLOW}EXPIRY     ${NC}: ${WHITE}$EXP${NC}       ${CYAN}│${NC}"
+echo -e "   ${CYAN}│${NC} ${YELLOW}CLIENTS    ${NC}: ${PURPLE}$Name${NC}                      ${CYAN}│${NC}"
+echo -e "   ${CYAN}│${NC} ${YELLOW}EXPIRY     ${NC}: ${WHITE}$Exp2${NC}       ${CYAN}│${NC}"
 echo -e "   ${CYAN}└───────────────────────────────────────────┘${NC}"
-# --- Tampilan Menu (2 Kolom) ---
+
+# Bagian Menu (2 Kolom)
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
 echo -e "${CYAN}│${NC}  ${YELLOW}1.)☞${NC} ${WHITE}SSH/OPENVPN${NC}         ${YELLOW}7.)☞${NC} ${WHITE}BOT TELEGRAM${NC}   ${CYAN}│${NC}"
 echo -e "${CYAN}│${NC}  ${YELLOW}2.)☞${NC} ${WHITE}XRAY VMESS${NC}          ${YELLOW}8.)☞${NC} ${WHITE}UPDATE SCRIPT${NC}  ${CYAN}│${NC}"
@@ -158,12 +155,9 @@ echo -e "${CYAN}│${NC}  ${YELLOW}4.)☞${NC} ${WHITE}XRAY VLESS${NC}         $
 echo -e "${CYAN}│${NC}  ${YELLOW}5.)☞${NC} ${WHITE}CHANGE DOMAIN${NC}      ${YELLOW}11.)☞${NC} ${WHITE}REBOOT${NC}         ${CYAN}│${NC}"
 echo -e "${CYAN}│${NC}  ${YELLOW}6.)☞${NC} ${WHITE}DOR PAKET XL${NC}        ${YELLOW}x.)☞${NC} ${WHITE}EXIT${NC}           ${CYAN}│${NC}"
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
-# Bagian Client
-echo -e "$tengah ${GREEN} Client Name ${NC}: $Name "
-echo -e "$tengah ${GREEN} Expired     ${NC}: $Exp2 "
-echo -e "$bawah"
 # Footer
 echo -e " ${CYAN}---------- t.me/caliphdev / @AjiStore ----------${NC}"
+echo -ne " ${YELLOW}Select From option [1-11 or x] : ${NC}"
 echo -e ""
 read -p " Select menu :  "  opt
 echo -e   ""
