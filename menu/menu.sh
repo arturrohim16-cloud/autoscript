@@ -142,8 +142,8 @@ echo -e "${CYAN}└────────────────────�
 echo -e "   ${CYAN}┌───────────────────────────────────────────┐${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}VERSION    ${NC}: ${WHITE}v15.2.7 D£VSX-NETWORK${NC}        ${CYAN}│${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}STATUS     ${NC}: ${GREEN}(active)${NC}                     ${CYAN}│${NC}"
-echo -e "   ${CYAN}│${NC} ${YELLOW}CLIENTS    ${NC}: ${PURPLE}$Name${NC}                      ${CYAN}│${NC}"
-echo -e "   ${CYAN}│${NC} ${YELLOW}EXPIRY     ${NC}: ${WHITE}$Exp2${NC}                     ${CYAN}│${NC}"
+echo -e "   ${CYAN}│${NC} ${YELLOW}CLIENTS    ${NC}: ${PURPLE}$Name${NC}                         ${CYAN}│${NC}"
+echo -e "   ${CYAN}│${NC} ${YELLOW}EXPIRY     ${NC}: ${WHITE}$Exp2${NC}                   ${CYAN}│${NC}"
 echo -e "   ${CYAN}└───────────────────────────────────────────┘${NC}"
 
 # Bagian Menu (2 Kolom)
@@ -158,7 +158,7 @@ echo -e "${CYAN}└────────────────────�
 # Footer
 echo -e " ${CYAN}---------- t.me/caliphdev / @AjiStore ----------${NC}"
 echo -e ""
-read -p " ${YELLOW}Select From option [1-11 or x] : ${NC}"  opt
+read -p " ${YELLOW}Select From option [1-11 or x] :"  opt
 echo -e   ""
 case $opt in
 1) clear ; m-sshovpn ;;
