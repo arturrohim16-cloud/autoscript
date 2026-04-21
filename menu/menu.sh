@@ -157,6 +157,7 @@ echo -e "${CYAN}│${NC}  ${YELLOW}6.)☞${NC} ${WHITE}DOR PAKET XL${NC}        
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 # Footer
 echo -e " ${CYAN}---------- t.me/caliphdev / @AjiStore ----------${NC}"
+echo -e ""
 read -p " ${YELLOW}Select From option [1-11 or x] : ${NC}"  opt
 echo -e   ""
 case $opt in
