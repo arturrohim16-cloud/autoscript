@@ -140,10 +140,8 @@ echo -e "$tengah ${GREEN}TOTAL      ${NC}: $ttoday "
 echo -e "$pembatas"
 
 # Bagian Status Service (Disesuaikan agar pas di tengah)
-echo -e "     $tengah ${CYAN} XRAY: $status_xray ${NC}|${CYAN} NGINX: $status_nginx ${NC}|${CYAN} SSH-WS: $status_ssh ${NC}|${CYAN} GOOD ${NC} $tengah"
+echo -e "$tengah ${CYAN} XRAY: $status_xray ${NC}|${CYAN} NGINX: $status_nginx ${NC}|${CYAN} SSH-WS: $status_ssh ${NC}|${CYAN} GOOD ${NC} $tengah"
 echo -e "$pembatas"
-└─────────────────────────────────────────────────┘${NC}"
-
 # --- Tampilan License Box (Agak menjorok ke dalam) ---
 echo -e "   ${CYAN}┌───────────────────────────────────────────┐${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}VERSION    ${NC}: ${WHITE}v15.2.7 D£VSX-NETWORK${NC}    ${CYAN}│${NC}"
@@ -151,7 +149,6 @@ echo -e "   ${CYAN}│${NC} ${YELLOW}STATUS     ${NC}: ${GREEN}(active)${NC}    
 echo -e "   ${CYAN}│${NC} ${YELLOW}CLIENTS    ${NC}: ${PURPLE}$CLIENT${NC}                  ${CYAN}│${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}EXPIRY     ${NC}: ${WHITE}$EXP${NC}       ${CYAN}│${NC}"
 echo -e "   ${CYAN}└───────────────────────────────────────────┘${NC}"
-
 # --- Tampilan Menu (2 Kolom) ---
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
 echo -e "${CYAN}│${NC}  ${YELLOW}1.)☞${NC} ${WHITE}SSH/OPENVPN${NC}         ${YELLOW}7.)☞${NC} ${WHITE}BOT TELEGRAM${NC}   ${CYAN}│${NC}"
@@ -165,7 +162,6 @@ echo -e "${CYAN}└────────────────────�
 echo -e "$tengah ${GREEN} Client Name ${NC}: $Name "
 echo -e "$tengah ${GREEN} Expired     ${NC}: $Exp2 "
 echo -e "$bawah"
-
 # Footer
 echo -e " ${CYAN}---------- t.me/caliphdev / @AjiStore ----------${NC}"
 echo -e ""
