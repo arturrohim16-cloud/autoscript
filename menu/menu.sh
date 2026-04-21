@@ -140,18 +140,27 @@ echo -e "$tengah ${GREEN}TOTAL      ${NC}: $ttoday "
 echo -e "$pembatas"
 
 # Bagian Status Service (Disesuaikan agar pas di tengah)
-echo -e       "$tengah ${CYAN} XRAY: $status_xray ${NC}|${CYAN} NGINX: $status_nginx ${NC}|${CYAN} SSH-WS: $status_ssh ${NC}|${CYAN} GOOD ${NC} $tengah"
+echo -e "     $tengah ${CYAN} XRAY: $status_xray ${NC}|${CYAN} NGINX: $status_nginx ${NC}|${CYAN} SSH-WS: $status_ssh ${NC}|${CYAN} GOOD ${NC} $tengah"
 echo -e "$pembatas"
+└─────────────────────────────────────────────────┘${NC}"
 
-# Bagian Menu (Dua Kolom - Spasi sudah diatur agar lurus)
-echo -e "   $tengah${WHITE}[1]${NC} ${GREEN}MENU SSH${NC}             ${WHITE}[7]${NC} ${GREEN}BOT TELEGRAM       $tengah"
-echo -e "   $tengah${WHITE}[2]${NC} ${GREEN}MENU VMESS${NC}           ${WHITE}[8]${NC} ${GREEN}UPDATE SCRIPT      $tengah"
-echo -e "   $tengah${WHITE}[3]${NC} ${GREEN}MENU TROJAN${NC}          ${WHITE}[9]${NC} ${GREEN}MENU SYSTEM        $tengah"
-echo -e "   $tengah${WHITE}[4]${NC} ${GREEN}MENU VLESS${NC}           ${WHITE}[10]${NC} ${GREEN}CEK RUNNING       $tengah"
-echo -e "   $tengah${WHITE}[5]${NC} ${GREEN}MENU SUHODKES${NC}        ${WHITE}[11]${NC} ${GREEN}CELAR RAM         $tengah"
-echo -e "   $tengah${WHITE}[6]${NC} ${GREEN}INSTAL UDP${NC}           ${WHITE} [x]${NC} ${GREEN}EXIT              $tengah"
-echo -e "$pembatas"
+# --- Tampilan License Box (Agak menjorok ke dalam) ---
+echo -e "   ${CYAN}┌───────────────────────────────────────────┐${NC}"
+echo -e "   ${CYAN}│${NC} ${YELLOW}VERSION    ${NC}: ${WHITE}v15.2.7 D£VSX-NETWORK${NC}    ${CYAN}│${NC}"
+echo -e "   ${CYAN}│${NC} ${YELLOW}STATUS     ${NC}: ${GREEN}(active)${NC}                   ${CYAN}│${NC}"
+echo -e "   ${CYAN}│${NC} ${YELLOW}CLIENTS    ${NC}: ${PURPLE}$CLIENT${NC}                  ${CYAN}│${NC}"
+echo -e "   ${CYAN}│${NC} ${YELLOW}EXPIRY     ${NC}: ${WHITE}$EXP${NC}       ${CYAN}│${NC}"
+echo -e "   ${CYAN}└───────────────────────────────────────────┘${NC}"
 
+# --- Tampilan Menu (2 Kolom) ---
+echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${CYAN}│${NC}  ${YELLOW}1.)☞${NC} ${WHITE}SSH/OPENVPN${NC}         ${YELLOW}7.)☞${NC} ${WHITE}BOT TELEGRAM${NC}   ${CYAN}│${NC}"
+echo -e "${CYAN}│${NC}  ${YELLOW}2.)☞${NC} ${WHITE}XRAY VMESS${NC}          ${YELLOW}8.)☞${NC} ${WHITE}UPDATE SCRIPT${NC}  ${CYAN}│${NC}"
+echo -e "${CYAN}│${NC}  ${YELLOW}3.)☞${NC} ${WHITE}XRAY TROJAN${NC}         ${YELLOW}9.)☞${NC} ${WHITE}BACKUP RESTORE${NC} ${CYAN}│${NC}"
+echo -e "${CYAN}│${NC}  ${YELLOW}4.)☞${NC} ${WHITE}XRAY VLESS${NC}         ${YELLOW}10.)☞${NC} ${WHITE}FEATURES${NC}       ${CYAN}│${NC}"
+echo -e "${CYAN}│${NC}  ${YELLOW}5.)☞${NC} ${WHITE}CHANGE DOMAIN${NC}      ${YELLOW}11.)☞${NC} ${WHITE}REBOOT${NC}         ${CYAN}│${NC}"
+echo -e "${CYAN}│${NC}  ${YELLOW}6.)☞${NC} ${WHITE}DOR PAKET XL${NC}        ${YELLOW}x.)☞${NC} ${WHITE}EXIT${NC}           ${CYAN}│${NC}"
+echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 # Bagian Client
 echo -e "$tengah ${GREEN} Client Name ${NC}: $Name "
 echo -e "$tengah ${GREEN} Expired     ${NC}: $Exp2 "
