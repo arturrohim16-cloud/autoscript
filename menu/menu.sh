@@ -145,11 +145,11 @@ echo -e "$pembatas"
 
 # Bagian Menu (Dua Kolom - Spasi sudah diatur agar lurus)
 echo -e "$tengah ${YELLOW} 1.)${NC} SSH/OPENVPN     ${YELLOW} 7.)${NC} BOT TELEGRAM      $tengah"
-echo -e "$tengah ${YELLOW} 2.)${NC} XRAY VMESS      ${YELLOW} 8.)${NC} UPDATE SCRIPT     $tengah"
-echo -e "$tengah ${YELLOW} 3.)${NC} XRAY TROJAN     ${YELLOW} 9.)${NC} BACKUP RESTORE    $tengah"
-echo -e "$tengah ${YELLOW} 4.)${NC} XRAY VLESS      ${YELLOW}10.)${NC} FEATURES          $tengah"
-echo -e "$tengah ${YELLOW} 5.)${NC} CHANGE DOMAIN   ${YELLOW}11.)${NC} REBOOT            $tengah"
-echo -e "$tengah ${YELLOW} 6.)${NC} DOR PAKET XL    ${YELLOW} x.)${NC} EXIT              $tengah"
+echo -e "$tengah ${YELLOW} 2.)${NC} MENU VMESS      ${YELLOW} 8.)${NC} UPDATE SCRIPT     $tengah"
+echo -e "$tengah ${YELLOW} 3.)${NC} MENU TROJAN     ${YELLOW} 9.)${NC} MENU SYSTEM       $tengah"
+echo -e "$tengah ${YELLOW} 4.)${NC} MENU VLESS      ${YELLOW}10.)${NC} CEK RUNNING       $tengah"
+echo -e "$tengah ${YELLOW} 5.)${NC} MENU SUHODKES   ${YELLOW}11.)${NC} CELAR RAM         $tengah"
+echo -e "$tengah ${YELLOW} 6.)${NC} INSTAL UDP      ${YELLOW} x.)${NC} EXIT              $tengah"
 echo -e "$pembatas"
 
 # Bagian Client
@@ -168,16 +168,16 @@ case $opt in
 3) clear ; m-vless ;;
 4) clear ; m-trojan ;;
 5) clear ; m-ssws ;;
-6) clear ; m-l2tp ;;
-7) clear ; m-pptp ;;
-8) clear ; m-sstp ;;
+#6) clear ; m-l2tp ;;
+#7) clear ; m-pptp ;;
+#8) clear ; m-sstp ;;
 9) clear ; m-system ;;
 10) clear ; running ;;
 11) clear ; clearcache ;;
 12) clear ; reboot ; /sbin/reboot ;;
-13) clear ; m-update ;;
-14) clear ; wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
-15) clear ; m-bot ;;
+8) clear ; m-update ;;
+6) clear ; wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
+7) clear ; m-bot ;;
 r) clear ; xray-renew ;;
 x) exit ;;
 *) echo "Silahkan masukkan pilihan dengan benar! " ; sleep 1 ; menu ;;
