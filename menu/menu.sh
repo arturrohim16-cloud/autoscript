@@ -144,13 +144,13 @@ echo -e       "$tengah ${CYAN} XRAY: $status_xray ${NC}|${CYAN} NGINX: $status_n
 echo -e "$pembatas"
 
 # Bagian Menu (Dua Kolom - Spasi sudah diatur agar lurus)
-echo -e "$tengah ${YELLOW} 1.)${NC} SSH/OPENVPN              ${YELLOW} 7.)${NC} BOT TELEGRAM      $tengah"
-echo -e "$tengah ${YELLOW} 2.)${NC} MENU VMESS               ${YELLOW} 8.)${NC} UPDATE SCRIPT     $tengah"
-echo -e "$tengah ${YELLOW} 3.)${NC} MENU TROJAN              ${YELLOW} 9.)${NC} MENU SYSTEM       $tengah"
-echo -e "$tengah ${YELLOW} 4.)${NC} MENU VLESS               ${YELLOW}10.)${NC} CEK RUNNING       $tengah"
-echo -e "$tengah ${YELLOW} 5.)${NC} MENU SUHODKES            ${YELLOW}11.)${NC} CELAR RAM         $tengah"
-echo -e "$tengah ${YELLOW} 6.)${NC} INSTAL UDP               ${YELLOW} x.)${NC} EXIT              $tengah"
-echo -e "$pembatas"
+echo -e    "$tengah ${YELLOW} 1.)${NC} SSH/OPENVPN              ${YELLOW} 7.)${NC} BOT TELEGRAM      $tengah"
+echo -e    "$tengah ${YELLOW} 2.)${NC} MENU VMESS               ${YELLOW} 8.)${NC} UPDATE SCRIPT     $tengah"
+echo -e    "$tengah ${YELLOW} 3.)${NC} MENU TROJAN              ${YELLOW} 9.)${NC} MENU SYSTEM       $tengah"
+echo -e    "$tengah ${YELLOW} 4.)${NC} MENU VLESS               ${YELLOW}10.)${NC} CEK RUNNING       $tengah"
+echo -e    "$tengah ${YELLOW} 5.)${NC} MENU SUHODKES            ${YELLOW}11.)${NC} CELAR RAM         $tengah"
+echo -e    "$tengah ${YELLOW} 6.)${NC} INSTAL UDP               ${YELLOW} x.)${NC} EXIT              $tengah"
+echo -e    "$pembatas"
 
 # Bagian Client
 echo -e "$tengah ${GREEN} Client Name ${NC}: $Name "
