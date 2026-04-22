@@ -284,7 +284,7 @@ cd /usr/bin
 wget -O menu "https://autoscript.caliphdev.com/menu/menu.sh"
 wget -O add-bot-notif "https://autoscript.caliphdev.com/menu/add-bot-notif.sh"
 wget -O m-backup "https://autoscript.caliphdev.com/menu/m-backup.sh"
-wget -O backup "https://autoscript.caliphdev.com/menu/backup.sh"
+wget -O backup "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/backup.sh"
 wget -O restore "https://autoscript.caliphdev.com/menu/restore.sh"
 wget -O m-vmess "https://autoscript.caliphdev.com/menu/m-vmess.sh"
 wget -O m-vless "https://autoscript.caliphdev.com/menu/m-vless.sh"
