@@ -128,9 +128,9 @@ echo -e "${CYAN}│${NC} ${YELLOW}IP VPS         ${NC}: ${WHITE}$IPVPS${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}DOMAIN         ${NC}: ${WHITE}$domain${NC}"
 echo -e "${CYAN}├─────────────────────────────────────────────────┤${NC}"
 # Bagian Penggunaan Kuota (Traffic)
-echo -e "${CYAN}│${NC} ${GREEN}DOWNLOAD       ${NC}: ${WHITE}$dtoday${NC}"
-echo -e "${CYAN}│${NC} ${GREEN}UPLOAD         ${NC}: ${WHITE}$utoday${NC}"
-echo -e "${CYAN}│${NC} ${GREEN}TOTAL TRAFFIC  ${NC}: ${WHITE}$ttoday${NC}"
+echo -e "${CYAN}│${NC} ${GREEN}DOWNLOAD       ${NC}: ${WHITE}$dtoday${NC}  ${WB}[${GB}${ssh}${WB}]${NC}"
+echo -e "${CYAN}│${NC} ${GREEN}UPLOAD         ${NC}: ${WHITE}$utoday${NC}  ${WB}[${GB}${vmess}${WB}]${NC}"
+echo -e "${CYAN}│${NC} ${GREEN}TOTAL TRAFFIC  ${NC}: ${WHITE}$ttoday${NC}  ${WB}[${GB}${vless}${WB}]${NC}"
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
 # Bagian Status Service
