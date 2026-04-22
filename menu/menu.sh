@@ -158,7 +158,7 @@ echo -e "${CYAN}│${NC}  ${YELLOW}7.)☞${NC} ${WHITE}BACKUP${NC}              
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 # Footer
 echo -e " ${CYAN}---------- t.me/caliphdev / @AjiStore ----------${NC}"
-read -p " ${YELLOW}Select From option [1-11 or x] : ${NC}"  opt
+read -p " pilih menu [1-13 or x] : "  opt
 echo -e   ""
 case $opt in
 1) clear ; m-sshovpn ;;
