@@ -162,7 +162,7 @@ echo -e "$BGreen      Install Update Script           $NC"
 echo -e "\e[33m-----------------------------------\033[0m"
 sleep 0.5
 clear
-wget -O /usr/bin/m-update https://autoscript.caliphdev.com/update/update.sh && chmod +x /usr/bin/m-update
+wget -O /usr/bin/update "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/update/update.sh" && chmod +x /usr/bin/update
 #Instal Xray
 echo -e "\e[33m-----------------------------------\033[0m"
 echo -e "$BGreen          Install XRAY              $NC"
