@@ -155,7 +155,7 @@ echo -e "$BGreen      Install SSH Websocket           $NC"
 echo -e "\e[33m-----------------------------------\033[0m"
 sleep 0.5
 clear
-wget https://autoscript.caliphdev.com/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
+wget https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 #Instal Update Script
 echo -e "\e[33m-----------------------------------\033[0m"
 echo -e "$BGreen      Install Update Script           $NC"
