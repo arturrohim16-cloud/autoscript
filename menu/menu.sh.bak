@@ -226,37 +226,37 @@ echo -e "\033[36;1m   │\e[97m EXPIRY     : $exp / $(((d1 - d2) / 86400)) Day \
 echo -e "\033[36;1m   └───────────────────────────────────────────┘\033[0m "
 }
 function Acces_Use_Command() {
-echo -e "${BLUE}┌─────────────────────────────────────────────────┐\033[0m"
-echo -e "${BLUE}│  1.)\e[93m☞ \e[97m SSH/OPENVPN     ${BLUE}7.)\e[93m☞ \e[97m BOT NOTIF      ${BLUE}│\e[0m"
-echo -e "${BLUE}│  2.)\e[93m☞ \e[97m XRAY VMESS      ${BLUE}8.)\e[93m☞ \e[97m UPDATE SCRIPT  ${BLUE}│\e[0m"
-echo -e "${BLUE}│  3.)\e[93m☞ \e[97m XRAY VLESS      ${BLUE}9.)\e[93m☞ \e[97m BACKUP         ${BLUE}│\e[0m"
-echo -e "${BLUE}│  4.)\e[93m☞ \e[97m XRAY TROJAN     ${BLUE}10.)\e[93m☞ \e[97m SYSTEM MENU    ${BLUE}│\e[0m"
-echo -e "${BLUE}│  5.)\e[93m☞ \e[97m SSH WS MENU     ${BLUE}11.)\e[93m☞ \e[97m CLEAR CACHE    ${BLUE}│\e[0m"
-echo -e "${BLUE}│  6.)\e[93m☞ \e[97m UDP MENU        ${BLUE}12.)\e[93m☞ \e[97m REBOOT         ${BLUE}│\e[0m"
-echo -e "${BLUE}│                                                  ${BLUE}│\e[0m"
-echo -e "${BLUE}│  r.)\e[93m☞ \e[97m RENEW XRAY      ${RED}x.)\e[93m☞ \e[91m EXIT          ${BLUE}│\e[0m"
+echo -e "${BLUE}┌─────────────────────────────────────────────────┐\033[0m "
+echo -e "${BLUE}│  1.)\e[93m☞ \e[97m SSH/OPENVPN         ${BLUE}7.${BLUE})\e[93m☞ \e[97m BOT NOTIF      ${BLUE}│\e[0m"
+echo -e "${BLUE}│  2.)\e[93m☞ \e[97m XRAY VMESS          ${BLUE}8.${BLUE})\e[93m☞ \e[97m UPDATE SCRIPT  ${BLUE}│\e[0m"
+echo -e "${BLUE}│  3.)\e[93m☞ \e[97m XRAY TROJAN         ${BLUE}9.${BLUE})\e[93m☞ \e[97m BACKUP RESTORE ${BLUE}│\e[0m"
+echo -e "${BLUE}│  4.)\e[93m☞ \e[97m XRAY VLESS         ${BLUE}10.${BLUE})\e[93m☞ \e[97m FEATURES       ${BLUE}│\e[0m"
+echo -e "${BLUE}│  5.)\e[93m☞ \e[97m CHANGE DOMAIN      ${BLUE}11.${BLUE})\e[93m☞ \e[97m REBOOT         ${BLUE}│\e[0m"
+echo -e "${BLUE}│  6.)\e[93m☞ \e[97m DOR PAKET XL        ${RED}x.${BLUE})\e[93m☞ \e[91m EXIT           ${BLUE}│\e[0m"
 echo -e "${BLUE}└─────────────────────────────────────────────────┘\033[0m"
 }
 function Select_Display() {
 echo
-read -p "Select Menu [1-12 / r / x] : " menu
-
-case $menu in
+read -p "Select From option [1/11 or x] :  " hallo
+case $hallo in
 1) clear ; m-sshovpn ;;
 2) clear ; m-vmess ;;
 3) clear ; m-vless ;;
 4) clear ; m-trojan ;;
 5) clear ; m-ssws ;;
-6) clear ; wget -q https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
-7) clear ; add-bot-notif ;;
-8) clear ; m-update ;;
-9) clear ; m-backup ;;
-10) clear ; m-system ;;
+#6) clear ; m-l2tp ;;
+#7) clear ; m-pptp ;;
+#8) clear ; m-sstp ;;
+9) clear ; m-system ;;
+10) clear ; running ;;
 11) clear ; clearcache ;;
-12) clear ; reboot ;;
+12) clear ; reboot ; /sbin/reboot ;;
+8) clear ; m-update ;;
+6) clear ; wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
+7) clear ; m-bot ;;
 r) clear ; xray-renew ;;
 x) exit ;;
-*) echo "❌ Pilihan tidak valid!" ; sleep 1 ; menu ;;
+*) echo "Silahkan masukkan pilihan dengan benar! " ; sleep 1 ; menu ;;
 esac
 }
 Xwan_Banner
