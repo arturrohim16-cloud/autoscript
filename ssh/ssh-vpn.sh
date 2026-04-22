@@ -297,7 +297,7 @@ wget -O xray-renew "https://autoscript.caliphdev.com/xray/xray-renew.sh"
 
 # menu ssh ovpn
 wget -O m-sshovpn "https://autoscript.caliphdev.com/menu/m-sshovpn.sh"
-wget -O usernew "https://autoscript.caliphdev.com/ssh/usernew.sh"
+wget -O usernew "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/usernew.sh"
 wget -O trial "https://autoscript.caliphdev.com/ssh/trial.sh"
 wget -O renew "https://autoscript.caliphdev.com/ssh/renew.sh"
 wget -O hapus "https://autoscript.caliphdev.com/ssh/hapus.sh"
