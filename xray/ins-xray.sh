@@ -502,7 +502,7 @@ wget -O del-ws "https://autoscript.caliphdev.com/xray/del-ws.sh" && chmod +x del
 wget -O cek-ws "https://autoscript.caliphdev.com/xray/cek-ws.sh" && chmod +x cek-ws
 
 # vless
-wget -O add-vless "https://autoscript.caliphdev.com/xray/add-vless.sh" && chmod +x add-vless
+wget -O add-vless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/add-vless.sh" && chmod +x add-vless
 wget -O trialvless "https://autoscript.caliphdev.com/xray/trialvless.sh" && chmod +x trialvless
 wget -O renew-vless "https://autoscript.caliphdev.com/xray/renew-vless.sh" && chmod +x renew-vless
 wget -O del-vless "https://autoscript.caliphdev.com/xray/del-vless.sh" && chmod +x del-vless
