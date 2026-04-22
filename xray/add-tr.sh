@@ -43,6 +43,51 @@ trojanlink1="trojan://${uuid}@${domain}:${tls}?mode=gun&security=tls&type=grpc&s
 trojanlink="trojan://${uuid}@isi_bug_disini:${tls}?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 trojanlink2="trojan://${uuid}@isi_bug_disini:${ntls}?path=%2Ftrojan-ws&security=none&host=${domain}&type=ws#${user}"
 systemctl restart xray
+systemctl restart xray
+
+# ==============================
+# NOTIFIKASI TELEGRAM
+# ==============================
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 2 || echo "")
+CHATIDS=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | cut -d ' ' -f 3 || echo "")
+TIME="10"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+
+TEXT="🚀 <b>TROJAN ACCOUNT CREATED</b> 🚀
+━━━━━━━━━━━━━━━━━━━━━
+👤 <b>User:</b> <code>${user}</code>
+🔑 <b>UUID:</b> <code>${uuid}</code>
+📅 <b>Exp:</b> <code>${exp}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🌐 <b>Host/IP:</b> <code>${domain}</code>
+🔐 <b>Port TLS:</b> <code>${tls}</code>
+🔓 <b>Port Non TLS:</b> <code>${ntls}</code>
+🚀 <b>Port gRPC:</b> <code>${tls}</code>
+🛣 <b>Path:</b> <code>/trojan-ws</code>
+🛰 <b>ServiceName:</b> <code>trojan-grpc</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Link TLS:</b>
+<code>${trojanlink}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Link Non TLS:</b>
+<code>${trojanlink2}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Link gRPC:</b>
+<code>${trojanlink1}</code>
+━━━━━━━━━━━━━━━━━━━━━
+✅ <b>Script By AJI VPN</b>"
+
+if [[ -n "$KEY" && -n "$CHATIDS" ]]; then
+    for CHATID in $CHATIDS; do
+        curl -s --max-time "$TIME" \
+            -d "chat_id=$CHATID" \
+            -d "disable_web_page_preview=1" \
+            --data-urlencode "text=$TEXT" \
+            -d "parse_mode=html" \
+            "$URL" >/dev/null
+    done
+fi
+
 clear
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-trojan.log
 echo -e "\E[0;41;36m           TROJAN ACCOUNT           \E[0m" | tee -a /etc/log-create-trojan.log

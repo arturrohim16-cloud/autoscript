@@ -41,6 +41,47 @@ vlesslink1="vless://${uuid}@${domain}:$tls?path=/vless&security=tls&encryption=n
 vlesslink2="vless://${uuid}@${domain}:$none?path=/vless&encryption=none&type=ws#${user}"
 vlesslink3="vless://${uuid}@${domain}:$tls?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=bug.com#${user}"
 systemctl restart xray
+# ==============================
+# NOTIFIKASI TELEGRAM VLESS
+# ==============================
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 2 || echo "")
+CHATIDS=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | cut -d ' ' -f 3 || echo "")
+TIME="10"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+
+TEXT="🚀 <b>VLESS ACCOUNT CREATED</b> 🚀
+━━━━━━━━━━━━━━━━━━━━━
+👤 <b>User:</b> <code>${user}</code>
+🆔 <b>UUID:</b> <code>${uuid}</code>
+📅 <b>Exp:</b> <code>${exp}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🌐 <b>Domain:</b> <code>${domain}</code>
+🔐 <b>Port TLS:</b> <code>${tls}</code>
+🔓 <b>Port Non TLS:</b> <code>${none}</code>
+🚀 <b>gRPC:</b> <code>${tls}</code>
+🛣 <b>Path:</b> <code>/vless</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Link TLS:</b>
+<code>${vlesslink1}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Link Non TLS:</b>
+<code>${vlesslink2}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Link gRPC:</b>
+<code>${vlesslink3}</code>
+━━━━━━━━━━━━━━━━━━━━━
+✅ <b>ANSENDANTVPN</b>"
+
+if [[ -n "$KEY" && -n "$CHATIDS" ]]; then
+    for CHATID in $CHATIDS; do
+        curl -s --max-time "$TIME" \
+            -d "chat_id=$CHATID" \
+            -d "disable_web_page_preview=1" \
+            --data-urlencode "text=$TEXT" \
+            -d "parse_mode=html" \
+            "$URL" >/dev/null
+    done
+fi
 clear
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-vless.log
 echo -e "\E[44;1;39m        Vless Account        \E[0m" | tee -a /etc/log-create-vless.log

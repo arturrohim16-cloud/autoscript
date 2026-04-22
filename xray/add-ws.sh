@@ -93,6 +93,47 @@ vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
 systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
+# ==============================
+# NOTIFIKASI TELEGRAM VMESS
+# ==============================
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 2 || echo "")
+CHATIDS=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | cut -d ' ' -f 3 || echo "")
+TIME="10"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+
+TEXT="🚀 <b>VMESS ACCOUNT CREATED</b> 🚀
+━━━━━━━━━━━━━━━━━━━━━
+👤 <b>User:</b> <code>${user}</code>
+🆔 <b>UUID:</b> <code>${uuid}</code>
+📅 <b>Exp:</b> <code>${exp}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🌐 <b>Domain:</b> <code>${domain}</code>
+🔐 <b>Port TLS:</b> <code>${tls}</code>
+🔓 <b>Port Non TLS:</b> <code>${none}</code>
+🚀 <b>gRPC:</b> <code>${tls}</code>
+🛣 <b>Path:</b> <code>/vmess</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Link TLS:</b>
+<code>${vmesslink1}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Link Non TLS:</b>
+<code>${vmesslink2}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Link gRPC:</b>
+<code>${vmesslink3}</code>
+━━━━━━━━━━━━━━━━━━━━━
+🔥 <b>ANSENDANTVPN</b>"
+
+if [[ -n "$KEY" && -n "$CHATIDS" ]]; then
+    for CHATID in $CHATIDS; do
+        curl -s --max-time "$TIME" \
+            -d "chat_id=$CHATID" \
+            -d "disable_web_page_preview=1" \
+            --data-urlencode "text=$TEXT" \
+            -d "parse_mode=html" \
+            "$URL" >/dev/null
+    done
+fi
 clear
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-vmess.log
 echo -e "\\E[0;41;36m        Vmess Account        \E[0m" | tee -a /etc/log-create-vmess.log
