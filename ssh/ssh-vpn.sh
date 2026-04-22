@@ -282,6 +282,10 @@ netfilter-persistent reload
 cd /usr/bin
 # menu
 wget -O menu "https://autoscript.caliphdev.com/menu/menu.sh"
+wget -O add-bot-notif "https://autoscript.caliphdev.com/menu/add-bot-notif.sh"
+wget -O m-backup "https://autoscript.caliphdev.com/menu/m-backup.sh"
+wget -O backup "https://autoscript.caliphdev.com/menu/backup.sh"
+wget -O restore "https://autoscript.caliphdev.com/menu/restore.sh"
 wget -O m-vmess "https://autoscript.caliphdev.com/menu/m-vmess.sh"
 wget -O m-vless "https://autoscript.caliphdev.com/menu/m-vless.sh"
 wget -O running "https://autoscript.caliphdev.com/menu/running.sh"
@@ -327,6 +331,10 @@ wget -O m-sstp "https://autoscript.caliphdev.com/menu/m-sstp.sh"
 wget -O m-pptp "https://autoscript.caliphdev.com/menu/m-pptp.sh"
 
 chmod +x menu
+chmod +x add-bot-notif
+chmod +x m-backup
+chmod +x backup
+chmod +x restore
 chmod +x m-vmess
 chmod +x m-vless
 chmod +x running

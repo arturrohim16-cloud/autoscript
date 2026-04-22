@@ -32,9 +32,13 @@ useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 PID=`ps -ef |grep -v grep | grep sshws |awk '{print $2}'`
-
-source /usr/bin/m-bot.sh
-msg="🚀 <b>SSH ACCOUNT CREATED</b> 🚀
+#kirim notifikasi tele
+# Bot configuration
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 2 || echo "")
+CHATIDS=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | cut -d ' ' -f 3 || echo "")
+TIME="10"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+TEXT="🚀 <b>SSH ACCOUNT CREATED</b> 🚀
 ━━━━━━━━━━━━━━━━━━━━━
 👤 <b>User:</b> <code>$Login</code>
 🔑 <b>Pass:</b> <code>$Pass</code>
@@ -61,8 +65,17 @@ msg="🚀 <b>SSH ACCOUNT CREATED</b> 🚀
 ━━━━━━━━━━━━━━━━━━━━━━
 ✅ <b>Script By AJI VPN</b>"
 
-send_log "$msg"
-
+if [[ -n "$KEY" && -n "$CHATIDS" ]]; then
+    for CHATID in $CHATIDS; do
+        curl -s --max-time "$TIME" \
+            -d "chat_id=$CHATID" \
+            -d "disable_web_page_preview=1" \
+            --data-urlencode "text=$TEXT" \
+            -d "parse_mode=html" \
+            "$URL" >/dev/null
+    done
+fi
+    
 if [[ ! -z "${PID}" ]]; then
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-ssh.log
 echo -e "\E[0;41;36m            SSH Account            \E[0m" | tee -a /etc/log-create-ssh.log
