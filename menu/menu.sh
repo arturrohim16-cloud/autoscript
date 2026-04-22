@@ -160,25 +160,22 @@ echo -e "${CYAN}└────────────────────�
 echo -e " ${CYAN}---------- t.me/caliphdev / @AjiStore ----------${NC}"
 read -p " pilih menu [1-13 or x] : "  opt
 echo -e   ""
-case $opt in
-1) clear ; m-sshovpn ;;
-2) clear ; m-vmess ;;
-3) clear ; m-vless ;;
-4) clear ; m-trojan ;;
-5) clear ; m-ssws ;;
-#6) clear ; m-l2tp ;;
-#7) clear ; m-pptp ;;
-#8) clear ; m-sstp ;;
-10) clear ; m-system ;;
-11) clear ; running ;;
-#11) clear ; clearcache ;;
-12) clear ; reboot ; /sbin/reboot ;;
-13) clear ; m-backup
-9) clear ; m-update ;;
-7) clear ; backup ;;
-6) clear ; wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
-8) clear ; add-bot-notif ;;
-r) clear ; xray-renew ;;
-x) exit ;;
-*) echo "Silahkan masukkan pilihan dengan benar! " ; sleep 1 ; menu ;;
-esac
+    case $opt in
+    1) clear ; m-sshovpn ;;
+    2) clear ; m-vmess ;;
+    3) clear ; m-vless ;;
+    4) clear ; m-trojan ;;
+    5) clear ; m-ssws ;;
+    6) clear ; wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
+    7) clear ; backup ;;
+    8) clear ; add-bot-notif ;;
+    9) clear ; m-update ;;
+    10) clear ; m-system ;;
+    11) clear ; running ;;
+    12) clear ; reboot ;;
+    13) clear ; m-backup ;;
+    r) clear ; xray-renew ;;
+    x) exit ;;
+    *) echo "Silahkan masukkan pilihan dengan benar!" ; sleep 1 ; menu ;;
+    esac
+	
