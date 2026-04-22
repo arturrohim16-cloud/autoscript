@@ -509,7 +509,7 @@ wget -O del-vless "https://autoscript.caliphdev.com/xray/del-vless.sh" && chmod 
 wget -O cek-vless "https://autoscript.caliphdev.com/xray/cek-vless.sh" && chmod +x cek-vless
 
 # trojan
-wget -O add-tr "https://autoscript.caliphdev.com/xray/add-tr.sh" && chmod +x add-tr
+wget -O add-tr "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/add-tr.sh" && chmod +x add-tr
 wget -O trialtrojan "https://autoscript.caliphdev.com/xray/trialtrojan.sh" && chmod +x trialtrojan
 wget -O del-tr "https://autoscript.caliphdev.com/xray/del-tr.sh" && chmod +x del-tr
 wget -O renew-tr "https://autoscript.caliphdev.com/xray/renew-tr.sh" && chmod +x renew-tr
