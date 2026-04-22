@@ -174,7 +174,7 @@ case $opt in
 12) clear ; reboot ; /sbin/reboot ;;
 8) clear ; m-update ;;
 6) clear ; wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
-7) clear ; m-bot ;;
+7) clear ; add-bot-notif ;;
 r) clear ; xray-renew ;;
 x) exit ;;
 *) echo "Silahkan masukkan pilihan dengan benar! " ; sleep 1 ; menu ;;
