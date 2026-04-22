@@ -281,7 +281,7 @@ netfilter-persistent reload
 # download script
 cd /usr/bin
 # menu
-wget -O menu "https://autoscript.caliphdev.com/menu/menu.sh"
+wget -O menu "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/menu.sh"
 wget -O add-bot-notif "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/add-bot-notif.sh"
 wget -O m-backup "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-backup.sh"
 wget -O backup "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/backup.sh"
