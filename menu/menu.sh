@@ -168,7 +168,7 @@ echo -e   ""
     5) clear ; m-ssws ;;
     6) clear ; wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh ;;
     7) clear ; backup ;;
-    8) clear ; add-bot-notif ;;
+    8) clear ; m-bot-notif ;;
     9) clear ; update ;;
     10) clear ; m-system ;;
     11) clear ; running ;;
