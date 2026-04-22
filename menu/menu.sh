@@ -59,8 +59,12 @@ if systemctl is-active --quiet ws-stunnel; then
 else
     status_ssh="${RED}OFF${NC}"
 fi
-
-
+#totsl akun ssh/xray
+vmess=$(grep -c -E "^#vmsg $user" "/etc/xray/config.json")
+vless=$(grep -c -E "^#vlsg $user" "/etc/xray/config.json")
+tr=$(grep -c -E "^#trg $user" "/etc/xray/config.json")
+ss=$(grep -c -E "^#ssg $user" "/etc/xray/config.json")
+ssh="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 # Download
 #Download/Upload today
 dtoday="$(vnstat -i ens3 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
