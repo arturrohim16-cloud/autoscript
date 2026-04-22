@@ -516,7 +516,7 @@ wget -O renew-tr "https://autoscript.caliphdev.com/xray/renew-tr.sh" && chmod +x
 wget -O cek-tr "https://autoscript.caliphdev.com/xray/cek-tr.sh" && chmod +x cek-tr
 
 # shadowsocks
-wget -O add-ssws "https://autoscript.caliphdev.com/xray/add-ssws.sh" && chmod +x add-ssws
+wget -O add-ssws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/add-ssws.sh" && chmod +x add-ssws
 wget -O trialssws "https://autoscript.caliphdev.com/xray/trialssws.sh" && chmod +x trialssws
 wget -O del-ssws "https://autoscript.caliphdev.com/xray/del-ssws.sh" && chmod +x del-ssws
 wget -O renew-ssws "https://autoscript.caliphdev.com/xray/renew-ssws.sh" && chmod +x renew-ssws
