@@ -1,17 +1,22 @@
 #!/bin/bash
+# Definisi Warna Cerah
+Nmr="\e[1;36m"      # Cyan Terang (Nomor)
+Teks="\e[1;37m"     # Putih Bold (Teks Utama)
+Line="\e[1;33m"     # Kuning Terang (Garis)
+Back="\e[1;31m"     # Merah Terang (Kembali)
+Header="\e[1;32m"   # Hijau Terang (Judul)
+Reset="\e[0m"
 
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\E[0;100;33m       • VMESS MENU •         \E[0m"
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e " [${warna_nomor}•1${warna_reset}] ${warna_teks}Create Account Vmess     ${warna_reset} │ ${warna_reset}"
-echo -e " [${warna_nomor}•2${warna_reset}] ${warna_teks}Trial Account Vmess      ${warna_reset} │ ${warna_reset}"
-echo -e " [${warna_nomor}•3${warna_reset}] ${warna_teks}Extending Account Vmess  ${warna_reset} │ ${warna_reset}"
-echo -e " [${warna_nomor}•4${warna_reset}] ${warna_teks}Delete Account Vmess     ${warna_reset} │ ${warna_reset}"
-echo -e " [${warna_nomor}•5${warna_reset}] ${warna_teks}Check User Login Vmess   ${warna_reset} │ ${warna_reset}"
-echo -e " [${warna_nomor}•6${warna_reset}] ${warna_teks}User list created Account${warna_reset} │ ${warna_reset}"
-echo -e " [${warna_nomor}•x${warna_reset}] ${warna_teks}BACK TO MENU ${warna_reset} │"
+echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
+echo -e "          ${Header}• VMESS WS (XRAY) MENU •${Reset}"
+echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
 echo -e ""
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e " [${Nmr}•1${Reset}] ${Teks}Create Vmess   ${Reset} │ [${Nmr}•4${Reset}] ${Teks}Delete Vmess   ${Reset}"
+echo -e " [${Nmr}•2${Reset}] ${Teks}Trial Vmess    ${Reset} │ [${Nmr}•5${Reset}] ${Teks}Check Login    ${Reset}"
+echo -e " [${Nmr}•3${Reset}] ${Teks}Extend Vmess   ${Reset} │ [${Nmr}•6${Reset}] ${Teks}User List      ${Reset}"
+echo -e ""
+echo -e " [${Back}•x${Reset}] ${Back}BACK TO MAIN MENU${Reset}"
+echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
 echo -e ""
 read -p " Select menu :  "  opt
 echo -e ""
