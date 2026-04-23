@@ -134,7 +134,7 @@ echo -e "${CYAN}├────────────────────�
 # Bagian Penggunaan Kuota (Traffic)
 echo -e "${CYAN}│${NC} ${GREEN}DOWNLOAD       ${NC}: ${WHITE}$dtoday${NC}   ${PURPLE}SSH${NC}   ${WHITE}${WB}[${GB}${ssh}${WB}]${NC}"
 echo -e "${CYAN}│${NC} ${GREEN}UPLOAD         ${NC}: ${WHITE}$utoday${NC}   ${PURPLE}VMESS${NC} ${WHITE}${WB}[${GB}${vmess}${WB}]${NC}"
-echo -e "${CYAN}│${NC} ${GREEN}TOTAL TRAFFIC  ${NC}: ${WHITE}$ttoday${NC}    ${PURPLE}VLESS${NC} ${WHITE}${WB}[${GB}${vless}${WB}]${NC}"
+echo -e "${CYAN}│${NC} ${GREEN}TOTAL TRAFFIC  ${NC}: ${WHITE}$ttoday${NC}     ${PURPLE}VLESS${NC} ${WHITE}${WB}[${GB}${vless}${WB}]${NC}"
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
 # Bagian Status Service
