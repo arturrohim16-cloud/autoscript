@@ -143,7 +143,7 @@ echo -e "${CYAN}└────────────────────�
 
 # Bagian Status Service
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
-echo -e "${CYAN}│${NC}   ${YELLOW}PROXY :${NC} $status_ssh ${CYAN}|${NC} ${YELLOW}NGINX :${NC} $status_nginx ${CYAN}|${NC} ${YELLOW}XRAY :${NC} $status_xray ${CYAN}|${NC} ${BG_RED} GOOD ${NC} ${CYAN}│${NC}"
+echo -e "${CYAN}│${NC}   ${YELLOW}PROXY :${NC} $status_ssh ${CYAN}|${NC} ${YELLOW}NGINX :${NC} $status_nginx ${CYAN}|${NC} ${YELLOW}XRAY :${NC} $status_xray ${CYAN}|${NC} ${BG_RED} GOOD ${NC}  ${CYAN}│${NC}"
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
 # Bagian License Box
