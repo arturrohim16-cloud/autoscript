@@ -125,7 +125,7 @@ echo -e "${CYAN}└────────────────────�
 # Bagian Informasi System
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}SYSTEM OS      ${NC}: ${WHITE}$(hostnamectl | grep "Operating System" | cut -d ' ' -f5-) ${NC}"
-echo -e "${CYAN}│${NC} ${YELLOW}CPU            ${NC}: ${WHITE}$cpu_usage+${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}CPU            ${NC}: ${WHITE}$cpu_usage${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}ISP            ${NC}: ${WHITE}$ISP${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}CITY           ${NC}: ${WHITE}$CITY${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}SERVER RAM     ${NC}: ${WHITE}$uram/$tram MB${NC}"
@@ -136,7 +136,7 @@ echo -e "${CYAN}├────────────────────�
 # Bagian Penggunaan Kuota (Traffic)
 echo -e "${CYAN}│${NC} ${GREEN}DOWNLOAD       ${NC}: ${WHITE}$dtoday${NC}   ${PURPLE}SSH${NC}   ${WHITE}${WB}[${GB}${ssh}${WB}]${NC}"
 echo -e "${CYAN}│${NC} ${GREEN}UPLOAD         ${NC}: ${WHITE}$utoday${NC}   ${PURPLE}VMESS${NC} ${WHITE}${WB}[${GB}${vmess}${WB}]${NC}"
-echo -e "${CYAN}│${NC} ${GREEN}TOTAL TRAFFIC  ${NC}: ${WHITE}$ttoday${NC}     ${PURPLE}VLESS${NC} ${WHITE}${WB}[${GB}${vless}${WB}]${NC}"
+echo -e "${CYAN}│${NC} ${GREEN}TOTAL TRAFFIC  ${NC}: ${WHITE}$ttoday${NC}   ${PURPLE}VLESS${NC} ${WHITE}${WB}[${GB}${vless}${WB}]${NC}"
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
 # Bagian Status Service
