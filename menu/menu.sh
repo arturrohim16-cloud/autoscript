@@ -124,7 +124,7 @@ echo -e "${CYAN}└────────────────────�
 
 # Bagian Informasi System
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
-echo -e "${CYAN}│${NC} ${YELLOW}SYSTEM OS      ${NC}: ${WHITE}$cores${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}SYSTEM OS      ${NC}: ${WHITE}$cname${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}CPU            ${NC}: ${WHITE}$cpu_usage${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}ISP            ${NC}: ${WHITE}$ISP${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}CITY           ${NC}: ${WHITE}$CITY${NC}"
