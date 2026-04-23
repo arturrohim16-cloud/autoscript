@@ -9,14 +9,15 @@ GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELL='\033[0;33m'
 WHITE='\033[1;97m'
-PURPLE_BG='\033[45;1m'
-
+PURPLE_BG='\033[44;1m'
+grs="\033[96;1m"
+redbg="\033[97;41m"
 # Getting IP & Hostname
 clear
 MYIP=$(curl -sS ipv4.icanhazip.com)
 IP=$(wget -qO- icanhazip.com)
 dateToday=$(date +"%Y-%m-%d")
-Name=$(curl -s https://raw.githubusercontent.com/p3yx/newsc/main/ipx | grep $MYIP | awk '{print $2}')
+Name=$(curl -s https://raw.githubusercontent.com/myridwan/izinvps2/ipuk/ipx | grep $MYIP | awk '{print $2}')
 
 # =======================
 # Mini loading animation function
@@ -36,12 +37,13 @@ loading() {
 setup_bot() {
     switch=$(grep -i "switch" /root/.bckupbot | awk '{print $2}')
     clear
-    echo -e "${PURPLE_BG}$(echo "┌───────────────────────────────┐" | lolcat -a -d 5)${NC}"
-    echo -e "${PURPLE_BG}$(echo "│     🤖  SETUP TELEGRAM BOT   │" | lolcat -a -d 5)${NC}"
-    echo -e "${PURPLE_BG}$(echo "└───────────────────────────────┘" | lolcat -a -d 5)${NC}\n"
-
+    echo -e "${BLUE}┌─────────────────────────────────────────────┐${NC}"
+    echo -e " ${PURPLE_BG}            🤖  SETUP TELEGRAM BOT 🤖          ${NC}"
+    echo -e "${BLUE}└─────────────────────────────────────────────┘${NC}" 
+    echo -e "${BLUE}══════════════════════════════════════════════${NC}"
     echo "Pergi ke @BotFather dan ketik /newbot untuk membuat bot baru"
     echo "Pergi ke @MissRose_bot dan ketik /id untuk mendapatkan ID telegram"
+    echo -e "${BLUE}══════════════════════════════════════════════${NC}"
     echo ""
     read -p "Bot Token : " getToken
     read -p "Admin ID  : " adminID
@@ -56,38 +58,76 @@ setup_bot() {
 # Backup Bot
 botBackup() {
     clear
-    read bottoken adminid switch < /root/.bckupbot
+    bottoken=$(sed -n '1p' /root/.bckupbot | awk '{print $1}')
+    adminid=$(sed -n '2p' /root/.bckupbot | awk '{print $1}')
+    domain=$(cat /etc/xray/domain)
+    nama2=$(cat /etc/xray/username)
 
-    # Header
-    echo -e "${PURPLE_BG}$(echo "┌───────────────────────────────┐" | lolcat -a -d 5)${NC}"
-    echo -e "${PURPLE_BG}$(echo "│       💾 VPS BACKUP TOOL 💾  │" | lolcat -a -d 5)${NC}"
-    echo -e "${PURPLE_BG}$(echo "└───────────────────────────────┘" | lolcat -a -d 5)\n"
+    echo -e "${BLUE}┌─────────────────────────────────────────────┐${NC}"
+    echo -e " ${PURPLE_BG}              💾 VPS BACKUP TOOL 💾            ${NC}"
+    echo -e "${BLUE}└─────────────────────────────────────────────┘${NC}" 
 
-    # Info VPS
     IP=$(wget -qO- ipinfo.io/ip)
     Name=$(hostname)
     dateToday=$(date +"%Y-%m-%d")
+    workDir="/root/backup"
     backupFile="/root/${IP}-${Name}-${dateToday}.zip"
 
-    # Creating backup
+    # Siapkan folder backup
+    rm -rf "$workDir"
+    mkdir -p "$workDir"
+
+    # File penting
+    cp /etc/passwd "$workDir"/ &>/dev/null
+    cp /etc/group "$workDir"/ &>/dev/null
+    cp /etc/shadow "$workDir"/ &>/dev/null
+    cp /etc/gshadow "$workDir"/ &>/dev/null
+    cp /etc/crontab "$workDir"/ &>/dev/null
+
+    cp /etc/ssh/.ssh.db "$workDir"/ &>/dev/null
+    cp /etc/vmess/.vmess.db "$workDir"/ &>/dev/null
+    cp /etc/vless/.vless.db "$workDir"/ &>/dev/null
+    cp /etc/trojan/.trojan.db "$workDir"/ &>/dev/null
+    cp /etc/shadowsocks/.shadowsocks.db "$workDir"/ &>/dev/null
+
+    # Folder penting
+    cp -r /var/lib/kyt/ "$workDir/kyt2" &>/dev/null
+    cp -r /etc/limit "$workDir"/ &>/dev/null
+    cp -r /etc/kyt/limit "$workDir"/ &>/dev/null
+    cp -r /etc/ssh "$workDir"/ &>/dev/null
+    cp -r /etc/vmess "$workDir"/ &>/dev/null
+    cp -r /etc/trojan "$workDir"/ &>/dev/null
+    cp -r /etc/vless "$workDir"/ &>/dev/null
+    cp -r /etc/shadowsocks "$workDir"/ &>/dev/null
+    cp -r /etc/xray "$workDir/xray" &>/dev/null
+    cp -r /var/www/html/ "$workDir/html" &>/dev/null
+    cp -a /detail/ "$workDir/detail" &>/dev/null
+
+    # Buat ZIP
     loading "[ INFO ] Creating backup"
-    for dir in /etc/xray /etc/vmess /etc/vless /etc/trojan /etc/slowdns /etc/limit /etc/bot /var/lib/kyt /root/BotVPN2; do
-        [[ -d "$dir" ]] && zip -r -q "${backupFile}" "$dir"
-    done
+    cd /root
+    zip -r -q "${backupFile}" "backup"
     [[ -f "${backupFile}" ]] && echo -e "${GREEN}[ DONE ]${NC}" || { echo -e "${RED}[ FAILED ]${NC}"; return 1; }
 
-    # Check file size
+    # Cek ukuran file
     filesize=$(stat -c%s "$backupFile")
     if (( filesize > 50000000 )); then
         echo -e "${RED}[ ERROR ] File terlalu besar untuk dikirim via Telegram (${filesize} bytes)${NC}"
         return 1
     fi
 
-    # Send via Telegram
+    # Kirim via Telegram
     loading "[ INFO ] Sending backup via Telegram"
     RESPONSE=$(curl -s -F "chat_id=${adminid}" -F "document=@${backupFile}" \
         "https://api.telegram.org/bot${bottoken}/sendDocument")
-    [[ $(echo "$RESPONSE" | jq -r '.ok') == "true" ]] && echo -e "${GREEN}[ DONE ]${NC}" || { echo -e "${RED}[ FAILED ]${NC}"; echo "$RESPONSE"; return 1; }
+
+    if [[ $(echo "$RESPONSE" | jq -r '.ok') == "true" ]]; then
+        echo -e "${GREEN}[ DONE ]${NC}"
+    else
+        echo -e "${RED}[ FAILED ]${NC}"
+        echo "$RESPONSE"
+        return 1
+    fi
 
     fileId=$(echo "$RESPONSE" | jq -r '.result.document.file_id')
     FILE_INFO=$(curl -s "https://api.telegram.org/bot${bottoken}/getFile?file_id=${fileId}")
@@ -98,7 +138,8 @@ botBackup() {
 <b>◇━━━━━━━━━━━━━━◇</b>
 📌 <b>Date:</b> <code>${dateToday}</code>
 🌍 <b>IP:</b> <code>${IP}</code>
-👤 <b>Name:</b> <code>${Name}</code>
+💥 <b>Domain:</b> <code>${domain}</code>
+👤 <b>Name:</b> <code>${nama2}</code>
 🗂 <b>File ID:</b> <code>${fileId}</code>
 📂 <b>File Path:</b> <code>${filePath}</code>
 <b>◇━━━━━━━━━━━━━━◇</b>"
@@ -108,7 +149,8 @@ botBackup() {
         --data-urlencode "text=${TEXT}" \
         -d "parse_mode=html" >/dev/null
 
-    rm -f "${backupFile}"
+    # Bersih-bersih
+    rm -rf "$workDir" "${backupFile}"
     echo -e "${WHITE}✅ BACKUP COMPLETED${NC}"
     read -n 1 -s -r -p "Press any key to return to menu"
     m_bckp
@@ -116,43 +158,180 @@ botBackup() {
 
 # =======================
 # Restore Bot
-restoreBot() {
-    read bottoken adminid switch < /root/.bckupbot
+botRestore() {
     clear
-    echo -e "${PURPLE_BG}$(echo "┌───────────────────────────────┐" | lolcat -a -d 5)${NC}"
-    echo -e "${PURPLE_BG}$(echo "│       🔄 VPS RESTORE TOOL 🔄 │" | lolcat -a -d 5)${NC}"
-    echo -e "${PURPLE_BG}$(echo "└───────────────────────────────┘" | lolcat -a -d 5)\n"
+    bottoken=$(sed -n '1p' /root/.bckupbot | awk '{print $1}')
+    adminid=$(sed -n '2p' /root/.bckupbot | awk '{print $1}')
+    domain=$(cat /etc/xray/domain)
+    nama2=$(cat /etc/xray/username)
 
-    read -p "📌 File ID   : " fileId
-    read -p "📂 File PATH : " filePath
+    echo -e "${BLUE}┌─────────────────────────────────────────────┐${NC}"
+    echo -e " ${PURPLE_BG}              ♻️ VPS RESTORE TOOL ♻️            ${NC}"
+    echo -e "${BLUE}└─────────────────────────────────────────────┘${NC}" 
+    echo ""
+    read -p "📂 Masukkan File ID: " fileId
+    read -p "📂 Masukkan File Path: " filePath
+     
 
-    loading "[ INFO ] Downloading backup"
-    curl -s -o /root/backup.zip "https://api.telegram.org/file/bot${bottoken}/${filePath}"
-    [[ -f "/root/backup.zip" ]] && echo -e "${GREEN}[ DONE ]${NC}" || { echo -e "${RED}[ FAILED ]${NC}"; return 1; }
+    if [[ -z "$fileId" || -z "$filePath" ]]; then
+        echo -e "${RED}[ FAILED ] File ID / File Path kosong${NC}"
+        return 1
+    fi
 
+    workDir="/root/restore"
+    rm -rf "$workDir"
+    mkdir -p "$workDir"
+
+    backupFile="/root/backup_restore.zip"
+    fileUrl="https://api.telegram.org/file/bot${bottoken}/${filePath}"
+
+    # Download
+    loading "[ INFO ] Downloading backup from Telegram"
+    curl -s -L -o "$backupFile" "$fileUrl"
+    [[ -f "$backupFile" ]] && echo -e "${GREEN}[ DONE ]${NC}" || { echo -e "${RED}[ FAILED ] Download error${NC}"; return 1; }
+
+    # Extract
     loading "[ INFO ] Extracting backup"
-    unzip -o /root/backup.zip -d / >/dev/null 2>&1
-    rm -f /root/backup.zip
-    echo -e "${GREEN}[ INFO ] Extraction completed${NC}"
+    unzip -oq "$backupFile" -d "$workDir"
+    [[ $? -eq 0 ]] && echo -e "${GREEN}[ DONE ]${NC}" || { echo -e "${RED}[ FAILED ] Extract error${NC}"; return 1; }
 
-    loading "[ INFO ] Restoring configs & system files"
-    cp /etc/passwd /etc/passwd.bak 2>/dev/null
-    cp /etc/group /etc/group.bak 2>/dev/null
-    cp /etc/shadow /etc/shadow.bak 2>/dev/null
-    cp /etc/gshadow /etc/gshadow.bak 2>/dev/null
-    cp /etc/crontab /etc/crontab.bak 2>/dev/null
+    # Restore file penting
+    loading "[ INFO ] Restoring system files"
+    cp -f "$workDir/backup/passwd" /etc/passwd 2>/dev/null
+    cp -f "$workDir/backup/group" /etc/group 2>/dev/null
+    cp -f "$workDir/backup/shadow" /etc/shadow 2>/dev/null
+    cp -f "$workDir/backup/gshadow" /etc/gshadow 2>/dev/null
+    cp -f "$workDir/backup/crontab" /etc/crontab 2>/dev/null
 
-    [[ -f /etc/bot/.bot.db ]] && cp /etc/bot/.bot.db /etc/bot/
-    [[ -f /etc/ssh/.ssh.db ]] && cp /etc/ssh/.ssh.db /etc/ssh/
-    [[ -f /etc/vmess/.vmess.db ]] && cp /etc/vmess/.vmess.db /etc/vmess/
-    [[ -f /etc/vless/.vless.db ]] && cp /etc/vless/.vless.db /etc/vless/
-    [[ -f /etc/trojan/.trojan.db ]] && cp /etc/trojan/.trojan.db /etc/trojan/
-    [[ -f /root/BotVPN2/sellvpn.db ]] && cp /root/BotVPN2/sellvpn.db /root/BotVPN2/
-    echo -e "${GREEN}[ INFO ] Restore completed${NC}"
+    cp -f "$workDir/backup/.ssh.db" /etc/ssh/.ssh.db 2>/dev/null
+    cp -f "$workDir/backup/.vmess.db" /etc/vmess/.vmess.db 2>/dev/null
+    cp -f "$workDir/backup/.vless.db" /etc/vless/.vless.db 2>/dev/null
+    cp -f "$workDir/backup/.trojan.db" /etc/trojan/.trojan.db 2>/dev/null
+    cp -f "$workDir/backup/.shadowsocks.db" /etc/shadowsocks/.shadowsocks.db 2>/dev/null
+    
+    #folder Bot notif & backup bot seller
+    cp -f "$workDir/backup/limit.env" /etc/notif/limit.env 2>/dev/null
+    cp -f "$workDir/backup/.backupcfg" /root/.backupcfg 2>/dev/null
+    
+    # Restore folder penting
+    cp -r "$workDir/backup/kyt2" /var/lib/kyt/ 2>/dev/null
+    cp -r "$workDir/backup/limit" /etc/ 2>/dev/null
+    cp -r "$workDir/backup/limit" /etc/kyt/ 2>/dev/null
+    cp -r "$workDir/backup/ssh" /etc/ 2>/dev/null
+    cp -r "$workDir/backup/vmess" /etc/ 2>/dev/null
+    cp -r "$workDir/backup/trojan" /etc/ 2>/dev/null
+    cp -r "$workDir/backup/vless" /etc/ 2>/dev/null
+    cp -r "$workDir/backup/shadowsocks" /etc/ 2>/dev/null
+    cp -r "$workDir/backup/xray" /etc/ 2>/dev/null
+    cp -r "$workDir/backup/html" /var/www/ 2>/dev/null
+    cp -a "$workDir/backup/detail" / 2>/dev/null
+    echo -e "${GREEN}[ DONE ]${NC}"
 
-    echo -e "${WHITE}✅ RESTORE SUCCESSFUL${NC}"
+    # Permission penting
+    chmod 600 /etc/shadow /etc/gshadow 2>/dev/null
+    chmod 644 /etc/passwd /etc/group 2>/dev/null
+    chmod 600 /etc/crontab 2>/dev/null
+
+    # Notifikasi Telegram
+    TEXT="<b>◇━━━━━━━━━━━━━━◇</b>
+<b>   ♻️ VPS Restore Completed</b>
+<b>◇━━━━━━━━━━━━━━◇</b>
+📌 <b>Date:</b> <code>$(date +"%Y-%m-%d")</code>
+🌍 <b>IP:</b> <code>$(wget -qO- ipinfo.io/ip)</code>
+💥 <b>Domain:</b> <code>${domain}</code>
+👤 <b>Name:</b> <code>${nama2}</code>
+🗂 <b>File ID:</b> <code>${fileId}</code>
+📂 <b>File Path:</b> <code>${filePath}</code>
+<b>◇━━━━━━━━━━━━━━◇</b>"
+
+    curl -s "https://api.telegram.org/bot${bottoken}/sendMessage" \
+        -d "chat_id=${adminid}" \
+        --data-urlencode "text=${TEXT}" \
+        -d "parse_mode=html" >/dev/null
+
+    # Bersih-bersih
+    rm -rf "$workDir" "$backupFile"
+    echo -e "${WHITE}✅ RESTORE COMPLETED — Reboot VPS sekarang${NC}"
     read -n 1 -s -r -p "Press any key to return to menu"
     m_bckp
+}
+autoBackup() {
+    # Ambil status & interval
+    switch=$(grep -i "switch" /root/.bckupbot | awk '{print $2}')
+    interval=$(grep -i "interval" /root/.bckupbot | awk '{print $2}')
+
+    clear
+    echo -e "${BLUE}┌──────────────────────────────────────────────┐${NC}"
+    echo -e " ${PURPLE_BG}         ⏰ AUTO BACKUP CONFIGURATION         ${NC}"
+    echo -e "${BLUE}└──────────────────────────────────────────────┘${NC}\n"
+
+    echo -e "${BLUE}┌──────────────────────────────────────────────┐${NC}"
+    echo -e "${BLUE}│${NC} Status AutoBackup : $( [[ "$switch" == "on" ]] && echo -e "${GREEN}[ON]${NC}" || echo -e "${RED}[OFF]${NC}" )"
+    echo -e "${BLUE}│${NC} Backup Interval  : ${interval:-Not Set}"
+    echo -e "${BLUE}│${NC} [1] Turn ON / Set Interval"
+    echo -e "${BLUE}│${NC} [2] Turn OFF Auto Backup"
+    echo -e "${BLUE}│${NC} [3] Back To Menu"
+    echo -e "${BLUE}└──────────────────────────────────────────────┘${NC}"
+
+    echo -ne "\nSelect Option [1-3] : "
+    read opt
+    case "$opt" in
+        1)
+            clear
+            echo -e "${PURPLE_BG}┌───────────────────────────────┐${NC}"
+            echo -e "${PURPLE_BG}│      ⏱  Select Interval       │${NC}"
+            echo -e "${PURPLE_BG}└───────────────────────────────┘${NC}\n"
+
+            echo "1) Every 1 Jam"
+            echo "2) Every 6 Jam"
+            echo "3) Every 12 Jam"
+            echo "4) Every 1 Hari"
+            echo -ne "\nChoose Interval [1-4]: "
+            read choice
+            case "$choice" in
+                1) interval="1h"; cron="0 * * * *" ;;
+                2) interval="6h"; cron="0 */6 * * *" ;;
+                3) interval="12h"; cron="0 */12 * * *" ;;
+                4) interval="1d"; cron="0 0 * * *" ;;
+                *) echo "Invalid choice!"; sleep 1; autoBackup ;;
+            esac
+
+            # update .bckupbot
+            sed -i "s/^switch.*/switch on/" /root/.bckupbot 2>/dev/null || echo "switch on" >> /root/.bckupbot
+            if grep -q "interval" /root/.bckupbot; then
+                sed -i "s/^interval.*/interval $interval/" /root/.bckupbot
+            else
+                echo "interval $interval" >> /root/.bckupbot
+            fi
+
+            # buat cron.d file
+            cat > /etc/cron.d/bckp_otm << END
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+$cron root bash /usr/local/sbin/backup
+END
+
+            chmod 644 /etc/cron.d/bckp_otm
+            systemctl restart cron >/dev/null 2>&1
+            echo -e "${GREEN}[INFO] AutoBackup is ON with interval $interval${NC}"
+            sleep 2
+            autoBackup
+            ;;
+        2)
+            sed -i "s/^switch.*/switch off/" /root/.bckupbot
+            rm -f /etc/cron.d/bckp_otm
+            systemctl restart cron >/dev/null 2>&1
+            echo -e "${RED}[INFO] AutoBackup Turned OFF${NC}"
+            sleep 2
+            autoBackup
+            ;;
+        3)
+            m_bckp
+            ;;
+        *)
+            autoBackup
+            ;;
+    esac
 }
 
 # =======================
@@ -166,27 +345,29 @@ m_bckp() {
         sts="\033[30;41m [OFF] \033[0m"
     fi
 
-    echo -e "${PURPLE_BG}$(echo "┌───────────────────────────────┐" | lolcat -a -d 5)${NC}"
-    echo -e "${PURPLE_BG}$(echo "│   🤖 TELEGRAM BOT (AutoBackup) │" | lolcat -a -d 5)${NC}"
-    echo -e "${PURPLE_BG}$(echo "└───────────────────────────────┘" | lolcat -a -d 5)\n"
+    echo -e "${BLUE}┌─────────────────────────────────────────────┐${NC}"
+    echo -e " ${PURPLE_BG}        🤖 TELEGRAM BOT (AutoBackup) 🤖        ${NC}"
+    echo -e "${BLUE}└─────────────────────────────────────────────┘${NC}" 
 
-    echo -e "══════════════════════════════════════════════" | lolcat -a -d 5
+    echo -e "${BLUE}══════════════════════════════════════════════${NC}" 
     echo -e "Status AutoBackup : ${sts}"
-    echo -e "[1] Setup Bot Telegram"
-    echo -e "[2] Toggle Auto Backup Status"
-    echo -e "[3] Backup VPS (Telegram Bot)"
-    echo -e "[4] Restore Data"
-    echo -e "[5] Back To Main Menu"
-    echo -e "══════════════════════════════════════════════" | lolcat -a -d 5
+    echo -e "${redbg}[1]${NC} Setup Bot Telegram"
+    echo -e "${redbg}[2]${NC} Setup Auto Backup Status"
+    echo -e "${redbg}[3]${NC} Backup VPS (Telegram Bot)"
+    echo -e "${redbg}[4]${NC} Restore Data"
+    echo -e "${redbg}[5]${NC} Restore Sc Potato"
+    echo -e "${redbg}[6]${NC} Back To Main Menu"
+    echo -e "${BLUE}══════════════════════════════════════════════${NC}" 
 
     echo -ne "\nSelect From Options [ 1 - 5 ] : "
     read botch
     case "$botch" in
     1) setup_bot ;;
     2) autoBackup ;;
-    3) botBackup ;;
-    4) restoreBot ;;
-    5) menu ;;
+    3) backup ;;
+    4) botRestore ;;
+    5) restorepot ;;
+    6) menu ;;
     *) m_bckp ;;
     esac
 }
