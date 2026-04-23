@@ -1,21 +1,25 @@
 #!/bin/bash
 
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\E[0;100;33m       • VLESS MENU •         \E[0m"
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+# Definisi Warna Kontras Tinggi
+Nmr="\e[1;36m"      # Cyan Terang (Nomor)
+Teks="\e[1;37m"     # Putih Bold (Teks Utama)
+Line="\e[1;35m"     # Magenta/Ungu (Garis)
+Back="\e[1;31m"     # Merah Terang (Kembali)
+Header="\e[1;45;37m" # Background Ungu, Teks Putih (Header)
+Reset="\e[0m"
+
+echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
+echo -e "          ${Header}          • VLESS MENU •         ${Reset}"
+echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
 echo -e ""
-echo -e " [\e[36m•1\e[0m] Create Account Vless "
-echo -e " [\e[36m•2\e[0m] Trial Account Vless "
-echo -e " [\e[36m•3\e[0m] Extending Account Vless "
-echo -e " [\e[36m•4\e[0m] Delete Account Vless "
-echo -e " [\e[36m•5\e[0m] Check User Login Vless "
-echo -e " [\e[36m•6\e[0m] User list created Account "
+echo -e " [${Nmr}•1${Reset}] ${Teks}Create Vless   ${Reset} │ [${Nmr}•4${Reset}] ${Teks}Delete Vless   ${Reset}"
+echo -e " [${Nmr}•2${Reset}] ${Teks}Trial Vless    ${Reset} │ [${Nmr}•5${Reset}] ${Teks}Check Login    ${Reset}"
+echo -e " [${Nmr}•3${Reset}] ${Teks}Extend Vless   ${Reset} │ [${Nmr}•6${Reset}] ${Teks}User List      ${Reset}"
 echo -e ""
-echo -e " [\e[31m•0\e[0m] \e[31mBACK TO MENU\033[0m"
+echo -e " [${Back}•0${Reset}] ${Back}BACK TO MENU${Reset}     [${Back}•x${Reset}] ${Back}EXIT SCRIPT${Reset}"
 echo -e ""
-echo -e   "Press x or [ Ctrl+C ] • To-Exit"
-echo ""
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e " ${Teks}Press [ Ctrl+C ] to Force Exit${Reset}"
+echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
 echo -e ""
 read -p " Select menu :  "  opt
 echo -e ""
