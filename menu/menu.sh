@@ -101,6 +101,23 @@ freq=$( awk -F: ' /cpu MHz/ {freq=$2} END {print freq}' /proc/cpuinfo )
 tram=$( free -m | awk 'NR==2 {print $2}' )
 uram=$( free -m | awk 'NR==2 {print $3}' )
 fram=$( free -m | awk 'NR==2 {print $4}' )
+# Mengambil data dari os-release
+if [ -f /etc/os-release ]; then
+    # Mengimpor variabel dari file os-release
+    . /etc/os-release
+    OS=$ID # Contoh: ubuntu, debian, centos
+    VER=$VERSION_ID # Contoh: 20.04, 11, 7
+else
+    # Jika os-release tidak ada, gunakan metode cadangan
+    OS=$(uname -s)
+    VER=$(uname -r)
+fi
+
+# Mengubah huruf menjadi kapital (optional, untuk tampilan)
+OS_NAME=$(echo $OS | tr '[:lower:]' '[:upper:]')
+
+echo "VPS ini menggunakan OS: $OS_NAME versi $VER"
+
 clear 
 # --- WARNA (Lengkap) ---
 CYAN='\e[1;36m'
@@ -121,12 +138,12 @@ status_ssh=$(systemctl is-active ws-stunnel &>/dev/null && echo -e "${GREEN}ON${
 # --- DASHBOARD START ---
 clear
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
-echo -e "${CYAN}│${NC}      ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC} ${BG_RED} AJI SYSTEM PREMIUM ${NC} ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC}        ${CYAN}│${NC}"
+echo -e "${CYAN}│${NC}      ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC} ${BG_RED} AJI SYSTEM PREMIUM ${NC} ${YELLOW}⁙⁙⁙⁙⁙⁙⁙${NC}       ${CYAN}│${NC}"
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
 # Bagian Informasi System
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
-echo -e "${CYAN}│${NC} ${YELLOW}SYSTEM OS      ${NC}: ${WHITE}$cname/$cores/$freq${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}SYSTEM OS      ${NC}: ${WHITE}$OS$-$VER${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}CPU            ${NC}: ${WHITE}$cpu_usage${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}ISP            ${NC}: ${WHITE}$ISP${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}CITY           ${NC}: ${WHITE}$CITY${NC}"
