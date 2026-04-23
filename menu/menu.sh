@@ -60,14 +60,11 @@ else
     status_ssh="${RED}OFF${NC}"
 fi
 # Menghitung TOTAL seluruh akun yang terdaftar di config Xray
-vmess=$(grep -c "#vmsg" "/etc/xray/config.json")
-vless=$(grep -c "#vlsg" "/etc/xray/config.json")
-tr=$(grep -c "#trg" "/etc/xray/config.json")
-ss=$(grep -c "#ssg" "/etc/xray/config.json")
-
-# Menghitung TOTAL akun SSH (User sistem)
-ssh=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)
-
+vmess=$(grep -c -E "^#vmsg $user" "/etc/xray/config.json")
+vless=$(grep -c -E "^#vlsg $user" "/etc/xray/config.json")
+tr=$(grep -c -E "^#trg $user" "/etc/xray/config.json")
+ss=$(grep -c -E "^#ssg $user" "/etc/xray/config.json")
+ssh="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 # Menghitung Total Keseluruhan (Opsional)
 total_semua=$((vmess + vless + tr + ss + ssh))
 # Download
