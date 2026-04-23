@@ -6,7 +6,7 @@ Line="\e[1;33m"     # Kuning Terang (Garis)
 Back="\e[1;31m"     # Merah Terang (Kembali)
 Header="\e[1;32m"   # Hijau Terang (Judul)
 Reset="\e[0m"
-
+clear
 echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
 echo -e "          ${Header}• VMESS WS (XRAY) MENU •${Reset}"
 echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
