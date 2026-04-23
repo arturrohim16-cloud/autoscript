@@ -331,7 +331,7 @@ wget -O m-sstp "https://autoscript.caliphdev.com/menu/m-sstp.sh"
 wget -O m-pptp "https://autoscript.caliphdev.com/menu/m-pptp.sh"
 
 chmod +x menu
-chmod +x add-bot-notif
+chmod +x m-bot-notif
 chmod +x m-backup
 chmod +x backup
 chmod +x restore
