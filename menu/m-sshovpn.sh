@@ -7,7 +7,7 @@ warna_border="\e[33m"
 warna_reset="\e[0m"
 warna_back="\e[31m"
 warna_header="\E[0;100;33m"
-
+clear
 echo -e "${warna_border}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${warna_reset}"
 echo -e "${warna_header}                 • SSH MENU •                    ${warna_reset}"
 echo -e "${warna_border}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${warna_reset}"
