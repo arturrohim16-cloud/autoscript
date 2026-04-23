@@ -35,15 +35,18 @@ m-vmess
 uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (days): " masaaktif
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmess$/a\### '"$user $exp"'\
+sed -i '/#vmess$/a\#vms '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
-exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
+sed -i '/#vmessworry$/a\### '"$user $exp"'\
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
+sed -i '/#vmesskuota$/a\### '"$user $exp"'\
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
+sed -i '/#vmessgrpc$/a\#vmsg '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 asu=`cat<<EOF
       {
       "v": "2",
-      "ps": "${user}",
+      "ps": "VMESS_TLS_${user}",
       "add": "${domain}",
       "port": "443",
       "id": "${uuid}",
@@ -51,11 +54,26 @@ asu=`cat<<EOF
       "net": "ws",
       "path": "/vmess",
       "type": "none",
-      "host": "",
+      "host": "${domain}",
       "tls": "tls"
 }
 EOF`
 ask=`cat<<EOF
+      {
+      "v": "2",
+      "ps": "VMESS_NTLS_${user}",
+      "add": "${domain}",
+      "port": "80",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/vmess",
+      "type": "none",
+      "host": "${domain}",
+      "tls": "none"
+}
+EOF`
+asi=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -64,16 +82,31 @@ ask=`cat<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/vmess",
+      "path": "/worryfree",
       "type": "none",
-      "host": "",
+      "host": "${domain}",
+      "tls": "none"
+}
+EOF`
+aso=`cat<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "80",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/kuota-habis",
+      "type": "none",
+      "host": "bug.com",
       "tls": "none"
 }
 EOF`
 grpc=`cat<<EOF
       {
       "v": "2",
-      "ps": "${user}",
+      "ps": "VMESS_GRPC_${user}",
       "add": "${domain}",
       "port": "443",
       "id": "${uuid}",
@@ -81,16 +114,54 @@ grpc=`cat<<EOF
       "net": "grpc",
       "path": "vmess-grpc",
       "type": "none",
-      "host": "",
+      "host": "${domain}",
+      "tls": "tls"
+}
+EOF`
+ama=`cat<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "443",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/worryfree",
+      "type": "none",
+      "host": "bug.com",
+      "tls": "tls"
+}
+EOF`
+ami=`cat<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "443",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/kuota-habis",
+      "type": "none",
+      "host": "bug.com",
       "tls": "tls"
 }
 EOF`
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmess_base643=$( base64 -w 0 <<< $vmess_json3)
+vmess_base644=$( base64 -w 0 <<< $vmess_json4)
+vmess_base645=$( base64 -w 0 <<< $vmess_json5)
+vmess_base646=$( base64 -w 0 <<< $vmess_json6)
+vmess_base647=$( base64 -w 0 <<< $vmess_json7)
 vmesslink1="vmess://$(echo $asu | base64 -w 0)"
 vmesslink2="vmess://$(echo $ask | base64 -w 0)"
-vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
+vmesslink3="vmess://$(echo $asi | base64 -w 0)"
+vmesslink4="vmess://$(echo $aso | base64 -w 0)"
+vmesslink5="vmess://$(echo $grpc | base64 -w 0)"
+vmesslink6="vmess://$(echo $ama | base64 -w 0)"
+vmesslink7="vmess://$(echo $ami | base64 -w 0)"
 systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
 # ==============================
