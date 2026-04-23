@@ -2,9 +2,9 @@
 # Definisi Warna Cerah
 Nmr="\e[1;36m"      # Cyan Terang (Nomor)
 Teks="\e[1;37m"     # Putih Bold (Teks Utama)
-Line="\e[1;33m"     # Kuning Terang (Garis)
+Line="\e[1;35m"     # Magenta/Ungu (Garis)
 Back="\e[1;31m"     # Merah Terang (Kembali)
-Header="\e[1;32m"   # Hijau Terang (Judul)
+Header="\e[1;45;37m" # Background Ungu, Teks Putih (Header)
 Reset="\e[0m"
 clear
 echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
