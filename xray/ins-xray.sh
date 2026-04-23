@@ -498,7 +498,7 @@ cd /usr/bin/
 wget -O add-ws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/add-ws.sh" && chmod +x add-ws
 wget -O trialvmess "https://autoscript.caliphdev.com/xray/trialvmess.sh" && chmod +x trialvmess
 wget -O renew-ws "https://autoscript.caliphdev.com/xray/renew-ws.sh" && chmod +x renew-ws
-wget -O del-ws "https://autoscript.caliphdev.com/xray/del-ws.sh" && chmod +x del-ws
+wget -O del-ws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/del-ws.sh" && chmod +x del-ws
 wget -O cek-ws "https://autoscript.caliphdev.com/xray/cek-ws.sh" && chmod +x cek-ws
 
 # vless
