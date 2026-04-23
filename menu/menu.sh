@@ -153,8 +153,8 @@ echo -e "${CYAN}│${NC} ${YELLOW}IP VPS         ${NC}: ${WHITE}$IPVPS${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}DOMAIN         ${NC}: ${WHITE}$domain${NC}"
 echo -e "${CYAN}├─────────────────────────────────────────────────┤${NC}"
 # Bagian Penggunaan Kuota (Traffic)
-echo -e "${CYAN}│${NC} ${GREEN}DOWNLOAD       ${NC}: ${WHITE}$dtoday${NC}   ${CYAN}┃${NC} ${PURPLE}SSH${NC}   ${WHITE}${WB}[${GB}${ssh}${WB}]${NC}"
-echo -e "${CYAN}│${NC} ${GREEN}UPLOAD         ${NC}: ${WHITE}$utoday${NC}   ${CYAN}┃${NC} ${PURPLE}VMESS${NC} ${WHITE}${WB}[${GB}${vmess}${WB}]${NC}"
+echo -e "${CYAN}│${NC} ${GREEN}DOWNLOAD       ${NC}: ${WHITE}$dtoday${NC}    ${CYAN}┃${NC} ${PURPLE}SSH${NC}   ${WHITE}${WB}[${GB}${ssh}${WB}]${NC}"
+echo -e "${CYAN}│${NC} ${GREEN}UPLOAD         ${NC}: ${WHITE}$utoday${NC}    ${CYAN}┃${NC} ${PURPLE}VMESS${NC} ${WHITE}${WB}[${GB}${vmess}${WB}]${NC}"
 echo -e "${CYAN}│${NC} ${GREEN}TOTAL TRAFFIC  ${NC}: ${WHITE}$ttoday${NC}   ${CYAN}┃${NC} ${PURPLE}VLESS${NC} ${WHITE}${WB}[${GB}${vless}${WB}]${NC}"
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
@@ -172,7 +172,7 @@ echo -e "   ${CYAN}│${NC} ${YELLOW}EXPIRY     ${NC}: ${WHITE}$Exp2${NC}       
 echo -e "   ${CYAN}└───────────────────────────────────────────┘${NC}"
 
 # Bagian Menu (2 Kolom)
-echo -e "${CYAN}╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮${NC}"
+echo -e "${CYAN}╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮${NC}"
 echo -e "${CYAN}┃${NC}  ${YELLOW}1.)☞${NC} ${WHITE}SSH/OPENVPN${NC}         ${YELLOW}8.)☞${NC} ${WHITE}BOT TELEGRAM${NC}     ${CYAN}┃${NC}"
 echo -e "${CYAN}┃${NC}  ${YELLOW}2.)☞${NC} ${WHITE}MENU VMESS${NC}          ${YELLOW}9.)☞${NC} ${WHITE}UPDATE SCRIPT${NC}    ${CYAN}┃${NC}"
 echo -e "${CYAN}┃${NC}  ${YELLOW}3.)☞${NC} ${WHITE}MENU TROJAN${NC}        ${YELLOW}10.)☞${NC} ${WHITE}MENU SYSTEM${NC}      ${CYAN}┃${NC}"
@@ -180,7 +180,7 @@ echo -e "${CYAN}┃${NC}  ${YELLOW}4.)☞${NC} ${WHITE}MENU VLESS${NC}         $
 echo -e "${CYAN}┃${NC}  ${YELLOW}5.)☞${NC} ${WHITE}MENU WSS${NC}           ${YELLOW}12.)☞${NC} ${WHITE}REBOOT${NC}           ${CYAN}┃${NC}"
 echo -e "${CYAN}┃${NC}  ${YELLOW}6.)☞${NC} ${WHITE}INSTAL UDP${NC}         ${YELLOW}13.)☞${NC} ${WHITE}MENU BACKUP${NC}      ${CYAN}┃${NC}"
 echo -e "${CYAN}┃${NC}  ${YELLOW}7.)☞${NC} ${WHITE}BACKUP${NC}              ${YELLOW}x.)☞${NC} ${WHITE}EXIT${NC}             ${CYAN}┃${NC}"
-echo -e "${CYAN}╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯${NC}"
+echo -e "${CYAN}╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯${NC}"
 # Footer
 echo -e " ${CYAN}---------- t.me/caliphdev / @AjiStore ----------${NC}"
 read -p " pilih menu [1-13 or x] : "  opt
