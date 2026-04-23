@@ -282,7 +282,7 @@ netfilter-persistent reload
 cd /usr/bin
 # menu
 wget -O menu "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/menu.sh"
-wget -O add-bot-notif "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/add-bot-notif.sh"
+wget -O m-bot-notif "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-bot-notif.sh"
 wget -O m-backup "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-backup.sh"
 wget -O backup "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/backup.sh"
 wget -O restore "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/restore.sh"
