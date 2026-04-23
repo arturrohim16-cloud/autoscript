@@ -125,8 +125,9 @@ echo -e "${CYAN}└────────────────────�
 # Bagian Informasi System
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}SYSTEM OS      ${NC}: ${WHITE}$(hostnamectl | grep "Operating System" | cut -d ' ' -f5-) ${NC}"
-echo -e "${CYAN}│${NC} ${YELLOW}CPU            ${NC}: ${WHITE}$cpu_usage${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}CPU            ${NC}: ${WHITE}$cpu_usage+${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}ISP            ${NC}: ${WHITE}$ISP${NC}"
+echo -e "${CYAN}│${NC} ${YELLOW}CITY           ${NC}: ${WHITE}$CITY${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}SERVER RAM     ${NC}: ${WHITE}$uram/$tram MB${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}UPTIME SERVER  ${NC}: ${WHITE}$uptime${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}IP VPS         ${NC}: ${WHITE}$IPVPS${NC}"
