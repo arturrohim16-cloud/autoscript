@@ -15,7 +15,7 @@ echo -e " [${Nmr}•1${Reset}] ${Teks}Create Vmess   ${Reset} │ [${Nmr}•4${R
 echo -e " [${Nmr}•2${Reset}] ${Teks}Trial Vmess    ${Reset} │ [${Nmr}•5${Reset}] ${Teks}Check Login    ${Reset}"
 echo -e " [${Nmr}•3${Reset}] ${Teks}Extend Vmess   ${Reset} │ [${Nmr}•6${Reset}] ${Teks}User List      ${Reset}"
 echo -e ""
-echo -e " [${Back}•x${Reset}] ${Back}BACK TO MAIN MENU${Reset}"
+echo -e " [${Back}•0${Reset}] ${Back}BACK TO MAIN MENU${Reset}"
 echo -e "${Line}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${Reset}"
 echo -e ""
 read -p " Select menu :  "  opt
