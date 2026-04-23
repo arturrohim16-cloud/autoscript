@@ -182,7 +182,7 @@ echo -e "${CYAN}┃${NC}  ${YELLOW}6.)☞${NC} ${WHITE}INSTAL UDP${NC}         $
 echo -e "${CYAN}┃${NC}  ${YELLOW}7.)☞${NC} ${WHITE}BACKUP${NC}              ${YELLOW}x.)☞${NC} ${WHITE}EXIT${NC}             ${CYAN}┃${NC}"
 echo -e "${CYAN}╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯${NC}"
 # Footer
-echo -e " ${CYAN}---------- t.me/caliphdev / @AjiStore ----------${NC}"
+echo -e " ${CYAN}\e[5m---------- t.me/caliphdev / @AjiStore ----------\e[0m${NC}"
 read -p " pilih menu [1-13 or x] : "  opt
 echo -e   ""
     case $opt in
