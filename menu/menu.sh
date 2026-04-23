@@ -66,7 +66,7 @@ tr=$(grep -c -E "^#trg $user" "/etc/xray/config.json")
 ss=$(grep -c -E "^#ssg $user" "/etc/xray/config.json")
 ssh="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 # Menghitung Total Keseluruhan (Opsional)
-total_semua=$((vmess + vless + tr + ss + ssh))
+#total_semua=$((vmess + vless + tr + ss + ssh))
 # Download
 #Download/Upload today
 dtoday="$(vnstat -i ens3 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
