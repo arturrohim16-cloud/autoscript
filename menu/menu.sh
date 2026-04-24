@@ -151,12 +151,12 @@ echo -e "${CYAN}│${NC} ${YELLOW}SERVER RAM     ${NC}: ${WHITE}$uram/$tram MB${
 echo -e "${CYAN}│${NC} ${YELLOW}UPTIME SERVER  ${NC}: ${WHITE}$uptime${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}IP VPS         ${NC}: ${WHITE}$IPVPS${NC}"
 echo -e "${CYAN}│${NC} ${YELLOW}DOMAIN         ${NC}: ${WHITE}$domain${NC}"
-echo -e "${CYAN}├─────────────────────────────────────────────────┤${NC}"
+echo -e "${CYAN}├━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┤${NC}"
 # Bagian Penggunaan Kuota (Traffic)
 echo -e "${CYAN}│${NC} ${GREEN}DOWNLOAD       ${NC}: ${WHITE}$dtoday${NC}     ${CYAN}┃${NC} ${PURPLE}SSH${NC}   ${WHITE}${WB}[${GB}${ssh}${WB}]${NC}"
 echo -e "${CYAN}│${NC} ${GREEN}UPLOAD         ${NC}: ${WHITE}$utoday${NC}     ${CYAN}┃${NC} ${PURPLE}VMESS${NC} ${WHITE}${WB}[${GB}${vmess}${WB}]${NC}"
 echo -e "${CYAN}│${NC} ${GREEN}TOTAL TRAFFIC  ${NC}: ${WHITE}$ttoday${NC}    ${CYAN}┃${NC} ${PURPLE}VLESS${NC} ${WHITE}${WB}[${GB}${vless}${WB}]${NC}"
-echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
+echo -e "${CYAN}└━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┘${NC}"
 
 # Bagian Status Service
 echo -e "${CYAN}┌─────────────────────────────────────────────────┐${NC}"
@@ -164,12 +164,12 @@ echo -e "${CYAN}│${NC}   ${YELLOW}PROXY :${NC} $status_ssh ${CYAN}|${NC} ${YEL
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
 # Bagian License Box
-echo -e "   ${CYAN}┌───────────────────────────────────────────┐${NC}"
+echo -e "   ${CYAN}┌━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┐${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}VERSION    ${NC}: ${WHITE}v15.2.7 D£VSX-NETWORK${NC}        ${CYAN}│${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}STATUS     ${NC}: ${GREEN}(active)${NC}                     ${CYAN}│${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}CLIENTS    ${NC}: ${PURPLE}$Name${NC}                       ${CYAN}│${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}EXPIRY     ${NC}: ${WHITE}$Exp2${NC}                    ${CYAN}│${NC}"
-echo -e "   ${CYAN}└───────────────────────────────────────────┘${NC}"
+echo -e "   ${CYAN}└━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┘${NC}"
 
 # Bagian Menu (2 Kolom)
 echo -e "${CYAN}╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮${NC}"
