@@ -69,7 +69,7 @@ KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -
 CHATIDS=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | cut -d ' ' -f 3 || echo "")
 TIME="10"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
-TEXT=" <<-EOF
+TEXT="🗣️ <b>AKUN TERKENA LIMIT</b>
 <code>────────────────────</code>
 <b>   ⚠️ SSH AUTOKILL ⚠️</b>
 <code>────────────────────</code>
@@ -77,11 +77,18 @@ TEXT=" <<-EOF
 <b>Limit IP : </b><code>$USER_LIMIT IP</code>
 <b>Status   : </b><code>Terkena Limit & Kicked</code>
 <code>────────────────────</code>
-<i>Notifikasi Otomatis AJI STORE</i>
-EOF
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-# --- AKHIR KODE NOTIF TELEGRAM ---
-    fi
+<b>Notifikasi Otomatis AJI STORE</b>"
+
+if [[ -n "$KEY" && -n "$CHATIDS" ]]; then
+    for CHATID in $CHATIDS; do
+        curl -s --max-time "$TIME" \
+            -d "chat_id=$CHATID" \
+            -d "disable_web_page_preview=1" \
+            --data-urlencode "text=$TEXT" \
+            -d "parse_mode=html" \
+            "$URL" >/dev/null
+    done
+fi
 done
 
 # Restart ssh jika ada yang dikill
