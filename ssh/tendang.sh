@@ -64,7 +64,12 @@ if [ ${jumlah[$i]} -gt $USER_LIMIT ]; then
         echo "$date - ${username_list[$i]} - ${jumlah[$i]}" >> /root/log-limit.txt
         kill ${pid[$i]}
         hit=$((hit + 1))
-        TEXT=" <<-EOF
+        #notif autokil
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 2 || echo "")
+CHATIDS=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | cut -d ' ' -f 3 || echo "")
+TIME="10"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+TEXT=" <<-EOF
 <code>────────────────────</code>
 <b>   ⚠️ SSH AUTOKILL ⚠️</b>
 <code>────────────────────</code>
