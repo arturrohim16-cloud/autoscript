@@ -64,6 +64,19 @@ if [ ${jumlah[$i]} -gt $USER_LIMIT ]; then
         echo "$date - ${username_list[$i]} - ${jumlah[$i]}" >> /root/log-limit.txt
         kill ${pid[$i]}
         hit=$((hit + 1))
+        TEXT="
+<code>────────────────────</code>
+<b>   ⚠️ SSH AUTOKILL ⚠️</b>
+<code>────────────────────</code>
+<b>Username : </b><code>${username_list[$i]}</code>
+<b>Limit IP : </b><code>$USER_LIMIT IP</code>
+<b>Status   : </b><code>Terkena Limit & Kicked</code>
+<code>────────────────────</code>
+<i>Notifikasi Otomatis AJI STORE</i>
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+# --- AKHIR KODE NOTIF TELEGRAM ---
+hit=$((hit + 1))
     fi
 done
 
