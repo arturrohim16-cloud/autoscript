@@ -1,24 +1,30 @@
 #!/bin/bash
 
-MAX=1
-if [ -e "/var/log/auth.log" ]; then
-    OS=1
-    LOG="/var/log/auth.log"
-elif [ -e "/var/log/secure" ]; then
-    OS=2
-    LOG="/var/log/secure"
-fi
+# Ganti baris 3-20 dengan ini:
+LIMIT_DB="/etc/ssh/limit.db"
+DEFAULT_MAX=1
 
-# Restart SSH service sesuai OS
-if [ $OS -eq 1 ]; then
-    service ssh restart > /dev/null 2>&1
+# Fungsi untuk mendapatkan limit per user
+get_limit() {
+    local user=$1
+    # Pengecualian: Jika nama user ada kata 'trial', limit tidak terbatas (999)
+    if [[ "$user" == *"trial"* ]]; then
+        echo 999
+    # Jika user terdaftar di database limit manual
+    elif grep -qw "$user" "$LIMIT_DB"; then
+        grep -w "$user" "$LIMIT_DB" | awk '{print $2}'
+    # Jika tidak ada, gunakan limit default
+    else
+        echo "$DEFAULT_MAX"
+    fi
+}
 else
     service sshd restart > /dev/null 2>&1
 fi
 
-# Jika ada argumen, jadikan MAX
-[[ ${1+x} ]] && MAX=$1
-
+# Ganti baris 3-20 dengan ini:
+LIMIT_DB="/etc/ssh/limit.db"
+DEFAULT_MAX=1
 # Ambil daftar user di /home
 cat /etc/passwd | grep "/home/" | cut -d":" -f1 > /root/user.txt
 username_list=( $(cat /root/user.txt) )
@@ -53,9 +59,9 @@ for PID in "${proc[@]}"; do
 done
 
 # Eksekusi kill jika lebih dari MAX
-hit=0
-for ((i=0; i<${#username_list[@]}; i++)); do
-    if [ ${jumlah[$i]} -gt $MAX ]; then
+# Baris asli: if [ ${jumlah[$i]} -gt $MAX ]; then
+USER_LIMIT=$(get_limit "${username_list[$i]}")
+if [ ${jumlah[$i]} -gt $USER_LIMIT ]; then
         date=$(date +"%Y-%m-%d %X")
         echo "$date - ${username_list[$i]} - ${jumlah[$i]}"
         echo "$date - ${username_list[$i]} - ${jumlah[$i]}" >> /root/log-limit.txt
