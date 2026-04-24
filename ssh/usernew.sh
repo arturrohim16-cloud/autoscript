@@ -18,6 +18,11 @@ echo -e "\E[0;41;36m            SSH Account            \E[0m"
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 read -p "Username : " Login
 read -p "Password : " Pass
+echo -e ""
+read -p "Masukan Limit Login (IP): " iplimit
+# Jika input kosong, default set ke 1
+if [ -z "$iplimit" ]; then iplimit="1"; fi
+echo "$Login $iplimit" >> /etc/ssh/limit.db
 read -p "Expired (hari): " masaaktif
 
 IP=$(curl -sS ifconfig.me);
