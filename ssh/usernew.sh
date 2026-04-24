@@ -3,6 +3,7 @@
 CYAN='\e[1;36m'
 GREEN='\e[1;32m'
 NC='\e[0m'
+
 cekray=`cat /root/log-install.txt | grep -ow "XRAY" | sort | uniq`
 if [ "$cekray" = "XRAY" ]; then
 domen=`cat /etc/xray/domain`
