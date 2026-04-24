@@ -164,12 +164,12 @@ echo -e "${CYAN}│${NC}   ${YELLOW}PROXY :${NC} $status_ssh ${CYAN}|${NC} ${YEL
 echo -e "${CYAN}└─────────────────────────────────────────────────┘${NC}"
 
 # Bagian License Box
-echo -e "   ${CYAN}┌━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┐${NC}"
+echo -e "   ${CYAN}┌━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┐${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}VERSION    ${NC}: ${WHITE}v15.2.7 D£VSX-NETWORK${NC}        ${CYAN}│${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}STATUS     ${NC}: ${GREEN}(active)${NC}                     ${CYAN}│${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}CLIENTS    ${NC}: ${PURPLE}$Name${NC}                       ${CYAN}│${NC}"
 echo -e "   ${CYAN}│${NC} ${YELLOW}EXPIRY     ${NC}: ${WHITE}$Exp2${NC}                    ${CYAN}│${NC}"
-echo -e "   ${CYAN}└━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┘${NC}"
+echo -e "   ${CYAN}└━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┘${NC}"
 
 # Bagian Menu (2 Kolom)
 echo -e "${CYAN}╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮${NC}"
