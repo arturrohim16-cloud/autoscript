@@ -21,10 +21,6 @@ get_limit() {
 else
     service sshd restart > /dev/null 2>&1
 fi
-
-# Ganti baris 3-20 dengan ini:
-LIMIT_DB="/etc/ssh/limit.db"
-DEFAULT_MAX=1
 # Ambil daftar user di /home
 cat /etc/passwd | grep "/home/" | cut -d":" -f1 > /root/user.txt
 username_list=( $(cat /root/user.txt) )
