@@ -35,7 +35,48 @@ useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 PID=`ps -ef |grep -v grep | grep sshws |awk '{print $2}'`
+#kirim notif ke tele
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 2 || echo "")
+CHATIDS=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | cut -d ' ' -f 3 || echo "")
+TIME="10"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+TEXT="🚀 <b>SSH ACCOUNT CREATED</b> 🚀
+━━━━━━━━━━━━━━━━━━━━━
+👤 <b>User:</b> <code>$Login</code>
+🔑 <b>Pass:</b> <code>$Pass</code>
+📅 <b>Exp:</b> <code>$exp</code>
+━━━━━━━━━━━━━━━━━━━━━
+🌐 <b>IP Address :</b> <code>$IP</code>
+✨ <b>Host : </b> <code>$domen</code>
+🔓 <b>OpenSSH :</b> <code>22</code>
+🐻 <b>Dropbear :</b> <code>109, 143</code>
+🔐 <b>SSH-WS :</b> <code>80</code>
+🔌 <b>SSH-SSL-WS :</b> <code>443</code>
+🚀 <b>UDPGW :</b> <code>7100-7300</code>
+━━━━━━━━━━━━━━━━━━━━━━
+📝 <b>Payload Websocket :</b>
+<code>GET / [protocol][crlf]Host: [host][crlf]Connection: Keep-Alive[crlf]Connection: Upgrade[crlf]Upgrade: websocket[crlf][crlf]</code>
+━━━━━━━━━━━━━━━━━━━━━━
+🔗 <b>Format Login (Klik untuk Salin) :</b>
+🔹 <b>SSH-SSL :</b> 
+<code>$domen:443@$Login:$Pass</code>
+🔹 <b>SSH-NONSL-WS :</b> 
+<code>$domen:80@$Login:$Pass</code>
+🔹 <b>UDP Custom :</b> 
+<code>$domen:1-65535@$Login:$Pass</code>
+━━━━━━━━━━━━━━━━━━━━━━
+✅ <b>Script By AJI VPN</b>"
 
+if [[ -n "$KEY" && -n "$CHATIDS" ]]; then
+    for CHATID in $CHATIDS; do
+        curl -s --max-time "$TIME" \
+            -d "chat_id=$CHATID" \
+            -d "disable_web_page_preview=1" \
+            --data-urlencode "text=$TEXT" \
+            -d "parse_mode=html" \
+            "$URL" >/dev/null
+    done
+fi
 if [[ ! -z "${PID}" ]]; then
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "\E[0;41;36m            TRIAL SSH              \E[0m"
