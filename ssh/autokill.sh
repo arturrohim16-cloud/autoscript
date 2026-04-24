@@ -26,7 +26,6 @@ read -p "Select From Options [1-4 or ctrl+c to exit] :  " AutoKill
 if [ -z $AutoKill ]; then
 autokill
 fi
-read -p "Multilogin Maximum Number Of Allowed: " max
 echo -e ""
 case $AutoKill in
                 1)
@@ -35,7 +34,7 @@ case $AutoKill in
                 clear
                 echo > /etc/cron.d/tendang
                 echo "# Autokill" >/etc/cron.d/tendang
-                echo "*/5 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+               echo "*/5 * * * * root /usr/bin/tendang" >>/etc/cron.d/tendang
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
@@ -52,7 +51,7 @@ case $AutoKill in
                 clear
                 echo > /etc/cron.d/tendang
                 echo "# Autokill" >/etc/cron.d/tendang
-                echo "*/10 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+                echo "*/10 * * * * root /usr/bin/tendang" >>/etc/cron.d/tendang
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
@@ -69,7 +68,7 @@ case $AutoKill in
                 clear
                 echo > /etc/cron.d/tendang
                 echo "# Autokill" >/etc/cron.d/tendang
-                echo "*/15 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+                echo "*/15 * * * * root /usr/bin/tendang" >>/etc/cron.d/tendang
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
