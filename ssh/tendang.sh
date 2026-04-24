@@ -7,13 +7,14 @@ DEFAULT_MAX=1
 # Fungsi untuk mendapatkan limit per user
 get_limit() {
     local user=$1
-    # Pengecualian: Jika nama user ada kata 'trial', limit tidak terbatas (999)
     if [[ "$user" == *"trial"* ]]; then
         echo 999
-    # Jika user terdaftar di database limit manual
-    elif grep -qw "$user" "$LIMIT_DB"; then
-        grep -w "$user" "$LIMIT_DB" | awk '{print $2}'
-    # Jika tidak ada, gunakan limit default
+    # Cek di database SSH
+    elif grep -qw "$user" "/etc/ssh/limit.db"; then
+        grep -w "$user" "/etc/ssh/limit.db" | awk '{print $2}'
+    # Cek di database Xray
+    elif grep -qw "$user" "/etc/xray/limit.db"; then
+        grep -w "$user" "/etc/xray/limit.db" | awk '{print $2}'
     else
         echo "$DEFAULT_MAX"
     fi
