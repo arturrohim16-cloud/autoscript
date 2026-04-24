@@ -28,6 +28,29 @@ OhpOVPN=`cat /root/log-install.txt | grep -w "OHP OpenVPN" | cut -d: -f2 | awk '
 
 sleep 1
 clear
+loading() {
+    local duration=20
+    echo -ne "${CYAN}Progress : [${NC}"
+    for ((i=1; i<=duration; i++)); do
+        # Menghitung persentase berdasarkan jumlah blok
+        # $i dikali 5 karena 20 blok x 5 = 100%
+        percent=$(( i * 5 ))
+        
+        echo -ne "${GREEN}█${NC}"
+        
+        # Simpan posisi kursor, cetak persen di luar bracket, lalu kembalikan kursor
+        echo -ne "${CYAN}] ${percent}%${NC}"
+        
+        # Backspace untuk menghapus tulisan persen agar bisa ditimpa blok berikutnya
+        if [ $i -lt $duration ]; then
+            echo -ne "\b\b\b\b\b"
+        fi
+        
+        sleep 0.1
+    done
+    echo -ne "\n"
+    sleep 0.5
+}
 useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
