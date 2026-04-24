@@ -73,7 +73,7 @@ if [ ${jumlah[$i]} -gt $USER_LIMIT ]; then
 <b>Status   : </b><code>Terkena Limit & Kicked</code>
 <code>────────────────────</code>
 <i>Notifikasi Otomatis AJI STORE</i>
-"
+EOF
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 # --- AKHIR KODE NOTIF TELEGRAM ---
     fi
