@@ -1,101 +1,68 @@
 #!/bin/bash
 
-# Ganti baris 3-20 dengan ini:
+# Konfigurasi Database
 LIMIT_DB="/etc/ssh/limit.db"
+XRAY_LIMIT="/etc/xray/limit.db"
 DEFAULT_MAX=1
+LOG="/var/log/auth.log" # Sesuaikan jika OS menggunakan log berbeda
 
 # Fungsi untuk mendapatkan limit per user
 get_limit() {
     local user=$1
     if [[ "$user" == *"trial"* ]]; then
         echo 999
-    # Cek di database SSH
-    elif grep -qw "$user" "/etc/ssh/limit.db"; then
-        grep -w "$user" "/etc/ssh/limit.db" | awk '{print $2}'
-    # Cek di database Xray
-    elif grep -qw "$user" "/etc/xray/limit.db"; then
-        grep -w "$user" "/etc/xray/limit.db" | awk '{print $2}'
+    elif grep -qw "$user" "$LIMIT_DB" 2>/dev/null; then
+        grep -w "$user" "$LIMIT_DB" | awk '{print $2}' | head -n1
+    elif grep -qw "$user" "$XRAY_LIMIT" 2>/dev/null; then
+        grep -w "$user" "$XRAY_LIMIT" | awk '{print $2}' | head -n1
     else
         echo "$DEFAULT_MAX"
     fi
 }
-else
-    service sshd restart > /dev/null 2>&1
-fi
-# Ambil daftar user di /home
+
+# Ambil daftar user aktif
 cat /etc/passwd | grep "/home/" | cut -d":" -f1 > /root/user.txt
 username_list=( $(cat /root/user.txt) )
-jumlah=()
-pid=()
 
+# Inisialisasi hitungan
+hit=0
 for ((i=0; i<${#username_list[@]}; i++)); do
-    jumlah[$i]=0
-    pid[$i]=""
-done
+    user="${username_list[$i]}"
+    # Hitung jumlah login SSH aktif untuk user ini
+    jumlah=$(ps aux | grep "sshd: $user" | grep -v grep | wc -l)
+    pids=$(ps aux | grep "sshd: $user" | grep -v grep | awk '{print $2}')
+    
+    USER_LIMIT=$(get_limit "$user")
 
-# Ambil log login SSH
-grep -i sshd $LOG | grep -i "Accepted password for" > /tmp/log-ssh.txt
-
-# Ambil pid ssh sesi aktif
-proc=( $(ps aux | grep "\[priv\]" | awk '{print $2}') )
-
-for PID in "${proc[@]}"; do
-    grep "sshd\[$PID\]" /tmp/log-ssh.txt > /tmp/log-ssh-pid.txt
-    NUM=$(wc -l < /tmp/log-ssh-pid.txt)
-    USER=$(awk '{print $9}' /tmp/log-ssh-pid.txt)
-    IP=$(awk '{print $11}' /tmp/log-ssh-pid.txt)
-
-    if [ "$NUM" -eq 1 ]; then
-        for ((i=0; i<${#username_list[@]}; i++)); do
-            if [ "$USER" == "${username_list[$i]}" ]; then
-                jumlah[$i]=$((jumlah[$i] + 1))
-                pid[$i]="${pid[$i]} $PID"
-            fi
-        done
-    fi
-done
-
-# Eksekusi kill jika lebih dari MAX
-# Baris asli: if [ ${jumlah[$i]} -gt $MAX ]; then
-USER_LIMIT=$(get_limit "${username_list[$i]}")
-if [ ${jumlah[$i]} -gt $USER_LIMIT ]; then
+    if [ "$jumlah" -gt "$USER_LIMIT" ]; then
         date=$(date +"%Y-%m-%d %X")
-        echo "$date - ${username_list[$i]} - ${jumlah[$i]}"
-        echo "$date - ${username_list[$i]} - ${jumlah[$i]}" >> /root/log-limit.txt
-        kill ${pid[$i]}
+        echo "$date - $user - $jumlah (Limit: $USER_LIMIT)" >> /root/log-limit.txt
+        
+        # Kill semua sesi user tersebut
+        for pid in $pids; do
+            kill -9 $pid 2>/dev/null
+        done
+        
         hit=$((hit + 1))
-        #notif autokil
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 2 || echo "")
-CHATIDS=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | cut -d ' ' -f 3 || echo "")
-TIME="10"
-URL="https://api.telegram.org/bot$KEY/sendMessage"
-TEXT="🗣️ <b>AKUN TERKENA LIMIT</b>
+        
+        # --- Notif Telegram AJI STORE ---
+        KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 2)
+        CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 3)
+        
+        if [[ -n "$KEY" && -n "$CHATID" ]]; then
+            TEXT="🗣️ <b>AKUN TERKENA LIMIT</b>
 <code>────────────────────</code>
-<b>   ⚠️ SSH AUTOKILL ⚠️</b>
-<code>────────────────────</code>
-<b>Username : </b><code>${username_list[$i]}</code>
+<b>Username : </b><code>$user</code>
 <b>Limit IP : </b><code>$USER_LIMIT IP</code>
-<b>Status   : </b><code>Terkena Limit & Kicked</code>
-<code>────────────────────</code>
-<b>Notifikasi Otomatis AJI STORE</b>"
-
-if [[ -n "$KEY" && -n "$CHATIDS" ]]; then
-    for CHATID in $CHATIDS; do
-        curl -s --max-time "$TIME" \
-            -d "chat_id=$CHATID" \
-            -d "disable_web_page_preview=1" \
-            --data-urlencode "text=$TEXT" \
-            -d "parse_mode=html" \
-            "$URL" >/dev/null
-    done
-fi
+<b>Login Aktif: </b><code>$jumlah IP</code>
+<b>Status   : </b><code>Kicked by System</code>
+<code>────────────────────</code>"
+            curl -s --max-time 10 -d "chat_id=$CHATID&text=$TEXT&parse_mode=html" "https://api.telegram.org/bot$KEY/sendMessage" >/dev/null
+        fi
+    fi
 done
 
-# Restart ssh jika ada yang dikill
-if [ $hit -gt 0 ]; then
-    if [ $OS -eq 1 ]; then
-        service ssh restart > /dev/null 2>&1
-    else
-        service sshd restart > /dev/null 2>&1
-    fi
+# Restart service jika ada yang ditendang
+if [ "$hit" -gt 0 ]; then
+    systemctl restart sshd >/dev/null 2>&1
 fi
