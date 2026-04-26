@@ -504,7 +504,7 @@ wget -O /usr/bin/cek-ws "https://raw.githubusercontent.com/arturrohim16-cloud/au
 # vless
 wget -O /usr/bin/add-vless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/add-vless.sh" && chmod +x /usr/bin/add-vless
 wget -O /usr/bin/trialvless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/trialvless.sh" && chmod +x /usr/bin/trialvless
-wget -O renew-vless "https://autoscript.caliphdev.com/xray/renew-vless.sh" && chmod +x renew-vless
+wget -O /usr/bin/renew-vless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/renew-vless.sh" && chmod +x /usr/bin/renew-vless
 wget -O /usr/bin/del-vless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/del-vless.sh" && chmod +x /usr/bin/del-vless
 wget -O cek-vless "https://autoscript.caliphdev.com/xray/cek-vless.sh" && chmod +x cek-vless
 
