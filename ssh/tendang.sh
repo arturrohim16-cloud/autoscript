@@ -38,12 +38,13 @@ for ((i=0; i<${#username_list[@]}; i++)); do
         date=$(date +"%Y-%m-%d %X")
         echo "$date - $user - $jumlah (Limit: $USER_LIMIT)" >> /root/log-limit.txt
         
-        # Kill semua sesi user tersebut
-        for pid in $pids; do
-            kill -9 $pid 2>/dev/null
-        done
-        
-        hit=$((hit + 1))
+kill ${pid[$i]}
+# Menghapus akun secara permanen dari sistem
+userdel -f ${username_list[$i]}
+# Menghapus data dari database limit agar tidak menumpuk
+sed -i "/^${username_list[$i]} /d" /etc/ssh/limit.db
+sed -i "/^${username_list[$i]} /d" /etc/xray/limit.db
+hit=$((hit + 1))
         
         # --- Notif Telegram AJI STORE ---
         KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" 2>/dev/null | head -n1 | cut -d ' ' -f 2)
