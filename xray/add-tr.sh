@@ -16,6 +16,11 @@ echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━�
 
 		read -rp "User: " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
+		read -p "Limit (IP): " iplimit
+        # Jika input kosong, otomatis set ke 1
+        if [ -z "$iplimit" ]; then iplimit="1"; fi
+        # Simpan ke database limit xray
+           echo "$user $iplimit" >> /etc/xray/limit.db
 
 		if [[ ${user_EXISTS} == '1' ]]; then
 clear
