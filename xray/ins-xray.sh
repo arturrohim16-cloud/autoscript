@@ -496,9 +496,9 @@ systemctl restart runn
 cd /usr/bin/
 # vmess
 wget -O /usr/bin/add-ws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/add-ws.sh" && chmod +x /usr/bin/add-ws
-wget -O trialvmess "https://autoscript.caliphdev.com/xray/trialvmess.sh" && chmod +x trialvmess
-wget -O renew-ws "https://autoscript.caliphdev.com/xray/renew-ws.sh" && chmod +x renew-ws
-wget -O del-ws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/del-ws.sh" && chmod +x del-ws
+wget -O /usr/bin/trialvmess "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/trialvmess.sh" && chmod +x /usr/bin/trialvmess
+wget -O /usr/bin/renew-ws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/renew-ws.sh" && chmod +x /usr/bin/renew-ws
+wget -O /usr/bin/del-ws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/del-ws.sh" && chmod +x /usr/bin/del-ws
 wget -O cek-ws "https://autoscript.caliphdev.com/xray/cek-ws.sh" && chmod +x cek-ws
 
 # vless
