@@ -499,7 +499,7 @@ wget -O /usr/bin/add-ws "https://raw.githubusercontent.com/arturrohim16-cloud/au
 wget -O /usr/bin/trialvmess "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/trialvmess.sh" && chmod +x /usr/bin/trialvmess
 wget -O /usr/bin/renew-ws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/renew-ws.sh" && chmod +x /usr/bin/renew-ws
 wget -O /usr/bin/del-ws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/del-ws.sh" && chmod +x /usr/bin/del-ws
-wget -O cek-ws "https://autoscript.caliphdev.com/xray/cek-ws.sh" && chmod +x cek-ws
+wget -O /usr/bin/cek-ws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/cek-ws.sh" && chmod +x /usr/bin/cek-ws
 
 # vless
 wget -O /usr/bin/add-vless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/master/xray/add-vless.sh" && chmod +x /usr/bin/add-vless
