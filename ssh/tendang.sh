@@ -28,9 +28,9 @@ username_list=( $(cat /root/user.txt) )
 hit=0
 for ((i=0; i<${#username_list[@]}; i++)); do
     user="${username_list[$i]}"
-    # Hitung jumlah login SSH aktif untuk user ini
-    jumlah=$(ps aux | grep "sshd: $user" | grep -v grep | wc -l)
-    pids=$(ps aux | grep "sshd: $user" | grep -v grep | awk '{print $2}')
+# Menghitung sesi SSH yang benar-benar sedang ESTABLISHED (Aktif)
+jumlah=$(netstat -anp | grep ESTABLISHED | grep sshd | grep -w "$user" | wc -l)
+pids=$(ps aux | grep "sshd: $user" | grep -v grep | awk '{print $2}')
     
     USER_LIMIT=$(get_limit "$user")
 
