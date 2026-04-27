@@ -292,7 +292,7 @@ wget -O running "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript
 wget -O clearcache "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/clearcache.sh"
 wget -O m-ssws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-ssws.sh"
 wget -O m-trojan "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-trojan.sh"
-wget -O xray-renew "https://autoscript.caliphdev.com/xray/xray-renew.sh"
+wget -O xray-renew "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/xray-renew.sh"
 
 
 # menu ssh ovpn
