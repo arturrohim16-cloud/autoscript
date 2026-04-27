@@ -38,12 +38,13 @@ pids=$(ps aux | grep "sshd: $user" | grep -v grep | awk '{print $2}')
         date=$(date +"%Y-%m-%d %X")
         echo "$date - $user - $jumlah (Limit: $USER_LIMIT)" >> /root/log-limit.txt
         
-kill ${pid[$i]}
+for pid in $pids; do
+            kill -9 $pid >/dev/null 2>&1
+        done
 # Menghapus akun secara permanen dari sistem
-userdel -f ${username_list[$i]}
-# Menghapus data dari database limit agar tidak menumpuk
-sed -i "/^${username_list[$i]} /d" /etc/ssh/limit.db
-sed -i "/^${username_list[$i]} /d" /etc/xray/limit.db
+userdel -f "$user"
+sed -i "/^$user /d" /etc/ssh/limit.db
+sed -i "/^$user /d" /etc/xray/limit.db
 hit=$((hit + 1))
         
         # --- Notif Telegram AJI STORE ---
