@@ -301,7 +301,7 @@ wget -O /usr/bin/usernew "https://raw.githubusercontent.com/arturrohim16-cloud/a
 wget -O /usr/bin/trial "https://autoscript.caliphdev.com/ssh/trial.sh"
 wget -O /usr/bin/renew "https://autoscript.caliphdev.com/ssh/renew.sh"
 wget -O /usr/bin/hapus "https://autoscript.caliphdev.com/ssh/hapus.sh"
-wget -O /usr/bin/cek "https://autoscript.caliphdev.com/ssh/cek.sh"
+wget -O /usr/bin/cek "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/cek.sh"
 wget -O /usr/bin/member "https://autoscript.caliphdev.com/ssh/member.sh"
 wget -O /usr/bin/delete "https://autoscript.caliphdev.com/ssh/delete.sh"
 wget -O /usr/bin/autokill "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/autokill.sh"
