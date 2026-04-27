@@ -288,7 +288,7 @@ wget -O /usr/bin/backup "https://raw.githubusercontent.com/arturrohim16-cloud/au
 wget -O /usr/bin/restore "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/restore.sh"
 wget -O /usr/bin/m-vmess "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-vmess.sh"
 wget -O /usr/bin/m-vless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-vless.sh"
-wget -O running "https://autoscript.caliphdev.com/menu/running.sh"
+wget -O running "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/running.sh"
 wget -O clearcache "https://autoscript.caliphdev.com/menu/clearcache.sh"
 wget -O m-ssws "https://autoscript.caliphdev.com/menu/m-ssws.sh"
 wget -O m-trojan "https://autoscript.caliphdev.com/menu/m-trojan.sh"
