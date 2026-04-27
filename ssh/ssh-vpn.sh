@@ -290,7 +290,7 @@ wget -O /usr/bin/m-vmess "https://raw.githubusercontent.com/arturrohim16-cloud/a
 wget -O /usr/bin/m-vless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-vless.sh"
 wget -O running "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/running.sh"
 wget -O clearcache "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/clearcache.sh"
-wget -O m-ssws "https://autoscript.caliphdev.com/menu/m-ssws.sh"
+wget -O m-ssws "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-ssws.sh"
 wget -O m-trojan "https://autoscript.caliphdev.com/menu/m-trojan.sh"
 wget -O xray-renew "https://autoscript.caliphdev.com/xray/xray-renew.sh"
 
