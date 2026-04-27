@@ -305,7 +305,7 @@ wget -O /usr/bin/cek "https://raw.githubusercontent.com/arturrohim16-cloud/autos
 wget -O /usr/bin/member "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/member.sh"
 wget -O /usr/bin/delete "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/delete.sh"
 wget -O /usr/bin/autokill "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/autokill.sh"
-wget -O /usr/bin/ceklim "https://autoscript.caliphdev.com/ssh/ceklim.sh"
+wget -O /usr/bin/ceklim "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/ceklim.sh"
 wget -O /usr/bin/tendang "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/tendang.sh"
 wget -O /usr/bin/sshws "https://autoscript.caliphdev.com/ssh/sshws.sh"
 wget -O /usr/bin/user-lock "https://autoscript.caliphdev.com/ssh/user-lock.sh"
