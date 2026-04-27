@@ -281,13 +281,13 @@ netfilter-persistent reload
 # download script
 cd /usr/bin
 # menu
-wget -O menu "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/menu.sh"
-wget -O m-bot-notif "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-bot-notif.sh"
-wget -O m-backup "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-backup.sh"
-wget -O backup "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/backup.sh"
-wget -O restore "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/restore.sh"
-wget -O m-vmess "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-vmess.sh"
-wget -O m-vless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-vless.sh"
+wget -O /use/bin/menu "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/menu.sh"
+wget -O /usr/bin/m-bot-notif "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-bot-notif.sh"
+wget -O /usr/bin/m-backup "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-backup.sh"
+wget -O /usr/bin/backup "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/backup.sh"
+wget -O /usr/bin/restore "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/restore.sh"
+wget -O /usr/bin/m-vmess "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-vmess.sh"
+wget -O /usr/bin/m-vless "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-vless.sh"
 wget -O running "https://autoscript.caliphdev.com/menu/running.sh"
 wget -O clearcache "https://autoscript.caliphdev.com/menu/clearcache.sh"
 wget -O m-ssws "https://autoscript.caliphdev.com/menu/m-ssws.sh"
@@ -296,84 +296,84 @@ wget -O xray-renew "https://autoscript.caliphdev.com/xray/xray-renew.sh"
 
 
 # menu ssh ovpn
-wget -O m-sshovpn "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-sshovpn.sh"
-wget -O usernew "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/usernew.sh"
-wget -O trial "https://autoscript.caliphdev.com/ssh/trial.sh"
-wget -O renew "https://autoscript.caliphdev.com/ssh/renew.sh"
-wget -O hapus "https://autoscript.caliphdev.com/ssh/hapus.sh"
-wget -O cek "https://autoscript.caliphdev.com/ssh/cek.sh"
-wget -O member "https://autoscript.caliphdev.com/ssh/member.sh"
-wget -O delete "https://autoscript.caliphdev.com/ssh/delete.sh"
-wget -O autokill "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/autokill.sh"
-wget -O ceklim "https://autoscript.caliphdev.com/ssh/ceklim.sh"
-wget -O tendang "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/tendang.sh"
-wget -O sshws "https://autoscript.caliphdev.com/ssh/sshws.sh"
-wget -O user-lock "https://autoscript.caliphdev.com/ssh/user-lock.sh"
-wget -O user-unlock "https://autoscript.caliphdev.com/ssh/user-unlock.sh"
+wget -O /usr/bin/m-sshovpn "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/menu/m-sshovpn.sh"
+wget -O /usr/bin/usernew "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/usernew.sh"
+wget -O /usr/bin/trial "https://autoscript.caliphdev.com/ssh/trial.sh"
+wget -O /usr/bin/renew "https://autoscript.caliphdev.com/ssh/renew.sh"
+wget -O /usr/bin/hapus "https://autoscript.caliphdev.com/ssh/hapus.sh"
+wget -O /usr/bin/cek "https://autoscript.caliphdev.com/ssh/cek.sh"
+wget -O /usr/bin/member "https://autoscript.caliphdev.com/ssh/member.sh"
+wget -O /usr/bin/delete "https://autoscript.caliphdev.com/ssh/delete.sh"
+wget -O /usr/bin/autokill "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/autokill.sh"
+wget -O /usr/bin/ceklim "https://autoscript.caliphdev.com/ssh/ceklim.sh"
+wget -O /usr/bin/tendang "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/ssh/tendang.sh"
+wget -O /usr/bin/sshws "https://autoscript.caliphdev.com/ssh/sshws.sh"
+wget -O /usr/bin/user-lock "https://autoscript.caliphdev.com/ssh/user-lock.sh"
+wget -O /usr/bin/user-unlock "https://autoscript.caliphdev.com/ssh/user-unlock.sh"
 
 # menu system
-wget -O m-system "https://autoscript.caliphdev.com/menu/m-system.sh"
-wget -O m-domain "https://autoscript.caliphdev.com/menu/m-domain.sh"
-wget -O add-host "https://autoscript.caliphdev.com/ssh/add-host.sh"
-wget -O certv2ray "https://autoscript.caliphdev.com/xray/certv2ray.sh"
-wget -O speedtest "https://autoscript.caliphdev.com/ssh/speedtest_cli.py"
-wget -O auto-reboot "https://autoscript.caliphdev.com/menu/auto-reboot.sh"
-wget -O restart "https://autoscript.caliphdev.com/menu/restart.sh"
-wget -O bw "https://autoscript.caliphdev.com/menu/bw.sh"
-wget -O m-tcp "https://autoscript.caliphdev.com/menu/tcp.sh"
-wget -O xp "https://autoscript.caliphdev.com/ssh/xp.sh"
-wget -O sshws "https://autoscript.caliphdev.com/ssh/sshws.sh"
-wget -O m-dns "https://autoscript.caliphdev.com/menu/m-dns.sh"
+wget -O /usr/bin/m-system "https://autoscript.caliphdev.com/menu/m-system.sh"
+wget -O /usr/bin/m-domain "https://autoscript.caliphdev.com/menu/m-domain.sh"
+wget -O /usr/bin/add-host "https://autoscript.caliphdev.com/ssh/add-host.sh"
+wget -O /usr/bin/certv2ray "https://autoscript.caliphdev.com/xray/certv2ray.sh"
+wget -O /usr/bin/speedtest "https://autoscript.caliphdev.com/ssh/speedtest_cli.py"
+wget -O /usr/bin/auto-reboot "https://autoscript.caliphdev.com/menu/auto-reboot.sh"
+wget -O /usr/bin/restart "https://autoscript.caliphdev.com/menu/restart.sh"
+wget -O /usr/bin/bw "https://autoscript.caliphdev.com/menu/bw.sh"
+wget -O /usr/bin/m-tcp "https://autoscript.caliphdev.com/menu/tcp.sh"
+wget -O /usr/bin/xp "https://autoscript.caliphdev.com/ssh/xp.sh"
+wget -O /usr/bin/sshws "https://autoscript.caliphdev.com/ssh/sshws.sh"
+wget -O /usr/bin/m-dns "https://autoscript.caliphdev.com/menu/m-dns.sh"
 
 # Menu IPsec
-wget -O m-l2tp "https://autoscript.caliphdev.com/menu/m-l2tp.sh"
-wget -O m-sstp "https://autoscript.caliphdev.com/menu/m-sstp.sh"
-wget -O m-pptp "https://autoscript.caliphdev.com/menu/m-pptp.sh"
+wget -O /usr/bin/m-l2tp "https://autoscript.caliphdev.com/menu/m-l2tp.sh"
+wget -O /usr/bin/m-sstp "https://autoscript.caliphdev.com/menu/m-sstp.sh"
+wget -O /usr/bin/m-pptp "https://autoscript.caliphdev.com/menu/m-pptp.sh"
 
-chmod +x menu
-chmod +x m-bot-notif
-chmod +x m-backup
-chmod +x backup
-chmod +x restore
-chmod +x m-vmess
-chmod +x m-vless
-chmod +x running
-chmod +x clearcache
-chmod +x m-ssws
-chmod +x m-trojan
-chmod +x m-pptp
-chmod +x m-sstp
-chmod +x m-l2tp
+chmod +x /usr/bin/menu
+chmod +x /usr/bin/m-bot-notif
+chmod +x /usr/bin/m-backup
+chmod +x /usr/bin/backup
+chmod +x /usr/bin/restore
+chmod +x /usr/bin/m-vmess
+chmod +x /usr/bin/m-vless
+chmod +x /usr/bin/running
+chmod +x /usr/bin/clearcache
+chmod +x /usr/bin/m-ssws
+chmod +x /usr/bin/m-trojan
+chmod +x /usr/bin/m-pptp
+chmod +x /usr/bin/m-sstp
+chmod +x /usr/bin/m-l2tp
 
 
-chmod +x m-sshovpn
-chmod +x usernew
-chmod +x trial
-chmod +x renew
-chmod +x hapus
-chmod +x cek
-chmod +x member
-chmod +x delete
-chmod +x autokill
-chmod +x ceklim
-chmod +x tendang
-chmod +x sshws
-chmod +x user-lock
-chmod +x user-unlock
-chmod +x xray-renew
+chmod +x /usr/bin/m-sshovpn
+chmod +x /usr/bin/usernew
+chmod +x /usr/bin/trial
+chmod +x /usr/bin/renew
+chmod +x /usr/bin/hapus
+chmod +x /usr/bin/cek
+chmod +x /usr/bin/member
+chmod +x /usr/bin/delete
+chmod +x /usr/bin/autokill
+chmod +x /usr/bin/ceklim
+chmod +x /usr/bin/tendang
+chmod +x /usr/bin/sshws
+chmod +x /usr/bin/user-lock
+chmod +x /usr/bin/user-unlock
+chmod +x /usr/bin/xray-renew
 
-chmod +x m-system
-chmod +x m-domain
-chmod +x add-host
-chmod +x certv2ray
-chmod +x speedtest
-chmod +x auto-reboot
-chmod +x restart
-chmod +x bw
-chmod +x m-tcp
-chmod +x xp
-chmod +x sshws
-chmod +x m-dns
+chmod +x /usr/bin/m-system
+chmod +x /usr/bin/m-domain
+chmod +x /usr/bin/add-host
+chmod +x /usr/bin/certv2ray
+chmod +x /usr/bin/speedtest
+chmod +x /usr/bin/auto-reboot
+chmod +x /usr/bin/restart
+chmod +x /usr/bin/bw
+chmod +x /usr/bin/m-tcp
+chmod +x /usr/bin/xp
+chmod +x /usr/bin/sshws
+chmod +x /usr/bin/m-dns
 cd
 
 
