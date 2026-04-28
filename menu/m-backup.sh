@@ -308,7 +308,7 @@ autoBackup() {
             cat > /etc/cron.d/bckp_otm << END
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-$cron root bash /usr/local/sbin/backup
+$cron root /usr/bin/backup botBackup
 END
 
             chmod 644 /etc/cron.d/bckp_otm
