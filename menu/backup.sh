@@ -240,7 +240,11 @@ botBackup() {
     rm -rf "$workDir" "${backupFile}"
     echo -e "${WHITE}✅ BACKUP COMPLETED${NC}"
 }
-#backup lama
-bckplama
-#backupnew
-botBackup
+case "$1" in
+    botBackup)
+        botBackup
+        ;;
+    *)
+        m_bckp
+        ;;
+esac
