@@ -109,8 +109,9 @@ baris_panjang
 echo -e "${Green} 1.${NC} Add Bot Notifikasi"
 echo -e "${Green} 2.${NC} Add BotTrx"
 echo -e "${Green} 3.${NC} Hapus Bot Notifikasi"
-echo -e "${Green} 4.${NC} Hapus BotTrx"
+echo -e "${Green} 4.${NC} update BotTrx"
 echo -e "${Green} 5.${NC} Hapus Semua Database"
+echo -e "${Green} 6.${NC} crate api"
 baris_panjang
 echo ""
 read -rp "Pilih Opsi [1-5]: " opsi
@@ -144,9 +145,9 @@ case $opsi in
     ;;
 2)
     clear
-   sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update -y && apt install -y git && apt install -y curl && curl -L -k -sS https://raw.githubusercontent.com/arivpnstores/BotVPN2/main/start -o start && bash start sellvpn && [ $? -eq 0 ] && rm -f start
-   baris_panjang
-   Sc_Credit 
+    sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update -y && apt install -y git && apt install -y curl && curl -L -k -sS https://raw.githubusercontent.com/arivpnstores/BotVPN2/main/start -o start && bash start sellvpn && [ $? -eq 0 ] && rm -f start
+    baris_panjang
+    Sc_Credit 
     ;;
 3)
     clear
@@ -168,7 +169,7 @@ case $opsi in
     ;;
 4)
     clear
-  curl --connect-timeout 1 --max-time 3 -sL https://raw.githubusercontent.com/arivpnstores/BotVPN2/main/update.sh -o update.sh && chmod +x update.sh && bash update.sh
+    curl --connect-timeout 1 --max-time 3 -sL https://raw.githubusercontent.com/arivpnstores/BotVPN2/main/update.sh -o update.sh && chmod +x update.sh && bash update.sh
     baris_panjang
     Sc_Credit
     ;;
@@ -188,6 +189,11 @@ case $opsi in
         echo -e "${YELL}Proses dibatalkan${Xark}"
     fi
     baris_panjang
+    Sc_Credit
+    ;;
+6)
+    clear
+    wget -q https://raw.githubusercontent.com/arivpnstores/api-ari/main/api.sh && chmod +x api.sh && ./api.sh && rm -rf api.sh
     Sc_Credit
     ;;
 *)
