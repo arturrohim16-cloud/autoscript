@@ -114,6 +114,66 @@ apt install libssl1.0-dev -y
 apt install dos2unix -y
 gem install lolcat
 
+apt update -y
+apt upgrade -y
+apt-get update -y
+apt-get upgrade -y
+
+# Install Ssl & Certificates
+apt install ssl-cert -y
+apt install ca-certificates -y
+
+ # Removing some firewall tools that may affect other services
+apt-get remove --purge ufw firewalld -y
+apt-get remove --purge exim4 -y
+ 
+ # Installing some important machine essentials
+apt-get install nano -y
+apt-get install zip -y
+apt-get install unzip -y
+apt-get install tar -y
+apt-get install gzip -y
+apt-get install p7zip-full -y
+apt-get install bc -y
+apt-get install rc -y
+apt-get install openssl -y
+apt-get install cron -y
+apt-get install net-tools -y
+apt-get install dnsutils -y
+apt-get install dos2unix -y
+apt-get install screen -y
+apt-get install bzip2 -y
+apt-get install ccrypt -y
+ 
+ # Now installing all our wanted services
+apt-get install dropbear -y
+apt-get install stunnel4 -y
+apt-get install privoxy -y
+apt-get install ca-certificates -y
+apt-get install nginx -y
+apt-get install ruby -y
+apt-get install apt-transport-https -y
+apt-get install lsb-release -y
+apt-get install squid3 -y
+apt-get install squid -y
+ 
+ # Installing all required packages to install Webmin
+apt-get install perl -y
+apt-get install libnet-ssleay-perl -y
+apt-get install openssl -y
+apt-get install libauthen-pam-perl -y
+apt-get install libpam-runtime -y
+apt-get install libio-pty-perl -y
+apt-get install apt-show-versions -y
+apt-get install python -y
+apt-get install dbus -y
+apt-get install libxml-parser-perl -y
+apt-get install shared-mime-info -y
+apt-get install jq -y
+apt-get install fail2ban -y
+ # Trying to remove obsolette packages after installation
+apt-get autoremove -y
+
 # set time GMT +7
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
