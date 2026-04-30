@@ -169,7 +169,7 @@ echo -e "$BGreen          Install XRAY              $NC"
 echo -e "\e[33m-----------------------------------\033[0m"
 sleep 0.5
 clear
-wget https://autoscript.caliphdev.com/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
+wget -O ins-xray.sh "https://raw.githubusercontent.com/arturrohim16-cloud/autoscript/refs/heads/master/xray/ins-xray.sh" && chmod +x ins-xray.sh && ./ins-xray.sh
 wget https://autoscript.caliphdev.com/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 #Instal IPSec
 echo -e "\e[33m-----------------------------------\033[0m"
