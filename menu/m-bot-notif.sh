@@ -145,6 +145,8 @@ case $opsi in
 2)
     clear
    sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update -y && apt install -y git && apt install -y curl && curl -L -k -sS https://raw.githubusercontent.com/arivpnstores/BotVPN2/main/start -o start && bash start sellvpn && [ $? -eq 0 ] && rm -f start
+   baris_panjang
+   Sc_Credit 
     ;;
 3)
     clear
@@ -166,19 +168,7 @@ case $opsi in
     ;;
 4)
     clear
-    Xwan_Banner
-    baris_panjang
-    echo -e "${Purple}        HAPUS BOT TRX ${Xark} "
-    baris_panjang
-    Loading_Animasi
-    if [[ -f /etc/bottrx/.bottrx.db ]]; then
-        rm -f /etc/bottrx/.bottrx.db
-        Loading_Succes
-        echo -e "${GreenBe}File Database berhasil dihapus${Xark}"
-    else
-        Loading_Succes
-        echo -e "${YELL}File /etc/bottrx/.bottrx.db tidak ada${Xark}"
-    fi
+  curl --connect-timeout 1 --max-time 3 -sL https://raw.githubusercontent.com/arivpnstores/BotVPN2/main/update.sh -o update.sh && chmod +x update.sh && bash update.sh
     baris_panjang
     Sc_Credit
     ;;
