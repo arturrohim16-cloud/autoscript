@@ -144,29 +144,7 @@ case $opsi in
     ;;
 2)
     clear
-    Xwan_Banner
-    baris_panjang
-    echo -e "${Purple}        ADD BOT TRX ${Xark} "
-    baris_panjang
-    read -rp "[*] Input Key Bot     : " -e bottoken 
-    read -rp "[*] Input Id Tele     : " -e admin
-    clear
-    Loading_Animasi
-    Loading_Succes
-
-    mkdir -p /etc/bottrx
-    echo "#bottrx# ${bottoken} ${admin}" >> /etc/bottrx/.bottrx.db
-
-    # Kirim notif test
-    send_notif_trx "💰 Bot Transaksi aktif!\nToken: ${bottoken}\nID: ${admin}"
-
-    Xwan_Banner
-    baris_panjang
-    echo -e "${GreenBe} Succesfully Added BotTrx ${Xark}"
-    echo -e "${yellow} Bot Token      : $bottoken ${Xark}"
-    echo -e "${yellow} ID Telegram    : $admin ${Xark}"
-    baris_panjang
-    Sc_Credit
+   sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update -y && apt install -y git && apt install -y curl && curl -L -k -sS https://raw.githubusercontent.com/arivpnstores/BotVPN2/main/start -o start && bash start sellvpn && [ $? -eq 0 ] && rm -f start
     ;;
 3)
     clear
