@@ -25,14 +25,11 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 # Memberi izin folder vnstat
 chown -R vnstat:vnstat /var/lib/vnstat
-
 # Inisialisasi database untuk interface eth0
 vnstat -u -i eth0
-
 # Restart service agar mulai merekam
 systemctl restart vnstat
 sleep 2 # Beri jeda 2 detik agar database siap
-
 # VPS Information
 #Domain
 domain=$(cat /etc/xray/domain)
@@ -83,11 +80,6 @@ ssh="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 dtoday="$(vnstat -i eth0 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}' || echo "0 KiB")"
 utoday="$(vnstat -i eth0 | grep "today" | awk '{print $5" "substr ($6, 1, 1)}' || echo "0 KiB")"
 ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}' || echo "0 KiB")"
-
-# Jika hasilnya kosong karena baru instal, isi manual dengan 0
-[[ -z "$dtoday" ]] && dtoday="0 KiB"
-[[ -z "$utoday" ]] && utoday="0 KiB"
-[[ -z "$ttoday" ]] && ttoday="0 KiB"
 #Download/Upload yesterday
 dyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $2" "substr ($3, 1, 1)}')"
 uyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $5" "substr ($6, 1, 1)}')"
