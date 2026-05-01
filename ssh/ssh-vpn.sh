@@ -68,112 +68,27 @@ apt update -y
 apt upgrade -y
 apt dist-upgrade -y
 apt-get remove --purge ufw firewalld -y
-apt-get remove --purge exim4 -y
-
-#install jq
-apt -y install jq
-
-#install shc
-apt -y install shc
-
-# install wget and curl
-apt -y install wget curl
-
-#figlet
-apt-get install figlet -y
-apt-get install ruby -y
-apt install python -y
-apt install make -y
-apt install cmake -y
-apt install coreutils -y
-apt install rsyslog -y
-apt install net-tools -y
-apt install zip -y
-apt install unzip -y
-apt install nano -y
-apt install sed -y
-apt install gnupg -y
-apt install gnupg1 -y
-apt install bc -y
-apt install jq -y
-apt install apt-transport-https -y
-apt install build-essential -y
-apt install dirmngr -y
-apt install libxml-parser-perl -y
-apt install neofetch -y
-apt install git -y
-apt install lsof -y
-apt install libsqlite3-dev -y
-apt install libz-dev -y
-apt install gcc -y
-apt install g++ -y
-apt install libreadline-dev -y
-apt install zlib1g-dev -y
-apt install libssl-dev -y
-apt install libssl1.0-dev -y
-apt install dos2unix -y
-gem install lolcat
-
-apt update -y
-apt upgrade -y
-apt-get update -y
-apt-get upgrade -y
-
-# Install Ssl & Certificates
-apt install ssl-cert -y
-apt install ca-certificates -y
-
- # Removing some firewall tools that may affect other services
-apt-get remove --purge ufw firewalld -y
-apt-get remove --purge exim4 -y
- 
- # Installing some important machine essentials
-apt-get install nano -y
-apt-get install zip -y
-apt-get install unzip -y
-apt-get install tar -y
-apt-get install gzip -y
-apt-get install p7zip-full -y
-apt-get install bc -y
-apt-get install rc -y
-apt-get install openssl -y
-apt-get install cron -y
-apt-get install net-tools -y
-apt-get install dnsutils -y
-apt-get install dos2unix -y
-apt-get install screen -y
-apt-get install bzip2 -y
-apt-get install ccrypt -y
- 
- # Now installing all our wanted services
-apt-get install dropbear -y
-apt-get install stunnel4 -y
-apt-get install privoxy -y
-apt-get install ca-certificates -y
-apt-get install nginx -y
-apt-get install ruby -y
-apt-get install apt-transport-https -y
-apt-get install lsb-release -y
-apt-get install squid3 -y
-apt-get install squid -y
- 
- # Installing all required packages to install Webmin
-apt-get install perl -y
-apt-get install libnet-ssleay-perl -y
-apt-get install openssl -y
-apt-get install libauthen-pam-perl -y
-apt-get install libpam-runtime -y
-apt-get install libio-pty-perl -y
-apt-get install apt-show-versions -y
-apt-get install python -y
-apt-get install dbus -y
-apt-get install libxml-parser-perl -y
-apt-get install shared-mime-info -y
-apt-get install jq -y
-apt-get install fail2ban -y
- # Trying to remove obsolette packages after installation
+# Menghapus aplikasi yang berpotensi bentrok
+apt-get remove --purge ufw firewalld exim4 -y
 apt-get autoremove -y
+apt-get clean
+# Update repository agar mendapatkan link download terbaru
+apt update -y
 
+apt install -y jq shc wget curl figlet ruby python3 make cmake coreutils \
+rsyslog net-tools zip unzip nano sed gnupg gnupg1 bc apt-transport-https \
+build-essential dirmngr libxml-parser-perl neofetch git lsof libsqlite3-dev \
+libz-dev gcc g++ libreadline-dev zlib1g-dev libssl-dev dos2unix ssl-cert \
+ca-certificates tar gzip p7zip-full rc openssl cron dnsutils screen bzip2 \
+ccrypt dropbear stunnel4 privoxy lsb-release squid perl libnet-ssleay-perl \
+libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions dbus \
+shared-mime-info fail2ban
+#instal gem
+gem install lolcat
+#finishinh
+apt update -y
+apt --fix-broken install -y
+apt autoremove -y
 # set time GMT +7
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
