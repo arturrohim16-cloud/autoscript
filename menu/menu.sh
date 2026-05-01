@@ -23,14 +23,6 @@ NC='\e[0m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
-# Memberi izin folder vnstat
-chown -R vnstat:vnstat /var/lib/vnstat
-# Inisialisasi database untuk interface eth0
-vnstat -u -i eth0
-# Restart service agar mulai merekam
-systemctl restart vnstat
-sleep 2 # Beri jeda 2 detik agar database siap
-# VPS Information
 #Domain
 domain=$(cat /etc/xray/domain)
 #Status certificate
