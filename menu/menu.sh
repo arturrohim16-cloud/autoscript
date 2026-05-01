@@ -67,11 +67,30 @@ ssh="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 # Menghitung Total Keseluruhan (Opsional)
 #total_semua=$((vmess + vless + tr + ss + ssh))
 # Download
+# === LOGIKA AKTIVASI INSTAN (Wajib ada agar tidak kosong) ===
+# Pastikan folder permission benar
+chown -R vnstat:vnstat /var/lib/vnstat
+
+# Deteksi interface otomatis (agar tidak terpaku pada eth0)
+INTERFACE=$(ip -o $IMG -4 route show to default | awk '{print $5}')
+
+# Paksa vnstat buat database & update detik ini juga
+vnstat -i $INTERFACE --add >/dev/null 2>&1
+vnstat -u -i $INTERFACE >/dev/null 2>&1
+
+# Beri jeda sangat singkat agar sistem mencatat data pertama
+sleep 1
+
+# === LOGIKA PENGAMBILAN DATA ===
 #Download/Upload today
-#Download/Upload today
-dtoday="$(vnstat -i eth0 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}' || echo "0 KiB")"
-utoday="$(vnstat -i eth0 | grep "today" | awk '{print $5" "substr ($6, 1, 1)}' || echo "0 KiB")"
-ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}' || echo "0 KiB")"
+dtoday="$(vnstat -i $INTERFACE | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
+utoday="$(vnstat -i $INTERFACE | grep "today" | awk '{print $5" "substr ($6, 1, 1)}')"
+ttoday="$(vnstat -i $INTERFACE | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
+
+# Backup jika variabel di atas kosong (Failsafe)
+[ -z "$dtoday" ] && dtoday="0 KiB"
+[ -z "$utoday" ] && utoday="0 KiB"
+[ -z "$ttoday" ] && ttoday="0 KiB"
 #Download/Upload yesterday
 dyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $2" "substr ($3, 1, 1)}')"
 uyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $5" "substr ($6, 1, 1)}')"
