@@ -169,7 +169,7 @@ case $opsi in
     ;;
 4)
     clear
-    curl --connect-timeout 1 --max-time 3 -sL https://raw.githubusercontent.com/arivpnstores/BotVPN2/main/update.sh -o update.sh && chmod +x update.sh && bash update.sh
+    curl --connect-timeout 1 --max-time 3 -sL https://raw.githubusercontent.com/arivpnstores/BotVPN/main/update.sh -o update.sh && chmod +x update.sh && bash update.sh
     baris_panjang
     Sc_Credit
     ;;
