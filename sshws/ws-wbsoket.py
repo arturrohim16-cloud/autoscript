@@ -1,20 +1,20 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+# encoding: utf-8
 import socket, threading, thread, select, signal, sys, time, getopt
 
 # Listen
 LISTENING_ADDR = '0.0.0.0'
 LISTENING_PORT = sys.argv[1]
-
-# Pass
 PASS = ''
-
 # CONST
 BUFLEN = 4096 * 4
 TIMEOUT = 60
-DEFAULT_HOST = '127.0.0.1:109'
-# Mendefinisikan dua jenis respon agar bisa dipilih nanti
-RES_200 = 'HTTP/1.1 200 Switching Protocols\r\nContent-length: 0\r\nHTTP/1.1 200 Connection established\r\n\r\n'
-RES_101 = 'HTTP/1.1 101 Switching Protocols\r\nContent-Length: 104857600000\r\n\r\n'
+DEFAULT_HOST = '127.0.0.1:22'
+MSG = 'Switching Protocols'
+STATUS_RESP = '101'
+FTAG = '\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 WS By ILYASS\r\n\r\n'
+RESPONSE = "HTTP/1.1 " + str(STATUS_RESP) + ' ' +  str(MSG) + ' ' +  str(FTAG)
+
 
 class Server(threading.Thread):
     def __init__(self, host, port):
@@ -170,7 +170,7 @@ class ConnectionHandler(threading.Thread):
             host = host[:i]
         else:
             if self.method=='CONNECT':
-                port = 443
+                port = 22
             else:
                 port = sys.argv[1]
 
@@ -180,17 +180,11 @@ class ConnectionHandler(threading.Thread):
         self.targetClosed = False
         self.target.connect(address)
 
-        def method_CONNECT(self, path):
+    def method_CONNECT(self, path):
         self.log += ' - CONNECT ' + path
 
         self.connect_target(path)
-        
-        # Logika otomatis: Jika payload klien mengandung kata 'Upgrade' atau 'websocket'
-        if 'Upgrade' in self.client_buffer or 'websocket' in self.client_buffer.lower():
-            self.client.sendall(RES_101) # Kirim 101 untuk Websocket/Cloudflare
-        else:
-            self.client.sendall(RES_200) # Kirim 200 untuk SSH Direct/Payload biasa
-            
+        self.client.sendall(RESPONSE)
         self.client_buffer = ''
 
         self.server.printLog(self.log)
@@ -254,12 +248,16 @@ def parse_args(argv):
 
 
 def main(host=LISTENING_ADDR, port=LISTENING_PORT):
-    print "\n:-------PythonProxy-------:\n"
-    print "Listening addr: " + LISTENING_ADDR
-    print "Listening port: " + str(LISTENING_PORT) + "\n"
-    print ":-------------------------:\n"
+    
+    print "\033[0;34m•"*8,"\033[1;32m PROXY PYTHON WEBSOCKET","\033[0;34m•"*8,"\n"
+    print "\033[1;33mIP:\033[1;32m " + LISTENING_ADDR
+    print "\033[1;33mPORT:\033[1;32m " + str(LISTENING_PORT) + "\n"
+    print "\033[0;34m•"*10,"\033[1;32m ILYASS AUTO SCRIPT","\033[0;34m•\033[1;37m"*11,"\n"
+    
+    
     server = Server(LISTENING_ADDR, LISTENING_PORT)
     server.start()
+
     while True:
         try:
             time.sleep(2)
@@ -267,7 +265,7 @@ def main(host=LISTENING_ADDR, port=LISTENING_PORT):
             print 'Stopping...'
             server.close()
             break
-
-#######    parse_args(sys.argv[1:])
+    
 if __name__ == '__main__':
+    parse_args(sys.argv[1:])
     main()
